@@ -1,0 +1,537 @@
+import React, { useState } from 'react';
+import { 
+  BookOpen, 
+  Users, 
+  Scale, 
+  FileText, 
+  Download, 
+  Menu, 
+  X, 
+  Search, 
+  Filter,
+  ExternalLink,
+  Github,
+  Info,
+  Lock
+} from 'lucide-react';
+
+// --- Types & Data ---
+
+type Mode = 'Formal' | 'Informal' | 'Sham';
+type Tier = 'Tier 1' | 'Tier 2' | 'Tier 3';
+
+interface Module {
+  id: string;
+  title: string;
+  theme: string;
+  mode: Mode;
+  tier: Tier;
+  duration: string;
+  description: string;
+}
+
+const LIBRARY_DATA: Module[] = [
+  { id: 'F01', title: 'Body Scan: Foundational Awareness', theme: 'Present Moment', mode: 'Formal', tier: 'Tier 1', duration: '10 min', description: 'Basic body scan focusing on physical sensations without judgment.' },
+  { id: 'F02', title: 'Breath Awareness', theme: 'Focus', mode: 'Formal', tier: 'Tier 1', duration: '10 min', description: 'Anchoring attention to the breath cycle.' },
+  { id: 'I01', title: 'Mindful Handwashing', theme: 'Present Moment', mode: 'Informal', tier: 'Tier 1', duration: 'Variable', description: 'Integrating awareness into hygiene routines. Water conservation focused.' },
+  { id: 'I02', title: 'Walking with Awareness', theme: 'Grounding', mode: 'Informal', tier: 'Tier 1', duration: 'Variable', description: 'Noticing the sensation of feet on the ground while moving.' },
+  { id: 'F03', title: 'Sounds and Thoughts', theme: 'Curiosity', mode: 'Formal', tier: 'Tier 2', duration: '10 min', description: 'Moving from breath to open monitoring of auditory environment.' },
+  { id: 'S01', title: 'Sham: Room Description', theme: 'Neutral', mode: 'Sham', tier: 'Tier 1', duration: '10 min', description: 'Structurally equivalent control task: Describing items in a room.' },
+  { id: 'S02', title: 'Sham: Neutral Recall', theme: 'Neutral', mode: 'Sham', tier: 'Tier 1', duration: '10 min', description: 'Recalling a routine grocery trip in detail.' },
+];
+
+// --- Components ---
+
+const Section = ({ title, children, className = "" }: { title?: string, children: React.ReactNode, className?: string }) => (
+  <div className={`mb-12 ${className}`}>
+    {title && <h2 className="text-2xl font-bold text-slate-800 mb-6 border-b pb-2 border-slate-200">{title}</h2>}
+    <div className="text-slate-700 leading-relaxed space-y-4">
+      {children}
+    </div>
+  </div>
+);
+
+const Card = ({ title, icon: Icon, children }: { title: string, icon: any, children: React.ReactNode }) => (
+  <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
+    <div className="flex items-center gap-3 mb-4">
+      <div className="p-2 bg-teal-50 rounded-full text-teal-600">
+        <Icon size={24} />
+      </div>
+      <h3 className="font-bold text-lg text-slate-800">{title}</h3>
+    </div>
+    <p className="text-slate-600 text-sm leading-relaxed">
+      {children}
+    </p>
+  </div>
+);
+
+const LoginScreen = ({ onLogin }: { onLogin: (status: boolean) => void }) => {
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
+
+  // Simple hardcoded password for preview protection
+  const PREVIEW_PASSWORD = 'soma2025'; 
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === PREVIEW_PASSWORD) {
+      onLogin(true);
+      setError(false);
+    } else {
+      setError(true);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4">
+      <div className="bg-white rounded-lg shadow-xl p-8 max-w-md w-full">
+        <div className="text-center mb-8">
+          <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4 text-teal-600">
+            <Lock size={32} />
+          </div>
+          <h1 className="text-2xl font-bold text-slate-800">Private Preview</h1>
+          <p className="text-slate-500 mt-2">The SOMA Framework website is currently in development. Please enter the access code.</p>
+        </div>
+        
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter access code..."
+              className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-teal-500 focus:border-transparent outline-none transition-all"
+              autoFocus
+            />
+          </div>
+          
+          {error && (
+            <div className="text-red-500 text-sm text-center bg-red-50 py-2 rounded">
+              Incorrect access code.
+            </div>
+          )}
+
+          <button 
+            type="submit"
+            className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-lg transition-colors"
+          >
+            Unlock Access
+          </button>
+        </form>
+        
+        <div className="mt-6 text-center text-xs text-slate-400">
+          Restricted Access • SOMA Framework
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// --- Pages ---
+
+const Home = ({ navigate }: { navigate: (page: string) => void }) => (
+  <div className="animate-in fade-in duration-500">
+    {/* Hero Banner */}
+    <div className="bg-gradient-to-r from-slate-900 to-slate-800 text-white rounded-2xl p-8 md:p-12 mb-12 shadow-xl">
+      <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+        Bridging the Equity and Rigor Gap in Digital Mental Health
+      </h1>
+      <p className="text-slate-300 text-lg md:text-xl max-w-3xl mb-8 leading-relaxed">
+        The Standardized Open-source Mindfulness Audio (SOMA) framework provides a modular architecture for precision psychiatry.
+        We refuse the false choice between scientific rigor and universal accessibility.
+      </p>
+      <div className="flex flex-wrap gap-4">
+        <button 
+          onClick={() => navigate('library')}
+          className="bg-teal-500 hover:bg-teal-400 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center gap-2"
+        >
+          <BookOpen size={20} /> Access Library
+        </button>
+        <button 
+          onClick={() => navigate('methodology')}
+          className="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center gap-2"
+        >
+          <Info size={20} /> Read Principles
+        </button>
+      </div>
+    </div>
+
+    {/* The Twin Crises */}
+    <Section title="The Twin Crises of Opacity and Exclusion">
+      <div className="grid md:grid-cols-2 gap-8 mb-8">
+        <div className="bg-red-50 p-6 rounded-xl border border-red-100">
+          <h3 className="font-bold text-red-800 mb-3 flex items-center gap-2">
+            <Filter size={20} /> The Rigor Crisis
+          </h3>
+          <p className="text-sm text-slate-700">
+            Scalability conceals a critical fragility. Reliance on weak "waitlist" controls and inadequate transparency makes it impossible to disentangle specific mechanisms of mindfulness from non-specific factors like placebo or demand characteristics.
+          </p>
+        </div>
+        <div className="bg-blue-50 p-6 rounded-xl border border-blue-100">
+          <h3 className="font-bold text-blue-800 mb-3 flex items-center gap-2">
+            <Users size={20} /> The Equity Crisis
+          </h3>
+          <p className="text-sm text-slate-700">
+            Protocols optimized for WEIRD (Western, Educated, Industrialized, Rich, Democratic) samples employ complex language and resource-intensive formats that create invisible barriers for low-SES populations and non-native speakers.
+          </p>
+        </div>
+      </div>
+      <p>
+        We argue these crises are intertwined. The lack of methodological transparency has enabled exclusionary protocols to proliferate. The SOMA framework solves this through <strong>Equity-Centered Design Constraints</strong>.
+      </p>
+    </Section>
+
+    {/* Core Pillars */}
+    <div className="grid md:grid-cols-3 gap-6 mb-12">
+      <Card title="Grade 6 Readability" icon={BookOpen}>
+        Algorithmic linguistic simplification ensures access for non-native speakers and diverse SES backgrounds without sacrificing precision.
+      </Card>
+      <Card title="Structural Equivalence" icon={Scale}>
+        Active control "Sham" conditions matched on duration, prosody, and structure to isolate genuine mechanisms of change.
+      </Card>
+      <Card title="Modular Architecture" icon={FileText}>
+        Decoupled "Themes" and "Modes" allow for dismantling studies to test what works, for whom, and why.
+      </Card>
+    </div>
+  </div>
+);
+
+const Library = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterMode, setFilterMode] = useState<string>('All');
+
+  const filteredData = LIBRARY_DATA.filter(item => {
+    const matchesSearch = item.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                          item.theme.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesMode = filterMode === 'All' || item.mode === filterMode;
+    return matchesSearch && matchesMode;
+  });
+
+  return (
+    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="mb-8">
+        <h2 className="text-3xl font-bold text-slate-800 mb-4">The SOMA Library</h2>
+        <p className="text-slate-600 mb-6">
+          A modular matrix of standardized components. Access scripts, audio files, and TIDieR checklists.
+          <br/>
+          <span className="text-sm italic text-slate-500">*Demo version: Files are placeholders.*</span>
+        </p>
+        
+        {/* Controls */}
+        <div className="flex flex-col md:flex-row gap-4 bg-slate-50 p-4 rounded-lg border border-slate-200">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-3 text-slate-400" size={18} />
+            <input 
+              type="text" 
+              placeholder="Search by title or theme..." 
+              className="w-full pl-10 pr-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-teal-500"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+          <select 
+            className="p-2 rounded-md border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-teal-500"
+            value={filterMode}
+            onChange={(e) => setFilterMode(e.target.value)}
+          >
+            <option value="All">All Modes</option>
+            <option value="Formal">Formal Practice</option>
+            <option value="Informal">Informal Practice</option>
+            <option value="Sham">Sham (Active Control)</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Grid */}
+      <div className="grid md:grid-cols-2 gap-4">
+        {filteredData.map((item) => (
+          <div key={item.id} className="bg-white border border-slate-200 rounded-lg p-5 hover:border-teal-300 transition-colors group">
+            <div className="flex justify-between items-start mb-2">
+              <span className={`text-xs font-bold px-2 py-1 rounded uppercase tracking-wide
+                ${item.mode === 'Formal' ? 'bg-purple-100 text-purple-700' : 
+                  item.mode === 'Informal' ? 'bg-green-100 text-green-700' : 
+                  'bg-gray-100 text-gray-700'}`}>
+                {item.mode}
+              </span>
+              <span className="text-xs text-slate-500 font-mono">{item.id}</span>
+            </div>
+            <h3 className="text-lg font-bold text-slate-800 mb-1">{item.title}</h3>
+            <div className="text-sm text-teal-600 font-medium mb-3">{item.theme} • {item.duration}</div>
+            <p className="text-slate-600 text-sm mb-4">{item.description}</p>
+            
+            <div className="flex gap-3 pt-4 border-t border-slate-100">
+              <button className="flex-1 flex items-center justify-center gap-2 text-sm bg-slate-50 hover:bg-slate-100 text-slate-700 py-2 rounded border border-slate-200 transition-colors">
+                <FileText size={14} /> PDF Script
+              </button>
+              <button className="flex-1 flex items-center justify-center gap-2 text-sm bg-teal-50 hover:bg-teal-100 text-teal-700 py-2 rounded border border-teal-200 transition-colors">
+                <Download size={14} /> Audio
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {filteredData.length === 0 && (
+        <div className="text-center py-12 text-slate-500">
+          No modules found matching your criteria.
+        </div>
+      )}
+    </div>
+  );
+};
+
+const Methodology = () => (
+  <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-4xl">
+    <h2 className="text-3xl font-bold text-slate-800 mb-8">Methodology & Principles</h2>
+    
+    <Section title="Principle 1: Structural Equivalence">
+      <p className="mb-4">
+        We introduce a rigorous structural sham standard. Unlike passive waitlist controls, we match SOMA sham modules to active interventions on four critical dimensions:
+      </p>
+      <ul className="list-disc pl-6 space-y-2 mb-4 bg-slate-50 p-6 rounded-lg">
+        <li><strong>Duration:</strong> Identical 10-minute commitment validated by word count.</li>
+        <li><strong>Prosody:</strong> Recorded by the same instructors using identical "invitational" voice tones.</li>
+        <li><strong>Burden:</strong> Matched daily practice requirements.</li>
+        <li><strong>Structure:</strong> Identical "Intro-Bridge-Practice" architecture.</li>
+      </ul>
+      <p>
+        Crucially, these shams are <em>mechanistically inert</em>. We employ neutral cognitive tasks (e.g., listing items in a room) that require attention but deliberately avoid cultivating <em>sati</em> (present-moment awareness with non-judgment).
+      </p>
+    </Section>
+
+    <Section title="Principle 2: Modular Architecture">
+      <p className="mb-4">
+        To move beyond the "Black Box," we utilize a modular matrix that decouples thematic content from delivery mode. We developed the <strong>"Bridge Protocol"</strong> to maintain user flow. Each module consists of:
+      </p>
+      <div className="flex flex-col md:flex-row gap-4 mb-6">
+        <div className="flex-1 bg-white border border-slate-200 p-4 rounded text-center">
+          <div className="font-bold text-teal-600 mb-2">Thematic Intro</div>
+          <div className="text-xs text-slate-500">Conceptual framing</div>
+        </div>
+        <div className="flex items-center justify-center text-slate-300">➜</div>
+        <div className="flex-1 bg-white border border-teal-200 p-4 rounded text-center ring-2 ring-teal-50">
+          <div className="font-bold text-teal-800 mb-2">Universal Bridge</div>
+          <div className="text-xs text-slate-500">Standardized transition</div>
+        </div>
+        <div className="flex items-center justify-center text-slate-300">➜</div>
+        <div className="flex-1 bg-white border border-slate-200 p-4 rounded text-center">
+          <div className="font-bold text-teal-600 mb-2">Sensory Practice</div>
+          <div className="text-xs text-slate-500">Thematically neutral action</div>
+        </div>
+      </div>
+    </Section>
+
+    <Section title="Principle 3: Equity-by-Design">
+      <p className="mb-4">
+        We treat health equity not as a post-hoc subgroup analysis but as a foundational design constraint.
+      </p>
+      <div className="space-y-4">
+        <div className="border-l-4 border-teal-500 pl-4 py-1">
+          <h4 className="font-bold text-slate-800">Algorithmic Linguistic Accessibility</h4>
+          <p className="text-sm text-slate-600 mt-1">
+             We iteratively refined every script using readability software until achieving Grade 6 reading level. We replaced high-literacy vocabulary ("cultivating equanimity") with clear, direct language.
+          </p>
+        </div>
+        <div className="border-l-4 border-teal-500 pl-4 py-1">
+          <h4 className="font-bold text-slate-800">Resource-Neutral Instructions</h4>
+          <p className="text-sm text-slate-600 mt-1">
+            We removed "find a quiet space" in favor of "It is okay if there is noise around you." We removed assumptions about privacy or physical ability to sit still.
+          </p>
+        </div>
+      </div>
+    </Section>
+  </div>
+);
+
+const Researchers = () => (
+  <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <h2 className="text-3xl font-bold text-slate-800 mb-8">For Researchers</h2>
+    
+    <div className="grid md:grid-cols-2 gap-8 mb-12">
+      <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+        <h3 className="font-bold text-xl mb-4 flex items-center gap-2">
+          <FileText className="text-teal-600" /> Reporting Standards
+        </h3>
+        <p className="text-slate-600 mb-6 text-sm">
+          To ensure reproducibility, all studies using SOMA must adhere to the TIDieR guidelines. We provide pre-filled checklists for the standard modules.
+        </p>
+        <button className="text-teal-600 font-semibold hover:underline flex items-center gap-1 text-sm">
+          Download SOMA TIDieR Checklist <Download size={14} />
+        </button>
+      </div>
+
+      <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+        <h3 className="font-bold text-xl mb-4 flex items-center gap-2">
+          <Github className="text-teal-600" /> Open Science
+        </h3>
+        <p className="text-slate-600 mb-6 text-sm">
+          The full library, including raw audio files and analysis code, is hosted on OSF and GitHub.
+        </p>
+        <div className="flex gap-4">
+           <button className="text-teal-600 font-semibold hover:underline flex items-center gap-1 text-sm">
+            Visit OSF Repository <ExternalLink size={14} />
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <Section title="Studies using SOMA">
+      <div className="bg-slate-50 rounded-lg overflow-hidden border border-slate-200">
+        <table className="w-full text-sm text-left">
+          <thead className="bg-slate-100 text-slate-600 font-semibold uppercase tracking-wider">
+            <tr>
+              <th className="p-4">Year</th>
+              <th className="p-4">Study Title</th>
+              <th className="p-4">Principal Investigator</th>
+              <th className="p-4">Configuration</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-slate-200">
+             <tr>
+              <td className="p-4">2025</td>
+              <td className="p-4 font-medium text-slate-800">Bridging the Equity and Rigor Gap (Pilot)</td>
+              <td className="p-4">Sparacio, A.</td>
+              <td className="p-4 text-xs font-mono">Formal-Heavy vs. Sham</td>
+            </tr>
+            <tr>
+              <td className="p-4 text-slate-400 italic">Upcoming</td>
+              <td className="p-4 text-slate-500 italic">Multi-site dismantling trial</td>
+              <td className="p-4 text-slate-500 italic">TBD</td>
+              <td className="p-4 text-slate-500 text-xs font-mono">Dose-Response</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </Section>
+
+    <Section title="Citation">
+      <div className="bg-slate-800 text-slate-300 p-6 rounded-lg font-mono text-sm overflow-x-auto">
+        Sparacio, A., & [Co-Authors]. (2025). Bridging the Equity and Rigor Gap in Digital Mental Health: A Modular Framework for Self-Administered Mindfulness. [Journal Name]. https://doi.org/10.xxxx/xxxxx
+      </div>
+    </Section>
+  </div>
+);
+
+// --- Main App Shell ---
+
+const App = () => {
+  const [activeTab, setActiveTab] = useState('home');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const navItems = [
+    { id: 'home', label: 'Home' },
+    { id: 'library', label: 'The Library' },
+    { id: 'methodology', label: 'Methodology' },
+    { id: 'researchers', label: 'For Researchers' },
+  ];
+
+  if (!isAuthenticated) {
+    return <LoginScreen onLogin={setIsAuthenticated} />;
+  }
+
+  return (
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-teal-100">
+      
+      {/* Navigation */}
+      <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16 items-center">
+            <div className="flex items-center cursor-pointer" onClick={() => setActiveTab('home')}>
+              <div className="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center text-white font-bold mr-3">S</div>
+              <span className="font-bold text-xl tracking-tight text-slate-800">SOMA <span className="text-teal-600 font-normal">Framework</span></span>
+            </div>
+
+            {/* Desktop Nav */}
+            <div className="hidden md:flex space-x-8">
+              {navItems.map(item => (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveTab(item.id)}
+                  className={`text-sm font-medium transition-colors border-b-2 py-5
+                    ${activeTab === item.id 
+                      ? 'border-teal-600 text-teal-600' 
+                      : 'border-transparent text-slate-500 hover:text-slate-900'}`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden">
+              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-slate-600 p-2">
+                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Nav */}
+        {isMenuOpen && (
+          <div className="md:hidden bg-white border-b border-slate-200">
+            <div className="px-2 pt-2 pb-3 space-y-1">
+              {navItems.map(item => (
+                <button
+                  key={item.id}
+                  onClick={() => {
+                    setActiveTab(item.id);
+                    setIsMenuOpen(false);
+                  }}
+                  className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium
+                    ${activeTab === item.id 
+                      ? 'bg-teal-50 text-teal-700' 
+                      : 'text-slate-600 hover:bg-slate-50'}`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </nav>
+
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {activeTab === 'home' && <Home navigate={setActiveTab} />}
+        {activeTab === 'library' && <Library />}
+        {activeTab === 'methodology' && <Methodology />}
+        {activeTab === 'researchers' && <Researchers />}
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-slate-900 text-slate-400 py-12 mt-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-8">
+          <div className="col-span-2">
+            <h3 className="text-white font-bold text-lg mb-4">SOMA Framework</h3>
+            <p className="text-sm leading-relaxed max-w-sm">
+              An open-source initiative to bridge the equity and rigor gap in digital mental health.
+              Developed by Alessandro Sparacio and the international working group.
+            </p>
+          </div>
+          <div>
+            <h4 className="text-white font-semibold mb-4">Resources</h4>
+            <ul className="space-y-2 text-sm">
+              <li><a href="#" className="hover:text-teal-400">Documentation</a></li>
+              <li><a href="#" className="hover:text-teal-400">GitHub Repository</a></li>
+              <li><a href="#" className="hover:text-teal-400">OSF Project</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-white font-semibold mb-4">Contact</h4>
+            <ul className="space-y-2 text-sm">
+              <li><a href="https://sparacioalessandro.com" className="hover:text-teal-400">sparacioalessandro.com</a></li>
+              <li><a href="#" className="hover:text-teal-400">Report an Issue</a></li>
+            </ul>
+          </div>
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-slate-800 text-sm text-center">
+          &copy; 2025 SOMA Framework. Licensed under CC-BY 4.0.
+        </div>
+      </footer>
+
+    </div>
+  );
+};
+
+export default App;
