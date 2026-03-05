@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOMA Framework | Standardized Open-source Mindfulness Audio</title>
+    <title>SOMA Framework | Modular Mindfulness Library</title>
     
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -22,40 +22,45 @@
     <script type="text/babel">
         const { useState, useEffect } = React;
 
-        const Icon = ({ name, size = 24, className = "" }) => {
+        const Icon = ({ name, size = 20, className = "" }) => {
             useEffect(() => { lucide.createIcons(); }, [name]);
             return <i data-lucide={name} className={className} style={{ width: size, height: size }}></i>;
         };
 
-        // --- Confirmatory Data from Manuscript ---
-        const LIBRARY_DATA = [
-            { 
-                id: 'SOMA-M-01', 
-                title: 'Mindfulness: Awareness of Breath', 
-                theme: 'Curiosity', 
-                mode: 'Mindfulness', 
-                mechanism: 'Bottom-up Sensing',
-                duration: '12 min', 
-                description: 'Directs sensing and allowing. Validated at Grade 5–6 reading level.' 
-            },
-            { 
-                id: 'SOMA-C-01', 
-                title: 'Active Control: Analytical Training', 
-                theme: 'Categorization', 
-                mode: 'Active Control', 
-                mechanism: 'Top-down Processing',
-                duration: '12 min', 
-                description: 'Structurally matched "Trojan Horse" control. Directs categorizing and verifying.' 
-            },
-            { 
-                id: 'SOMA-M-02', 
-                title: 'Mindfulness: Body Scan', 
-                theme: 'Acceptance', 
-                mode: 'Mindfulness', 
-                mechanism: 'Bottom-up Sensing',
-                duration: '12 min', 
-                description: 'Focuses on allowing physical sensations without judgment or intervention.' 
-            }
+        // --- Modular Data: Themes (A/B Variations) ---
+        const THEMES = [
+            { id: 'SOMA-M-T01A', title: 'Being (Variation A)', variant: 'T01A', description: 'Foundational stabilization and presence.' },
+            { id: 'SOMA-M-T01B', title: 'Being (Variation B)', variant: 'T01B', description: 'Stabilization via sensory groundedness.' },
+            { id: 'SOMA-M-T02A', title: 'Curiosity (Variation A)', variant: 'T02A', description: 'Cultivating beginner\'s mind in routine.' },
+            { id: 'SOMA-M-T02B', title: 'Curiosity (Variation B)', variant: 'T02B', description: 'Investigative awareness of breath.' },
+            { id: 'SOMA-M-T03A', title: 'Patience (Variation A)', variant: 'T03A', description: 'Allowing the unfolding of movement.' },
+            { id: 'SOMA-M-T03B', title: 'Patience (Variation B)', variant: 'T03B', description: 'Step-by-step presence in transition.' },
+            { id: 'SOMA-M-T04A', title: 'Acceptance (Variation A)', variant: 'T04A', description: 'Radical allowing of bodily sensation.' },
+            { id: 'SOMA-M-T04B', title: 'Acceptance (Variation B)', variant: 'T04B', description: 'Listening with non-judgmental presence.' },
+            { id: 'SOMA-M-T05A', title: 'Letting Go (Variation A)', variant: 'T05A', description: 'Releasing attachment to outcomes.' },
+            { id: 'SOMA-M-T05B', title: 'Letting Go (Variation B)', variant: 'T05B', description: 'Attentional flexibility and release.' },
+            { id: 'SOMA-M-T06A', title: 'Gentleness (Variation A)', variant: 'T06A', description: 'Compassionate self-touch and warmth.' },
+            { id: 'SOMA-M-T06B', title: 'Gentleness (Variation B)', variant: 'T06B', description: 'Gentle care in manual action.' }
+        ];
+
+        // --- Modular Data: Practices (P01-P16) ---
+        const PRACTICES = [
+            { id: 'SOMA-M-P01', title: 'Opening the Senses', code: 'P01', script: 'A' },
+            { id: 'SOMA-M-P02', title: 'Being with the Senses', code: 'P02', script: 'B' },
+            { id: 'SOMA-M-P03', title: 'Being with the Present', code: 'P03', script: 'C' },
+            { id: 'SOMA-M-P04', title: 'Mindful Drinking', code: 'P04', script: 'D' },
+            { id: 'SOMA-M-P05', title: 'Brushing Teeth', code: 'P05', script: 'E' },
+            { id: 'SOMA-M-P06', title: 'Awareness of Breath', code: 'P06', script: 'F' },
+            { id: 'SOMA-M-P07', title: 'Mindful Movements', code: 'P07', script: 'G' },
+            { id: 'SOMA-M-P08', title: 'Mindful Walking', code: 'P08', script: 'H' },
+            { id: 'SOMA-M-P09', title: 'Awareness of Body', code: 'P09', script: 'I' },
+            { id: 'SOMA-M-P10', title: 'Tuning in to the Body', code: 'P10', script: 'J' },
+            { id: 'SOMA-M-P11', title: 'Listening Practice', code: 'P11', script: 'K' },
+            { id: 'SOMA-M-P12', title: 'Tuning in to Sounds', code: 'P12', script: 'L' },
+            { id: 'SOMA-M-P13', title: 'Mindful Eating', code: 'P13', script: 'M' },
+            { id: 'SOMA-M-P14', title: 'Body Scan', code: 'P14', script: 'N' },
+            { id: 'SOMA-M-P15', title: 'Self-Compassion', code: 'P15', script: 'O' },
+            { id: 'SOMA-M-P16', title: 'Mindful Handwashing', code: 'P16', script: 'P' }
         ];
 
         const App = () => {
@@ -65,117 +70,84 @@
             if (!isAuthenticated) {
                 return (
                     <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4">
-                        <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full">
-                            <div className="text-center mb-8">
-                                <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4 text-teal-600">
-                                    <Icon name="lock" size={32} />
-                                </div>
-                                <h1 className="text-2xl font-bold text-slate-800">SOMA Framework</h1>
-                                <p className="text-slate-500 mt-2">Private Research Preview. Enter access code.</p>
-                            </div>
-                            <form onSubmit={(e) => { e.preventDefault(); setIsAuthenticated(true); }} className="space-y-4">
-                                <input type="password" placeholder="Enter code (e.g., soma2026)" className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-teal-500 outline-none transition-all" autoFocus />
-                                <button type="submit" className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl transition-all shadow-lg">Unlock Access</button>
-                            </form>
+                        <div className="bg-white rounded-3xl p-10 max-w-md w-full shadow-2xl">
+                            <h1 className="text-2xl font-bold text-center mb-6">SOMA Framework Preview</h1>
+                            <input type="password" placeholder="soma2026" className="w-full px-4 py-3 rounded-xl border border-slate-300 mb-4 focus:ring-2 focus:ring-teal-500 outline-none" autoFocus />
+                            <button onClick={() => setIsAuthenticated(true)} className="w-full bg-slate-900 text-white font-bold py-3 rounded-xl hover:bg-slate-800 transition-all">Unlock Library</button>
                         </div>
                     </div>
                 );
             }
 
             return (
-                <div className="min-h-screen">
-                    <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
-                        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-                            <div className="flex items-center gap-2 cursor-pointer" onClick={() => setActiveTab('home')}>
-                                <div className="w-8 h-8 bg-teal-600 rounded flex items-center justify-center text-white font-bold italic">S</div>
-                                <span className="font-bold text-xl tracking-tight">SOMA <span className="text-teal-600 font-normal">Framework</span></span>
+                <div className="min-h-screen pb-20">
+                    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+                        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+                            <div className="flex items-center gap-2 font-bold text-xl cursor-pointer" onClick={() => setActiveTab('home')}>
+                                <div className="bg-teal-600 text-white w-8 h-8 rounded flex items-center justify-center">S</div>
+                                SOMA <span className="text-teal-600 font-normal italic">Library</span>
                             </div>
-                            <div className="hidden md:flex gap-8">
-                                {['home', 'library', 'methodology'].map(tab => (
-                                    <button key={tab} onClick={() => setActiveTab(tab)} className={`capitalize text-sm font-semibold transition-colors ${activeTab === tab ? 'text-teal-600 border-b-2 border-teal-600' : 'text-slate-500 hover:text-slate-800'}`}>{tab}</button>
+                            <div className="flex gap-8 text-sm font-semibold">
+                                {['home', 'library', 'methodology'].map(t => (
+                                    <button key={t} onClick={() => setActiveTab(t)} className={activeTab === t ? 'text-teal-600 underline decoration-2 underline-offset-8' : 'text-slate-500'}>{t.toUpperCase()}</button>
                                 ))}
                             </div>
                         </div>
                     </nav>
 
-                    <main className="max-w-7xl mx-auto px-4 py-12 animate-in">
+                    <main className="max-w-6xl mx-auto px-6 pt-12 animate-in">
                         {activeTab === 'home' && (
-                            <div>
-                                <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white rounded-[2rem] p-12 mb-12 shadow-2xl relative overflow-hidden">
-                                    <div className="relative z-10">
-                                        <h1 className="text-5xl font-bold mb-6 max-w-3xl leading-tight">Bridging Equity and Rigor in Digital Mindfulness</h1>
-                                        <p className="text-slate-400 text-xl max-w-2xl mb-8 leading-relaxed">Standardized Open-source Mindfulness Audio (SOMA): A modular architecture for mechanistic precision and universal accessibility.</p>
-                                        <div className="flex gap-4">
-                                            <button onClick={() => setActiveTab('library')} className="bg-teal-500 hover:bg-teal-400 px-8 py-4 rounded-xl font-bold transition-all flex items-center gap-2 shadow-lg shadow-teal-500/20">Explore Library <Icon name="arrow-right" size={20}/></button>
-                                        </div>
-                                    </div>
-                                    <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-teal-500/5 to-transparent"></div>
-                                </div>
-
-                                <div className="grid md:grid-cols-3 gap-6 mb-16">
-                                    <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
-                                        <div className="w-12 h-12 bg-red-50 text-red-600 rounded-xl flex items-center justify-center mb-6"><Icon name="target"/></div>
-                                        <h3 className="text-lg font-bold mb-2">Mechanistic Rigor</h3>
-                                        <p className="text-slate-500 text-sm leading-relaxed">Matched Active Controls eliminate expectancy confounds to isolate genuine mechanisms of change.</p>
-                                    </div>
-                                    <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
-                                        <div className="w-12 h-12 bg-teal-50 text-teal-600 rounded-xl flex items-center justify-center mb-6"><Icon name="users"/></div>
-                                        <h3 className="text-lg font-bold mb-2">Health Equity</h3>
-                                        <p className="text-slate-500 text-sm leading-relaxed">Validated at Grade 5–6 reading level for inclusive access across diverse SES backgrounds.</p>
-                                    </div>
-                                    <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
-                                        <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-6"><Icon name="layers"/></div>
-                                        <h3 className="text-lg font-bold mb-2">Modular Matrix</h3>
-                                        <p className="text-slate-500 text-sm leading-relaxed">Formal decoupling of thematic content from sensory delivery for precise dismantling studies.</p>
-                                    </div>
-                                </div>
+                            <div className="bg-slate-900 text-white p-12 rounded-[2.5rem] mb-12 shadow-xl">
+                                <h1 className="text-5xl font-bold mb-6">Modular Precision Psychiatry</h1>
+                                <p className="text-slate-400 text-xl max-w-2xl mb-8 leading-relaxed">The SOMA Library provides 16 standardized components for experimental and clinical use. Decoupled by design. Validated for equity.</p>
+                                <button onClick={() => setActiveTab('library')} className="bg-teal-500 px-8 py-4 rounded-xl font-bold hover:bg-teal-400 transition-all">Enter Library</button>
                             </div>
                         )}
 
                         {activeTab === 'library' && (
-                            <div>
-                                <h2 className="text-3xl font-bold mb-2">The SOMA Library</h2>
-                                <p className="text-slate-500 mb-8">Modular assets designed for research reproducibility and health equity.</p>
-                                <div className="grid md:grid-cols-3 gap-6">
-                                    {LIBRARY_DATA.map(item => (
-                                        <div key={item.id} className="bg-white border border-slate-200 p-6 rounded-2xl hover:border-teal-500 transition-all shadow-sm group">
-                                            <div className="flex justify-between items-start mb-4">
-                                                <span className={`text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-widest ${item.mode === 'Mindfulness' ? 'bg-teal-100 text-teal-700' : 'bg-orange-100 text-orange-700'}`}>{item.mode}</span>
-                                                <span className="text-xs font-mono text-slate-400">{item.id}</span>
+                            <div className="space-y-16">
+                                {/* SECTION 1: THEMES */}
+                                <section>
+                                    <h2 className="text-3xl font-bold mb-2 flex items-center gap-3"><Icon name="book-open" className="text-teal-600"/> 1. Thematic Introductions</h2>
+                                    <p className="text-slate-500 mb-8">2-3 minute conceptual framings with Universal Bridge transitions.</p>
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                        {THEMES.map(theme => (
+                                            <div key={theme.id} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-teal-400 transition-all group">
+                                                <div className="text-[10px] font-mono text-slate-400 mb-2">{theme.id}</div>
+                                                <h3 className="font-bold mb-1">{theme.title}</h3>
+                                                <p className="text-xs text-slate-500 mb-6">{theme.description}</p>
+                                                <div className="flex gap-2">
+                                                    <a href={`audio/${theme.id}.mp3`} className="flex-1 bg-teal-50 text-teal-700 py-2 rounded-lg text-xs font-bold text-center">Play</a>
+                                                    <a href={`audio/${theme.id}.mp3`} download className="flex-1 bg-slate-50 text-slate-500 py-2 rounded-lg text-xs font-bold text-center">Download</a>
+                                                </div>
                                             </div>
-                                            <h3 className="text-lg font-bold mb-1">{item.title}</h3>
-                                            <div className="text-[10px] text-teal-600 font-bold uppercase mb-4 tracking-wider">{item.mechanism}</div>
-                                            <p className="text-slate-500 text-sm mb-6 leading-relaxed min-h-[60px]">{item.description}</p>
-                                            <div className="flex gap-2">
-                                                <button className="flex-1 bg-slate-50 text-slate-700 py-3 rounded-xl text-xs font-bold hover:bg-slate-100 transition-colors flex items-center justify-center gap-2"><Icon name="music" size={14}/> Audio</button>
-                                                <button className="flex-1 bg-slate-50 text-slate-700 py-3 rounded-xl text-xs font-bold hover:bg-slate-100 transition-colors flex items-center justify-center gap-2"><Icon name="file-text" size={14}/> Script</button>
+                                        ))}
+                                    </div>
+                                </section>
+
+                                {/* SECTION 2: PRACTICES */}
+                                <section>
+                                    <h2 className="text-3xl font-bold mb-2 flex items-center gap-3"><Icon name="target" className="text-teal-600"/> 2. Sensory Practices</h2>
+                                    <p className="text-slate-500 mb-8">9-minute mechanistically orthogonal modules (Script ID A-P).</p>
+                                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                                        {PRACTICES.map(prac => (
+                                            <div key={prac.id} className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm group">
+                                                <div className="flex justify-between items-center mb-3">
+                                                    <span className="text-[10px] font-bold bg-slate-100 px-2 py-0.5 rounded text-slate-600">SCRIPT {prac.script}</span>
+                                                    <span className="text-[10px] font-mono text-slate-400">{prac.id}</span>
+                                                </div>
+                                                <h3 className="text-sm font-bold mb-4">{prac.title}</h3>
+                                                <div className="flex gap-2">
+                                                    <a href={`audio/${prac.id}.mp3`} className="flex-1 bg-teal-50 text-teal-600 p-2 rounded-lg flex items-center justify-center hover:bg-teal-100"><Icon name="play" size={14}/></a>
+                                                    <a href={`audio/${prac.id}.mp3`} download className="flex-1 bg-slate-50 text-slate-400 p-2 rounded-lg flex items-center justify-center hover:bg-slate-100"><Icon name="download" size={14}/></a>
+                                                </div>
                                             </div>
-                                        </div>
-                                    ))}
-                                </div>
+                                        ))}
+                                    </div>
+                                </section>
                             </div>
                         )}
                     </main>
-
-                    <footer className="bg-slate-900 text-slate-500 py-20 border-t border-slate-800">
-                        <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-12">
-                            <div>
-                                <h4 className="text-white font-bold mb-4 uppercase tracking-widest text-xs">About SOMA</h4>
-                                <p className="text-sm leading-relaxed">An international initiative dedicated to bridging the equity gap in mindfulness science through open-source, standardized materials.</p>
-                            </div>
-                            <div>
-                                <h4 className="text-white font-bold mb-4 uppercase tracking-widest text-xs">Repository</h4>
-                                <ul className="text-sm space-y-3">
-                                    <li><a href="#" className="hover:text-teal-500 flex items-center gap-2"><Icon name="external-link" size={12}/> OSF Repository</a></li>
-                                    <li><a href="#" className="hover:text-teal-500 flex items-center gap-2"><Icon name="github" size={12}/> GitHub Code</a></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 className="text-white font-bold mb-4 uppercase tracking-widest text-xs">License</h4>
-                                <p className="text-sm">Licensed under CC-BY 4.0. Open-source for non-commercial research use.</p>
-                            </div>
-                        </div>
-                    </footer>
                 </div>
             );
         };
