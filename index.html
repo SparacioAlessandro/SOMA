@@ -1,254 +1,988 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOMA Framework | Modular Mindfulness Library</title>
-    
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOMA Framework | Standardized Open Mindfulness Audio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  :root {
+    --teal-50: #E1F5EE; --teal-100: #9FE1CB; --teal-200: #5DCAA5;
+    --teal-500: #1D9E75; --teal-700: #0F6E56; --teal-900: #04342C;
+    --slate-50: #F8F9FA; --slate-100: #F1F3F5; --slate-200: #E9ECEF;
+    --slate-300: #DEE2E6; --slate-500: #868E96; --slate-600: #495057;
+    --slate-700: #343A40; --slate-800: #212529; --slate-900: #0D1117;
+    --gold: #C8955A; --gold-light: #F5ECD7;
+    --font-display: 'DM Serif Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+    --font-mono: 'DM Mono', monospace;
+    --radius-sm: 6px; --radius-md: 12px; --radius-lg: 20px; --radius-xl: 32px;
+  }
 
-    <style>
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-in { animation: fadeIn 0.5s ease-out forwards; }
-    </style>
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    background: var(--slate-50);
+    color: var(--slate-800);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ========== AUTH SCREEN ========== */
+  #auth-screen {
+    position: fixed; inset: 0; z-index: 1000;
+    background: var(--slate-900);
+    display: flex; align-items: center; justify-content: center;
+    padding: 2rem;
+  }
+  .auth-card {
+    background: #fff;
+    border-radius: var(--radius-xl);
+    padding: 3rem;
+    max-width: 420px; width: 100%;
+    text-align: center;
+  }
+  .auth-logo {
+    width: 56px; height: 56px;
+    background: var(--teal-500);
+    border-radius: var(--radius-md);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-family: var(--font-display);
+    font-size: 24px; color: #fff; font-style: italic;
+  }
+  .auth-card h1 { font-family: var(--font-display); font-size: 24px; margin-bottom: 0.5rem; }
+  .auth-card p { color: var(--slate-500); font-size: 14px; margin-bottom: 2rem; }
+  .auth-input {
+    width: 100%; padding: 0.875rem 1.25rem;
+    border: 1.5px solid var(--slate-200);
+    border-radius: var(--radius-md);
+    font-family: var(--font-body); font-size: 15px;
+    outline: none; transition: border-color 0.2s;
+    margin-bottom: 1rem;
+  }
+  .auth-input:focus { border-color: var(--teal-500); }
+  .auth-btn {
+    width: 100%; padding: 0.875rem;
+    background: var(--slate-900); color: #fff;
+    border: none; border-radius: var(--radius-md);
+    font-family: var(--font-body); font-size: 15px; font-weight: 600;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .auth-btn:hover { background: var(--teal-700); }
+  .auth-error { color: #e03131; font-size: 13px; margin-top: 0.5rem; display: none; }
+
+  /* ========== NAV ========== */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(16px) saturate(180%);
+    border-bottom: 1px solid var(--slate-200);
+    padding: 0 2.5rem;
+  }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    cursor: pointer; text-decoration: none;
+    font-family: var(--font-display); font-size: 20px; color: var(--slate-900);
+  }
+  .nav-logo-mark {
+    width: 34px; height: 34px;
+    background: var(--teal-500); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-style: italic; font-size: 18px;
+  }
+  .nav-logo span { color: var(--teal-700); font-style: italic; font-weight: 300; font-size: 17px; }
+  .nav-links { display: flex; gap: 0.25rem; }
+  .nav-link {
+    padding: 0.5rem 1rem; border-radius: var(--radius-sm);
+    font-size: 13px; font-weight: 500; letter-spacing: 0.04em;
+    text-transform: uppercase; cursor: pointer; border: none;
+    background: transparent; color: var(--slate-500);
+    transition: all 0.15s;
+  }
+  .nav-link:hover { color: var(--slate-800); background: var(--slate-100); }
+  .nav-link.active { color: var(--teal-700); background: var(--teal-50); }
+
+  /* ========== MAIN ========== */
+  main { max-width: 1200px; margin: 0 auto; padding: 3rem 2.5rem 6rem; }
+
+  /* ========== HERO ========== */
+  .hero {
+    background: var(--slate-900);
+    border-radius: var(--radius-xl);
+    padding: 5rem 4rem;
+    margin-bottom: 3rem;
+    position: relative; overflow: hidden;
+    color: #fff;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 55%; height: 100%;
+    background: radial-gradient(ellipse at 70% 50%, rgba(29,158,117,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--teal-200); margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: inline-block;
+    width: 20px; height: 1px; background: var(--teal-200);
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    line-height: 1.12; margin-bottom: 1.5rem;
+    max-width: 620px;
+  }
+  .hero h1 em { color: var(--teal-200); font-style: italic; }
+  .hero p {
+    color: rgba(255,255,255,0.6);
+    font-size: 17px; max-width: 520px;
+    margin-bottom: 2.5rem; line-height: 1.75;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    padding: 0.875rem 1.75rem;
+    background: var(--teal-500); color: #fff;
+    border: none; border-radius: var(--radius-md);
+    font-family: var(--font-body); font-size: 14px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { background: var(--teal-700); transform: translateY(-1px); }
+  .btn-ghost {
+    padding: 0.875rem 1.75rem;
+    background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.8);
+    border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-md);
+    font-family: var(--font-body); font-size: 14px; font-weight: 500;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.14); }
+  .hero-badge {
+    position: absolute; bottom: 2.5rem; right: 3rem;
+    display: flex; gap: 1.5rem;
+  }
+  .hero-stat { text-align: right; }
+  .hero-stat-n { font-family: var(--font-display); font-size: 28px; color: #fff; }
+  .hero-stat-label { font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* ========== PILLARS ========== */
+  .pillars {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem; margin-bottom: 5rem;
+  }
+  .pillar {
+    background: #fff;
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+  }
+  .pillar-icon {
+    width: 44px; height: 44px;
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem;
+    font-size: 20px;
+  }
+  .pillar h3 { font-size: 15px; font-weight: 600; margin-bottom: 0.5rem; }
+  .pillar p { font-size: 13px; color: var(--slate-500); line-height: 1.6; }
+
+  /* ========== SECTION HEADERS ========== */
+  .section-header { margin-bottom: 2.5rem; }
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--teal-700); margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-label::before {
+    content: ''; display: inline-block;
+    width: 16px; height: 1px; background: var(--teal-700);
+  }
+  .section-header h2 {
+    font-family: var(--font-display);
+    font-size: 2rem; color: var(--slate-900);
+  }
+  .section-header p { color: var(--slate-500); font-size: 15px; margin-top: 0.5rem; }
+
+  /* ========== THEMES GRID ========== */
+  .themes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.25rem; margin-bottom: 5rem;
+  }
+  .theme-card {
+    background: #fff;
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .theme-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.07); transform: translateY(-2px); }
+  .theme-card-header {
+    padding: 1.5rem 1.5rem 1.25rem;
+    display: flex; align-items: flex-start; gap: 1rem;
+  }
+  .theme-emoji {
+    width: 48px; height: 48px; flex-shrink: 0;
+    border-radius: var(--radius-sm);
+    background: var(--teal-50);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .theme-meta { flex: 1; }
+  .theme-code {
+    font-family: var(--font-mono);
+    font-size: 10px; color: var(--slate-500);
+    letter-spacing: 0.04em; margin-bottom: 4px;
+  }
+  .theme-title { font-size: 15px; font-weight: 600; color: var(--slate-900); }
+  .theme-variant {
+    display: inline-flex; align-items: center;
+    font-size: 11px; color: var(--teal-700);
+    background: var(--teal-50);
+    padding: 2px 8px; border-radius: 20px; margin-top: 4px;
+  }
+  .theme-card-body { padding: 0 1.5rem 1.5rem; }
+  .theme-desc { font-size: 13px; color: var(--slate-600); line-height: 1.65; margin-bottom: 1.25rem; }
+  .theme-actions {
+    display: flex; gap: 0.5rem;
+    padding-top: 1rem; border-top: 1px solid var(--slate-100);
+  }
+  .btn-play {
+    flex: 1; padding: 0.6rem;
+    background: var(--teal-50); color: var(--teal-700);
+    border: none; border-radius: var(--radius-sm);
+    font-size: 12px; font-weight: 600; cursor: pointer;
+    font-family: var(--font-body); transition: background 0.15s;
+  }
+  .btn-play:hover { background: var(--teal-100); }
+  .btn-dl {
+    flex: 1; padding: 0.6rem;
+    background: var(--slate-100); color: var(--slate-600);
+    border: none; border-radius: var(--radius-sm);
+    font-size: 12px; font-weight: 600; cursor: pointer;
+    font-family: var(--font-body); transition: background 0.15s;
+    text-decoration: none; text-align: center; display: flex;
+    align-items: center; justify-content: center;
+  }
+  .btn-dl:hover { background: var(--slate-200); }
+
+  /* ========== PRACTICES GRID ========== */
+  .practices-filter {
+    display: flex; gap: 0.5rem; flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+  .filter-btn {
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--slate-200); border-radius: 20px;
+    background: #fff; color: var(--slate-600);
+    font-size: 12px; font-weight: 500; cursor: pointer;
+    font-family: var(--font-body); transition: all 0.15s;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--teal-500); color: #fff; border-color: var(--teal-500);
+  }
+  .practices-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem; margin-bottom: 5rem;
+  }
+  .practice-card {
+    background: #fff;
+    border: 1px solid var(--slate-200);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .practice-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.07); transform: translateY(-2px); }
+  .practice-thumb {
+    width: 100%; height: 160px;
+    object-fit: cover; display: block;
+    background: var(--teal-50);
+  }
+  .practice-thumb-placeholder {
+    width: 100%; height: 160px;
+    background: linear-gradient(135deg, var(--teal-50) 0%, var(--teal-100) 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 48px;
+  }
+  .practice-card-body { padding: 1.25rem; }
+  .practice-code {
+    font-family: var(--font-mono);
+    font-size: 10px; color: var(--slate-500); margin-bottom: 6px;
+  }
+  .practice-title {
+    font-size: 15px; font-weight: 600; color: var(--slate-900); margin-bottom: 0.5rem;
+  }
+  .practice-theme-tag {
+    display: inline-flex; align-items: center;
+    font-size: 10px; color: var(--teal-700);
+    background: var(--teal-50);
+    padding: 2px 8px; border-radius: 20px; margin-bottom: 0.75rem;
+  }
+  .practice-desc {
+    font-size: 12px; color: var(--slate-500);
+    line-height: 1.65; margin-bottom: 1rem;
+  }
+  .practice-meta {
+    display: flex; gap: 1rem;
+    font-size: 11px; color: var(--slate-400);
+    margin-bottom: 1rem; padding-bottom: 1rem;
+    border-bottom: 1px solid var(--slate-100);
+  }
+  .practice-meta span { display: flex; align-items: center; gap: 4px; }
+  .practice-actions { display: flex; gap: 0.5rem; }
+
+  /* ========== METHODOLOGY PAGE ========== */
+  .methodology-layout { display: grid; grid-template-columns: 240px 1fr; gap: 3rem; }
+  .method-nav { position: sticky; top: 80px; height: fit-content; }
+  .method-nav-item {
+    display: block; padding: 0.5rem 0.75rem;
+    font-size: 13px; color: var(--slate-500);
+    border-left: 2px solid var(--slate-200);
+    cursor: pointer; transition: all 0.15s;
+    text-decoration: none; margin-bottom: 4px;
+  }
+  .method-nav-item:hover, .method-nav-item.active {
+    color: var(--teal-700); border-color: var(--teal-500);
+  }
+  .method-section { margin-bottom: 4rem; }
+  .method-section h2 {
+    font-family: var(--font-display); font-size: 1.6rem;
+    margin-bottom: 1.25rem; color: var(--slate-900);
+  }
+  .method-section p { color: var(--slate-600); margin-bottom: 1rem; }
+  .method-callout {
+    background: var(--teal-50); border-left: 3px solid var(--teal-500);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 1.25rem 1.5rem; margin: 1.5rem 0;
+  }
+  .method-callout strong { color: var(--teal-700); display: block; margin-bottom: 0.5rem; font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .method-callout p { margin: 0; font-size: 14px; }
+  .method-table {
+    width: 100%; border-collapse: collapse;
+    font-size: 13px; margin: 1.5rem 0;
+  }
+  .method-table th {
+    text-align: left; padding: 0.75rem 1rem;
+    background: var(--slate-100); color: var(--slate-700);
+    font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .method-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--slate-100);
+    color: var(--slate-600);
+  }
+  .method-table tr:last-child td { border-bottom: none; }
+  .method-table td:first-child { font-weight: 500; color: var(--slate-800); }
+
+  /* ========== FOOTER ========== */
+  footer {
+    background: var(--slate-900);
+    color: rgba(255,255,255,0.5);
+    padding: 4rem 2.5rem;
+    margin-top: 6rem;
+  }
+  .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; }
+  .footer-brand h3 { font-family: var(--font-display); font-size: 20px; color: #fff; margin-bottom: 0.75rem; }
+  .footer-brand p { font-size: 13px; line-height: 1.7; max-width: 300px; }
+  footer h4 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); margin-bottom: 1rem; }
+  footer a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; display: block; margin-bottom: 0.5rem; transition: color 0.15s; }
+  footer a:hover { color: var(--teal-200); }
+  .footer-bottom { max-width: 1200px; margin: 2rem auto 0; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; font-size: 12px; }
+  .cc-badge { font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.3); }
+
+  /* ========== PAGE TABS ========== */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ========== MATRIX TABLE ========== */
+  .matrix-section { margin-bottom: 5rem; }
+  .matrix-wrapper { overflow-x: auto; border-radius: var(--radius-lg); border: 1px solid var(--slate-200); }
+  .matrix-table {
+    width: 100%; border-collapse: collapse; font-size: 12px;
+    background: #fff;
+  }
+  .matrix-table th {
+    padding: 0.75rem 1rem; text-align: left;
+    background: var(--slate-800); color: rgba(255,255,255,0.8);
+    font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+  .matrix-table td {
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--slate-100);
+    color: var(--slate-600);
+  }
+  .matrix-table tr:last-child td { border-bottom: none; }
+  .matrix-table tr:hover td { background: var(--slate-50); }
+  .matrix-table td:first-child {
+    font-weight: 700; color: var(--slate-900);
+    font-family: var(--font-mono); font-size: 13px;
+  }
+  .matrix-code {
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--teal-700); background: var(--teal-50);
+    padding: 2px 6px; border-radius: 4px; white-space: nowrap;
+  }
+
+  /* Animations */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-up { animation: fadeUp 0.5s ease-out both; }
+  .fade-up:nth-child(1) { animation-delay: 0ms; }
+  .fade-up:nth-child(2) { animation-delay: 60ms; }
+  .fade-up:nth-child(3) { animation-delay: 120ms; }
+  .fade-up:nth-child(4) { animation-delay: 180ms; }
+  .fade-up:nth-child(5) { animation-delay: 240ms; }
+  .fade-up:nth-child(6) { animation-delay: 300ms; }
+
+  @media (max-width: 768px) {
+    .pillars { grid-template-columns: 1fr; }
+    .hero { padding: 3rem 2rem; }
+    .hero-badge { display: none; }
+    .methodology-layout { grid-template-columns: 1fr; }
+    .method-nav { display: none; }
+    .footer-inner { grid-template-columns: 1fr; }
+    main { padding: 2rem 1.25rem 4rem; }
+    nav { padding: 0 1.25rem; }
+  }
+</style>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans selection:bg-teal-100">
-    <div id="root"></div>
+<body>
 
-    <script type="text/babel">
-        const { useState, useEffect } = React;
+<!-- AUTH -->
+<div id="auth-screen">
+  <div class="auth-card">
+    <div class="auth-logo">S</div>
+    <h1>SOMA Framework</h1>
+    <p>Enter the access password to explore the mindfulness library</p>
+    <input type="password" class="auth-input" id="auth-input" placeholder="Password" />
+    <div class="auth-error" id="auth-error">Incorrect password. Try again.</div>
+    <button class="auth-btn" id="auth-btn">Unlock Library →</button>
+  </div>
+</div>
 
-        const Icon = ({ name, size = 20, className = "" }) => {
-            useEffect(() => { lucide.createIcons(); }, [name]);
-            return <i data-lucide={name} className={className} style={{ width: size, height: size }}></i>;
-        };
+<!-- NAV -->
+<nav id="main-nav" style="display:none">
+  <div class="nav-inner">
+    <a class="nav-logo" onclick="showPage('home')">
+      <div class="nav-logo-mark">S</div>
+      SOMA <span>Framework</span>
+    </a>
+    <div class="nav-links">
+      <button class="nav-link active" data-page="home" onclick="showPage('home')">Home</button>
+      <button class="nav-link" data-page="library" onclick="showPage('library')">Library</button>
+      <button class="nav-link" data-page="matrix" onclick="showPage('matrix')">Matrix</button>
+      <button class="nav-link" data-page="methodology" onclick="showPage('methodology')">Methodology</button>
+    </div>
+  </div>
+</nav>
 
-        // --- Standardized Placeholder Component ---
-        const IconPlaceholder = ({ name = "mic", size = 20, className = "" }) => (
-            <div className={`w-12 h-12 rounded-lg bg-teal-50 border border-teal-100 flex items-center justify-center ${className}`}>
-                <Icon name={name} size={size} className="text-teal-400" />
-            </div>
-        );
+<!-- MAIN -->
+<main id="main-content" style="display:none">
 
-        // --- Modular Data: Themes (A/B Variations) ---
-        const THEMES = [
-            { id: 'SOMA-M-T01A', title: 'Being (Variation A)', variant: 'T01A', icon: 'mic', description: 'Foundational stabilization and presence.' },
-            { id: 'SOMA-M-T01B', title: 'Being (Variation B)', variant: 'T01B', icon: 'heart', description: 'Stabilization via sensory groundedness.' },
-            { id: 'SOMA-M-T02A', title: 'Curiosity (Variation A)', variant: 'T02A', icon: 'zap', description: 'Cultivating beginner\'s mind in routine.' },
-            { id: 'SOMA-M-T02B', title: 'Curiosity (Variation B)', variant: 'T02B', icon: 'target', description: 'Investigative awareness of breath.' },
-            { id: 'SOMA-M-T03A', title: 'Patience (Variation A)', variant: 'T03A', icon: 'wind', description: 'Allowing the unfolding of movement.' },
-            { id: 'SOMA-M-T03B', title: 'Patience (Variation B)', variant: 'T03B', icon: 'map-pin', description: 'Step-by-step presence in transition.' },
-            { id: 'SOMA-M-T04A', title: 'Acceptance (Variation A)', variant: 'T04A', icon: 'hand', description: 'Radical allowing of bodily sensation.' },
-            { id: 'SOMA-M-T04B', title: 'Acceptance (Variation B)', variant: 'T04B', icon: 'ear', description: 'Listening with non-judgmental presence.' },
-            { id: 'SOMA-M-T05A', title: 'Letting Go (Variation A)', variant: 'T05A', icon: 'cloud-lightning', description: 'Releasing attachment to outcomes.' },
-            { id: 'SOMA-M-T05B', title: 'Letting Go (Variation B)', variant: 'T05B', icon: 'umbrella', description: 'Attentional flexibility and release.' },
-            { id: 'SOMA-M-T06A', title: 'Gentleness (Variation A)', variant: 'T06A', icon: 'feather', description: 'Compassionate self-touch and warmth.' },
-            { id: 'SOMA-M-T06B', title: 'Gentleness (Variation B)', variant: 'T06B', icon: 'bath', description: 'Gentle care in manual action.' }
-        ];
+  <!-- HOME PAGE -->
+  <div class="page active" id="page-home">
+    <div class="hero fade-up">
+      <div class="hero-eyebrow">Stage 1 Registered Report · Nature Human Behaviour</div>
+      <h1>Bridging <em>Equity</em> and Rigor in Digital Mindfulness</h1>
+      <p>Standardized Open-source Mindfulness Audio (SOMA): a modular library of 16 matched mindfulness–control script pairs for mechanistically precise RCT research.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="showPage('library')">Explore Library →</button>
+        <button class="btn-ghost" onclick="showPage('methodology')">Methodology</button>
+      </div>
+      <div class="hero-badge">
+        <div class="hero-stat">
+          <div class="hero-stat-n">16</div>
+          <div class="hero-stat-label">Script Pairs</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-n">N=360</div>
+          <div class="hero-stat-label">Validation RCT</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-n">Gr.5–6</div>
+          <div class="hero-stat-label">Reading Level</div>
+        </div>
+      </div>
+    </div>
 
-        // --- Modular Data: Practices (P01-P16) ---
-        const PRACTICES = [
-            { id: 'SOMA-M-P01', title: 'Opening the Senses' },
-            { id: 'SOMA-M-P02', title: 'Being with the Senses' },
-            { id: 'SOMA-M-P03', title: 'Being with the Present' },
-            { id: 'SOMA-M-P04', title: 'Mindful Drinking' },
-            { id: 'SOMA-M-P05', title: 'Brushing Teeth' },
-            { id: 'SOMA-M-P06', title: 'Awareness of Breath' },
-            { id: 'SOMA-M-P07', title: 'Mindful Movements' },
-            { id: 'SOMA-M-P08', title: 'Mindful Walking' },
-            { id: 'SOMA-M-P09', title: 'Awareness of Body' },
-            { id: 'SOMA-M-P10', title: 'Tuning in to the Body' },
-            { id: 'SOMA-M-P11', title: 'Listening Practice' },
-            { id: 'SOMA-M-P12', title: 'Tuning in to Sounds' },
-            { id: 'SOMA-M-P13', title: 'Mindful Eating' },
-            { id: 'SOMA-M-P14', title: 'Body Scan' },
-            { id: 'SOMA-M-P15', title: 'Self-Compassion' },
-            { id: 'SOMA-M-P16', title: 'Mindful Handwashing' }
-        ];
+    <div class="pillars">
+      <div class="pillar fade-up">
+        <div class="pillar-icon" style="background:#FFEDE8">🎯</div>
+        <h3>Mechanistic Rigor</h3>
+        <p>Matched Active Controls eliminate expectancy confounds via verb substitution to isolate genuine bottom-up vs. top-down mechanisms of change.</p>
+      </div>
+      <div class="pillar fade-up">
+        <div class="pillar-icon" style="background:var(--teal-50)">🌍</div>
+        <h3>Health Equity</h3>
+        <p>Scripts validated at Grade 5–6 reading level with resource-neutral instructions that welcome environmental noise and require no special equipment.</p>
+      </div>
+      <div class="pillar fade-up">
+        <div class="pillar-icon" style="background:#EEF2FF">🧩</div>
+        <h3>Modular Matrix</h3>
+        <p>Formal decoupling of thematic content (T01–T06) from sensory delivery (P01–P16) enables precise dismantling studies and longitudinal rotation.</p>
+      </div>
+    </div>
 
-        // --- Standard UI Section Component ---
-        const Section = ({ title, children, className = "" }) => (
-            <div className={`mb-12 ${className}`}>
-                <h2 className="text-2xl font-bold text-slate-800 mb-6 border-b pb-2 border-slate-200">{title}</h2>
-                <div className="text-slate-700 leading-relaxed space-y-4">{children}</div>
-            </div>
-        );
+    <div class="section-header fade-up">
+      <div class="section-label">The SOMA Approach</div>
+      <h2>How the library is structured</h2>
+      <p>Each session combines a 2–3 min Thematic Introduction with a 10 min Sensory Practice, matched to a structurally equivalent Active Control counterpart.</p>
+    </div>
 
-        const App = () => {
-            const [activeTab, setActiveTab] = useState('home');
-            const [isAuthenticated, setIsAuthenticated] = useState(false);
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:3rem">
+      <div class="pillar fade-up" style="border-left:3px solid var(--teal-500)">
+        <div class="pillar-icon" style="background:var(--teal-50)">🧘</div>
+        <h3 style="color:var(--teal-700)">Mindfulness Condition</h3>
+        <p>Directs attention to <strong>bottom-up experiential sensing</strong>. Participants notice, observe, and experience without categorising or analysing.</p>
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--teal-700);margin-top:0.75rem;background:var(--teal-50);padding:0.5rem 0.75rem;border-radius:var(--radius-sm)">"Notice the sound without labeling it."</div>
+      </div>
+      <div class="pillar fade-up" style="border-left:3px solid var(--slate-400)">
+        <div class="pillar-icon" style="background:var(--slate-100)">🔬</div>
+        <h3>Active Control Condition</h3>
+        <p>Directs attention to <strong>top-down analytical processing</strong>. Participants identify, categorise, and verify — same duration, same structure.</p>
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--slate-600);margin-top:0.75rem;background:var(--slate-100);padding:0.5rem 0.75rem;border-radius:var(--radius-sm)">"Identify the sound and classify its source."</div>
+      </div>
+    </div>
+  </div>
 
-            if (!isAuthenticated) {
-                return (
-                    <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4">
-                        <div className="bg-white rounded-3xl p-10 max-w-md w-full shadow-2xl">
-                            <h1 className="text-2xl font-bold text-center mb-6">SOMA Framework Preview</h1>
-                            <input type="password" placeholder="soma2026" className="w-full px-4 py-3 rounded-xl border border-slate-300 mb-4 focus:ring-2 focus:ring-teal-500 outline-none" autoFocus />
-                            <button onClick={() => setIsAuthenticated(true)} className="w-full bg-slate-900 text-white font-bold py-3 rounded-xl hover:bg-slate-800 transition-all">Unlock Library</button>
-                        </div>
-                    </div>
-                );
-            }
+  <!-- LIBRARY PAGE -->
+  <div class="page" id="page-library">
+    <div class="section-header">
+      <div class="section-label">Module 1 — Thematic Introductions</div>
+      <h2>Thematic Framings</h2>
+      <p>2–3 minute conceptual introductions covering six core mindfulness themes, each in two structurally equivalent variations (A/B) for longitudinal rotation.</p>
+    </div>
 
-            return (
-                <div className="min-h-screen pb-20 selection:bg-teal-100">
-                    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
-                        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-                            <div className="flex items-center gap-2 font-bold text-xl cursor-pointer" onClick={() => setActiveTab('home')}>
-                                <div className="bg-teal-600 text-white w-8 h-8 rounded flex items-center justify-center font-bold italic">S</div>
-                                SOMA <span className="text-teal-600 font-normal italic">Framework</span>
-                            </div>
-                            <div className="flex gap-8 text-sm font-semibold">
-                                {['home', 'library', 'methodology'].map(t => (
-                                    <button key={t} onClick={() => setActiveTab(t)} className={activeTab === t ? 'text-teal-600 underline decoration-2 underline-offset-8' : 'text-slate-500'}>{t.toUpperCase()}</button>
-                                ))}
-                            </div>
-                        </div>
-                    </nav>
+    <div class="themes-grid" id="themes-grid"></div>
 
-                    <main className="max-w-7xl mx-auto px-6 pt-12 animate-in">
-                        {/* --- TAB 1: HOME (RESTORED CONTENT) --- */}
-                        {activeTab === 'home' && (
-                            <div>
-                                <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white rounded-[2.5rem] p-12 mb-12 shadow-2xl relative overflow-hidden">
-                                    <div className="relative z-10">
-                                        <h1 className="text-5xl font-bold mb-6 max-w-3xl leading-tight">Bridging Equity and Rigor in Digital Mindfulness</h1>
-                                        <p className="text-slate-400 text-xl max-w-2xl mb-8 leading-relaxed">Standardized Open-source Mindfulness Audio (SOMA): A modular architecture for mechanistic precision and universal accessibility.</p>
-                                        <button onClick={() => setActiveTab('library')} className="bg-teal-500 px-8 py-4 rounded-xl font-bold hover:bg-teal-400 transition-all flex items-center gap-2 text-white">Explore Library <Icon name="arrow-right" size={20}/></button>
-                                    </div>
-                                    <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-teal-500/10 to-transparent"></div>
-                                </div>
+    <div class="section-header">
+      <div class="section-label">Module 2 — Sensory Practices</div>
+      <h2>Mindfulness Practices</h2>
+      <p>16 ten-minute practice modules spanning formal and informal contexts, each paired with an analytically framed Active Control counterpart.</p>
+    </div>
 
-                                <div className="grid md:grid-cols-3 gap-6 mb-16">
-                                    <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
-                                        <div className="w-12 h-12 bg-red-50 text-red-600 rounded-xl flex items-center justify-center mb-6"><Icon name="target"/></div>
-                                        <h3 className="text-xl font-bold mb-2">Mechanistic Rigor</h3>
-                                        <p className="text-slate-500 text-sm leading-relaxed">Matched Active Controls eliminate expectancy confounds to isolate genuine mechanisms of change.</p>
-                                    </div>
-                                    <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
-                                        <div className="w-12 h-12 bg-teal-50 text-teal-600 rounded-xl flex items-center justify-center mb-6"><Icon name="users"/></div>
-                                        <h3 className="text-xl font-bold mb-2">Health Equity</h3>
-                                        <p className="text-slate-500 text-sm leading-relaxed">Validated at Grade 5–6 reading level for inclusive access across diverse SES backgrounds.</p>
-                                    </div>
-                                    <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
-                                        <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-6"><Icon name="layers"/></div>
-                                        <h3 className="text-xl font-bold mb-2">Modular Matrix</h3>
-                                        <p className="text-slate-500 text-sm leading-relaxed">Formal decoupling of thematic content from sensory delivery for precise dismantling studies.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
+    <div class="practices-filter" id="practices-filter">
+      <button class="filter-btn active" onclick="filterPractices('all', this)">All practices</button>
+      <button class="filter-btn" onclick="filterPractices('Being', this)">Being</button>
+      <button class="filter-btn" onclick="filterPractices('Curiosity', this)">Curiosity</button>
+      <button class="filter-btn" onclick="filterPractices('Patience', this)">Patience</button>
+      <button class="filter-btn" onclick="filterPractices('Acceptance', this)">Acceptance</button>
+      <button class="filter-btn" onclick="filterPractices('Letting Go', this)">Letting Go</button>
+      <button class="filter-btn" onclick="filterPractices('Gentleness', this)">Gentleness</button>
+    </div>
 
-                        {/* --- TAB 2: LIBRARY (UPDATED WITH MODULAR STRUCTURE) --- */}
-                        {activeTab === 'library' && (
-                            <div className="space-y-16">
-                                <section>
-                                    <h2 className="text-3xl font-bold mb-2 flex items-center gap-3"><Icon name="book-open" className="text-teal-600"/> 1. Thematic Introductions</h2>
-                                    <p className="text-slate-500 mb-8">2-3 minute conceptual framings with Universal Bridge transitions.</p>
-                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                        {THEMES.map(theme => (
-                                            <div key={theme.id} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-teal-400 transition-all group">
-                                                <div className="flex gap-4 mb-4">
-                                                    <IconPlaceholder name={theme.icon} size={24} />
-                                                    <div>
-                                                        <div className="text-[10px] font-mono text-slate-400">{theme.id}</div>
-                                                        <h3 className="font-bold text-sm">{theme.title}</h3>
-                                                    </div>
-                                                </div>
-                                                <p className="text-xs text-slate-500 mb-6 min-h-[32px] leading-relaxed">{theme.description}</p>
-                                                <div className="flex gap-2 pt-4 border-t border-slate-100">
-                                                    <a href={`audio/${theme.id}.mp3`} className="flex-1 bg-teal-50 text-teal-700 py-2 rounded-lg text-xs font-bold text-center">Play</a>
-                                                    <a href={`audio/${theme.id}.mp3`} download className="flex-1 bg-slate-50 text-slate-500 py-2 rounded-lg text-xs font-bold text-center">Download</a>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </section>
+    <div class="practices-grid" id="practices-grid"></div>
+  </div>
 
-                                <section>
-                                    <h2 className="text-3xl font-bold mb-2 flex items-center gap-3"><Icon name="target" className="text-teal-600"/> 2. Sensory Practices</h2>
-                                    <p className="text-slate-500 mb-8 h-10">10-minute mechanistically orthogonal modules (e.g., P01-P16).</p>
-                                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                                        {PRACTICES.map(prac => (
-                                            <div key={prac.id} className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm group">
-                                                <div className="text-[10px] font-mono text-slate-400 mb-2">{prac.id}</div>
-                                                <h3 className="text-sm font-bold mb-4 h-10">{prac.title}</h3>
-                                                <div className="flex gap-2">
-                                                    <a href={`audio/${prac.id}.mp3`} className="flex-1 bg-teal-50 text-teal-600 p-2 rounded-lg flex items-center justify-center hover:bg-teal-100"><Icon name="play" size={14}/></a>
-                                                    <a href={`audio/${prac.id}.mp3`} download className="flex-1 bg-slate-50 text-slate-400 p-2 rounded-lg flex items-center justify-center hover:bg-slate-100"><Icon name="download" size={14}/></a>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </section>
-                            </div>
-                        )}
+  <!-- MATRIX PAGE -->
+  <div class="page" id="page-matrix">
+    <div class="section-header">
+      <div class="section-label">SOMA Master Matrix</div>
+      <h2>Fixed Pedagogical Order (A–P)</h2>
+      <p>The validated sequence mapping each Script ID to its Theme, Practice, and both Mindfulness (M) and Active Control (C) asset codes.</p>
+    </div>
+    <div class="matrix-section">
+      <div class="matrix-wrapper">
+        <table class="matrix-table" id="matrix-table"></table>
+      </div>
+    </div>
+  </div>
 
-                        {/* --- TAB 3: METHODOLOGY (RESTORED & VERIFIED CLEAN) --- */}
-                        {activeTab === 'methodology' && (
-                            <div className="max-w-4xl mx-auto space-y-12">
-                                <h1 className="text-3xl font-bold mb-8">Methodology & Principles</h1>
-                                <Section title="Principle 1: Structural Equivalence">
-                                    <p>We introduce a rigorous structural matching standard. Unlike passive waitlist controls, SOMA Active Controls are matched to interventions on four critical dimensions:</p>
-                                    <ul className="list-disc pl-6 space-y-2 bg-slate-50 p-6 rounded-lg">
-                                        <li><strong>Duration:</strong> Identical 10-12 minute commitment.</li>
-                                        <li><strong>Prosody:</strong> Recorded by the same instructors with matching vocal pace (~100 wpm).</li>
-                                        <li><strong>Structure:</strong> Identical Intro-Bridge-Practice architecture.</li>
-                                        <li><strong>Burden:</strong> Matched daily practice and homework requirements.</li>
-                                    </ul>
-                                </Section>
-                                <Section title="Principle 2: Mechanistic Orthogonality">
-                                    <p>The Active Control is designed as Analytical Training. While Mindfulness tracks direct bottom-up sensing, Control tracks direct top-down categorizing and verifying.</p>
-                                    <div className="bg-teal-50 p-6 rounded-lg border border-teal-100 text-sm">
-                                        <strong>Example Verb Substitution:</strong><br/>
-                                        <em>Mindfulness:</em> Notice the sound without labeling it.<br/>
-                                        <em>Control:</em> Identify the sound and classify its source.
-                                    </div>
-                                </Section>
-                                <Section title="Principle 3: Equity-by-Design">
-                                    <p>Accessibility is a foundational constraint, not a post-hoc analysis.</p>
-                                    <ul className="space-y-4">
-                                        <li className="border-l-4 border-teal-500 pl-4 py-1">
-                                            <strong>Linguistic Accessibility:</strong> Scripts refined to Grade 5-6 reading level to ensure inclusion of diverse SES backgrounds.
-                                        </li>
-                                        <li className="border-l-4 border-teal-500 pl-4 py-1">
-                                            <strong>Resource Neutrality:</strong> Instructions explicitly welcome environmental noise, removing the "quiet space" barrier.
-                                        </li>
-                                    </ul>
-                                </Section>
-                            </div>
-                        )}
-                    </main>
+  <!-- METHODOLOGY PAGE -->
+  <div class="page" id="page-methodology">
+    <div class="methodology-layout">
+      <nav class="method-nav">
+        <a class="method-nav-item active" onclick="scrollToSection('m1')">Structural Equivalence</a>
+        <a class="method-nav-item" onclick="scrollToSection('m2')">Mechanistic Orthogonality</a>
+        <a class="method-nav-item" onclick="scrollToSection('m3')">Equity by Design</a>
+        <a class="method-nav-item" onclick="scrollToSection('m4')">AI-Assisted Development</a>
+        <a class="method-nav-item" onclick="scrollToSection('m5')">Validation Design</a>
+        <a class="method-nav-item" onclick="scrollToSection('m6')">Key Measures</a>
+      </nav>
+      <div>
+        <div class="method-section" id="m1">
+          <h2>Principle 1: Structural Equivalence</h2>
+          <p>Unlike passive waitlist controls, SOMA Active Controls are matched to mindfulness scripts on four critical structural dimensions. This eliminates common confounds including expectancy effects, instructor attention, and session burden.</p>
+          <table class="method-table">
+            <thead><tr><th>Dimension</th><th>Standard Applied</th></tr></thead>
+            <tbody>
+              <tr><td>Duration</td><td>Identical 10–12 min commitment across all 32 scripts</td></tr>
+              <tr><td>Prosody</td><td>Recorded by the same instructors with matched vocal pace (~100 wpm)</td></tr>
+              <tr><td>Architecture</td><td>Intro–Bridge–Practice structure maintained across conditions</td></tr>
+              <tr><td>Practice Burden</td><td>Matched daily practice and homework requirements</td></tr>
+              <tr><td>Reading Level</td><td>Both conditions validated at Grade 5–6 (Flesch–Kincaid)</td></tr>
+            </tbody>
+          </table>
+        </div>
 
-                    <footer className="bg-slate-900 text-slate-500 py-20 border-t border-slate-800 mt-20">
-                        <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-12">
-                            <div>
-                                <h4 className="text-white font-bold mb-4 uppercase tracking-widest text-xs">About SOMA</h4>
-                                <p className="text-sm leading-relaxed max-w-sm">An international initiative dedicated to bridging the equity gap in mindfulness science through open-source, standardized materials.</p>
-                            </div>
-                            <div>
-                                <h4 className="text-white font-bold mb-4 uppercase tracking-widest text-xs">Repository</h4>
-                                <ul className="text-sm space-y-3">
-                                    <li><a href="#" className="hover:text-teal-500 flex items-center gap-2"><Icon name="external-link" size={12}/> OSF Repository</a></li>
-                                    <li><a href="#" className="hover:text-teal-500 flex items-center gap-2"><Icon name="github" size={12}/> GitHub Code</a></li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 className="text-white font-bold mb-4 uppercase tracking-widest text-xs">License</h4>
-                                <p className="text-sm">Licensed under CC-BY 4.0. Open-source for non-commercial research use.</p>
-                            </div>
-                        </div>
-                    </footer>
-                </div>
-            );
-        };
+        <div class="method-section" id="m2">
+          <h2>Principle 2: Mechanistic Orthogonality</h2>
+          <p>The Active Control is designed as Analytical Training. While the mindfulness condition cultivates direct bottom-up sensing, the control condition directs top-down categorisation and analytical verification of the same sensory objects.</p>
+          <p>Critically, control scripts are engineered to differ on the proposed mechanism (Sensorimotor Subscale of the SMS) while being matched on non-specific factors (CEQ expectancy composite).</p>
+          <div class="method-callout">
+            <strong>Verb Substitution Protocol</strong>
+            <p><strong>Mindfulness:</strong> "Notice the sensation without labeling it."<br>
+            <strong>Control:</strong> "Identify the sensation and name its location precisely."</p>
+          </div>
+          <p>This produces the predicted double dissociation: the mindfulness condition should score higher on the State Mindfulness Scale (SMS) while both conditions score equivalently on the CEQ expectancy composite — validating blinding integrity and mechanistic specificity simultaneously.</p>
+        </div>
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
-    </script>
+        <div class="method-section" id="m3">
+          <h2>Principle 3: Equity by Design</h2>
+          <p>Accessibility is a foundational constraint in SOMA, not a post-hoc analysis. Two specific barriers are addressed by design:</p>
+          <div class="method-callout">
+            <strong>Linguistic Accessibility</strong>
+            <p>All scripts refined to Grade 5–6 reading level (Flesch–Kincaid) to ensure inclusion of participants from diverse socioeconomic backgrounds without differential comprehension.</p>
+          </div>
+          <div class="method-callout" style="border-color:var(--gold);background:var(--gold-light)">
+            <strong style="color:#7a5730">Resource Neutrality</strong>
+            <p>Instructions explicitly welcome environmental noise and common interruptions, removing the "quiet space" prerequisite that systematically excludes participants in dense urban or multi-occupancy settings.</p>
+          </div>
+          <p>Hypothesis H3 tests whether the SOMA intervention achieves its equity goal via a SES × Condition ANOVA and TOST equivalence test on the Semantic Differential composite.</p>
+        </div>
+
+        <div class="method-section" id="m4">
+          <h2>AI-Assisted Development</h2>
+          <p>SOMA scripts underwent a two-layer AI audit prior to finalisation. This is documented as a <em>development aid</em>, not a formal verification procedure, to avoid reproducibility issues arising from LLM non-determinism.</p>
+          <table class="method-table">
+            <thead><tr><th>Criterion</th><th>Computed By</th><th>Rationale</th></tr></thead>
+            <tbody>
+              <tr><td>Word count & pause matching</td><td>Python (deterministic)</td><td>Prevents LLM hallucination of structural metrics</td></tr>
+              <tr><td>Banned word detection</td><td>Python (regex)</td><td>Fully reproducible; no ambiguity</td></tr>
+              <tr><td>Mechanism leak detection</td><td>GPT-4o (semantic)</td><td>Requires contextual understanding</td></tr>
+              <tr><td>Blinding integrity check</td><td>GPT-4o (semantic)</td><td>Requires understanding of narrative framing</td></tr>
+              <tr><td>Readability estimation</td><td>Python (Flesch–Kincaid)</td><td>Fully reproducible formula</td></tr>
+            </tbody>
+          </table>
+          <p>A synthetic persona stress-test (N=256, balanced 2×2×2 SES/Personality/Attitude grid, run with GPT-4o-mini) confirmed the AES vs. SMS double dissociation design and identified seven control scripts with critical attentional object overlap — triggering the Attentional Object Shift redesign protocol.</p>
+        </div>
+
+        <div class="method-section" id="m5">
+          <h2>Validation Study Design</h2>
+          <p>The SOMA validation study is a pre-registered RCT (N=360) targeting three confirmatory hypotheses, submitted as a Stage 1 Registered Report to <em>Nature Human Behaviour</em>.</p>
+          <table class="method-table">
+            <thead><tr><th>Hypothesis</th><th>Test</th><th>Key Measure</th></tr></thead>
+            <tbody>
+              <tr><td>H1: Structural Equivalence</td><td>TOST, d = ±0.40</td><td>CEQ 3-item composite (A1, A2, A4)</td></tr>
+              <tr><td>H2: Mechanistic Orthogonality</td><td>2×2 Mixed ANOVA interaction</td><td>SMS vs AES (Condition × Measure)</td></tr>
+              <tr><td>H3: Universal Accessibility</td><td>SES × Condition ANOVA + TOST</td><td>Semantic Differential composite</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="method-section" id="m6">
+          <h2>Key Measures</h2>
+          <table class="method-table">
+            <thead><tr><th>Measure</th><th>Items</th><th>Scale</th><th>Purpose</th></tr></thead>
+            <tbody>
+              <tr><td>CEQ</td><td>4 items (composite = mean of 1, 2, 4)</td><td>1–9</td><td>Expectancy & credibility; blinding check</td></tr>
+              <tr><td>SMS</td><td>7 items (4 body + 3 mind subscales)</td><td>0–4</td><td>State mindfulness; mechanism target</td></tr>
+              <tr><td>AES</td><td>4 purpose-built items</td><td>0–4</td><td>Analytical engagement; control mechanism</td></tr>
+              <tr><td>Semantic Differential</td><td>3 bipolar items</td><td>1–7</td><td>Accessibility & acceptability</td></tr>
+              <tr><td>Blinding Check</td><td>2 items</td><td>5-option + 0–100%</td><td>Experimental integrity verification</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer id="main-footer" style="display:none">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>SOMA Framework</h3>
+      <p>An international open-science initiative bridging the equity gap in mindfulness research through rigorously standardised, freely available materials.</p>
+    </div>
+    <div>
+      <h4>Repository</h4>
+      <a href="#">OSF Repository ↗</a>
+      <a href="#">GitHub Code ↗</a>
+      <a href="#">Pre-registration ↗</a>
+    </div>
+    <div>
+      <h4>Resources</h4>
+      <a href="#">Coding Guide (PDF)</a>
+      <a href="#">Audit Protocol</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 SOMA Research Consortium</span>
+    <span class="cc-badge">CC-BY 4.0 — Open for non-commercial research use</span>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+const THEMES = [
+  { id: 'SOMA-M-T01A', title: 'Being', variant: 'Variation A', emoji: '🌅',
+    description: 'Introduces the concept of Being by contrasting it with "automatic pilot" — the mode in which we move through daily life physically present but mentally elsewhere. Uses the metaphor of a traveler pausing to notice the texture of a familiar street for the first time.' },
+  { id: 'SOMA-M-T01B', title: 'Being', variant: 'Variation B', emoji: '🌊',
+    description: 'Explores the Doing–Being distinction through the image of a fast-moving treadmill. Invites participants to shift from constantly planning and reviewing to resting gently on whatever is here — a colour, a breath, a sensation waiting to be noticed.' },
+  { id: 'SOMA-M-T02A', title: 'Curiosity', variant: 'Variation A', emoji: '🏙️',
+    description: 'Cultivates Beginner\'s Mind via the metaphor of a first-time traveler exploring an unfamiliar city — noticing shapes, colours, and sounds with open, non-judging interest. Invites participants to bring this same freshness to ordinary sensory experience.' },
+  { id: 'SOMA-M-T02B', title: 'Curiosity', variant: 'Variation B', emoji: '🔭',
+    description: 'Frames curiosity as the stance of a scientist observing something very delicate in nature. Applied to the breath — something we take thousands of times daily without truly noticing — as a vehicle for the Beginner\'s Mind orientation.' },
+  { id: 'SOMA-M-T03A', title: 'Patience', variant: 'Variation A', emoji: '🌱',
+    description: 'Uses the image of a gardener who waters a seed but does not pull on the sprout. Patience here means allowing experience to unfold at its own pace — not forcing, not rushing — mirroring how trees wait for the warmth of spring rather than straining to grow.' },
+  { id: 'SOMA-M-T03B', title: 'Patience', variant: 'Variation B', emoji: '🚶',
+    description: 'Reframes patience not as passive waiting but as presence. We habitually treat the present moment as an obstacle — a waiting room to escape. This variation invites participants to inhabit each step of a walk as complete in itself, rather than a means to an end.' },
+  { id: 'SOMA-M-T04A', title: 'Acceptance', variant: 'Variation A', emoji: '🕊️',
+    description: 'Frames acceptance as dropping the struggle rather than agreeing with or liking one\'s experience. When we constantly fight what is here — pushing away discomfort, clinging to pleasure — we expend enormous energy. Acceptance is the choice to let that tension go.' },
+  { id: 'SOMA-M-T04B', title: 'Acceptance', variant: 'Variation B', emoji: '🪨',
+    description: 'Uses the tactile metaphor of holding a stone in a clenched fist: the tighter you squeeze, the more fatigue spreads up your arm. Releasing the grip is not defeat — it is the natural act of allowing what is here to simply be here, without resistance.' },
+  { id: 'SOMA-M-T05A', title: 'Letting Go', variant: 'Variation A', emoji: '🎒',
+    description: 'Employs the image of hiking with a heavy backpack filled with rocks — each rock a worry, a regret, a sense of rushing. Letting go does not mean solving or suppressing these; it means noticing we are carrying them, and choosing to set the pack down for a moment.' },
+  { id: 'SOMA-M-T05B', title: 'Letting Go', variant: 'Variation B', emoji: '🌊',
+    description: 'Uses a river metaphor: clinging to a heavy rock while the current rushes past exhausts us. Letting go means releasing the rock and allowing the water to carry you — not controlling, not fighting, but flowing with what is naturally here.' },
+  { id: 'SOMA-M-T06A', title: 'Gentleness', variant: 'Variation A', emoji: '🌸',
+    description: 'Opens with the image of touching a patch of raw skin with great care — light, cool, soothing pressure that honours its sensitivity. Gentleness as a quality of attention: the same tender handling we would offer a wound applied to our inner experience.' },
+  { id: 'SOMA-M-T06B', title: 'Gentleness', variant: 'Variation B', emoji: '🐦',
+    description: 'Presents the image of cradling a small fragile bird: too loose and it falls; too tight and it is crushed. The right hold is steady yet soft — a specific kind of effort that is both grounded and yielding. This is the quality of attention Gentleness cultivates.' },
+];
+
+const PRACTICES = [
+  { id: 'SOMA-M-P01', letter: 'A', title: 'Opening the Senses', theme: 'Being', format: 'Formal',
+    emoji: '👁️',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/YogaGirl.jpg/640px-YogaGirl.jpg',
+    desc: 'A seated formal practice anchoring awareness in the full sensorium — sight, sound, touch, and proprioception. Participants are guided to open each sensory channel in turn, arriving fully into the present moment without grasping or rejecting what arises.',
+    grade: 'Grade 5', words: 900 },
+  { id: 'SOMA-M-P02', letter: 'B', title: 'Being with the Senses', theme: 'Being', format: 'Informal',
+    emoji: '✨',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Smiley_green_alien_simple.svg/200px-Smiley_green_alien_simple.svg.png',
+    desc: 'An informal practice woven into any ordinary moment — sitting, standing, waiting. The invitation is simply to notice colours, textures, and sounds in the immediate environment with a quality of open, unhurried curiosity rather than utility.',
+    grade: 'Grade 5', words: 911 },
+  { id: 'SOMA-M-P03', letter: 'C', title: 'Being with the Present', theme: 'Being', format: 'Formal',
+    emoji: '🕰️',
+    image: null,
+    desc: 'A formal practice that works directly with the tendency of the mind to time-travel into past or future. Participants learn to recognise when they have drifted, and to return — without judgment — to the sensory texture of the present moment.',
+    grade: 'Grade 6', words: 933 },
+  { id: 'SOMA-M-P04', letter: 'D', title: 'Mindful Drinking', theme: 'Being', format: 'Informal',
+    emoji: '☕',
+    image: null,
+    desc: 'Uses the act of preparing and drinking a warm or cold beverage as a vehicle for present-moment awareness. Participants attend to the weight of the cup, the temperature against the palms, the rising scent, the first sip — ordinary sensations made vivid by deliberate attention.',
+    grade: 'Grade 5', words: 923 },
+  { id: 'SOMA-M-P05', letter: 'E', title: 'Brushing Teeth', theme: 'Curiosity', format: 'Informal',
+    emoji: '🪥',
+    image: null,
+    desc: 'Transforms one of the most automatic daily routines into a laboratory of Beginner\'s Mind. The bristles, the taste of toothpaste, the movement of the wrist — each familiar detail becomes an object of fresh, interested noticing.',
+    grade: 'Grade 5', words: 953 },
+  { id: 'SOMA-M-P06', letter: 'F', title: 'Awareness of Breath', theme: 'Curiosity', format: 'Formal',
+    emoji: '🌬️',
+    image: null,
+    desc: 'A formal seated practice applying the Beginner\'s Mind to the breath — something taken thousands of times daily yet rarely truly observed. Participants explore the subtle qualities of each breath cycle as though encountering respiration for the very first time.',
+    grade: 'Grade 6', words: 902 },
+  { id: 'SOMA-M-P07', letter: 'G', title: 'Mindful Movements', theme: 'Patience', format: 'Formal',
+    emoji: '🤲',
+    image: null,
+    desc: 'A formal practice using gentle, deliberate arm and body movements as the object of patient, unhurried attention. Participants discover how slowing down physical action creates space to notice the continuous stream of sensation that movement contains.',
+    grade: 'Grade 5', words: 902 },
+  { id: 'SOMA-M-P08', letter: 'H', title: 'Mindful Walking', theme: 'Patience', format: 'Informal',
+    emoji: '🚶',
+    image: null,
+    desc: 'Applies the Patience orientation to the act of walking. Rather than using steps as a means of getting somewhere, participants inhabit each footfall — the lift, the shift of weight, the contact of the sole with the ground — as complete and sufficient in itself.',
+    grade: 'Grade 6', words: 930 },
+  { id: 'SOMA-M-P09', letter: 'I', title: 'Awareness of Body', theme: 'Acceptance', format: 'Formal',
+    emoji: '🧘',
+    image: null,
+    desc: 'A formal seated practice cultivating an accepting, non-judgmental relationship with the body as it is right now — not as we wish it were. Participants learn to observe physical sensations (comfort, discomfort, neutrality) without pushing them away or amplifying them.',
+    grade: 'Grade 6', words: 899 },
+  { id: 'SOMA-M-P10', letter: 'J', title: 'Tuning in to the Body', theme: 'Acceptance', format: 'Informal',
+    emoji: '💆',
+    image: null,
+    desc: 'An informal practice accessible in any posture during daily life. The intention is to drop in on the body\'s current state with acceptance — noticing areas of tension, ease, warmth, or tiredness — without trying to change, fix, or judge what is found.',
+    grade: 'Grade 6', words: 921 },
+  { id: 'SOMA-M-P11', letter: 'K', title: 'Listening Practice', theme: 'Acceptance', format: 'Formal',
+    emoji: '👂',
+    image: null,
+    desc: 'A formal practice using the soundscape — however quiet or chaotic — as an object of non-judgmental acceptance. Sounds arrive and depart; the practice is to let them do so without labeling them as "good" or "bad," pleasant or irritating.',
+    grade: 'Grade 6', words: 907 },
+  { id: 'SOMA-M-P12', letter: 'L', title: 'Tuning in to Sounds', theme: 'Acceptance', format: 'Informal',
+    emoji: '🎵',
+    image: null,
+    desc: 'An informal version of the listening practice, designed for use in everyday environments including busy or noisy ones. Resource-neutral by design: the soundscape of a train, an office, or a kitchen are equally valid objects of accepting, curious attention.',
+    grade: 'Grade 5', words: 939 },
+  { id: 'SOMA-M-P13', letter: 'M', title: 'Mindful Eating', theme: 'Letting Go', format: 'Informal',
+    emoji: '🍽️',
+    image: null,
+    desc: 'Brings the Letting Go orientation to a meal or snack. Participants practice releasing the habitual mental load — the to-do list, the scroll, the distraction — and allowing full sensory engagement with the colours, textures, flavours, and aromas of eating.',
+    grade: 'Grade 5', words: 899 },
+  { id: 'SOMA-M-P14', letter: 'N', title: 'Body Scan', theme: 'Letting Go', format: 'Formal',
+    emoji: '🛋️',
+    image: null,
+    desc: 'A classical formal practice moving systematic attention through the body from feet to crown. The Letting Go orientation is cultivated at each region: arriving, noticing, and releasing — neither clinging to pleasant sensations nor fighting uncomfortable ones.',
+    grade: 'Grade 5', words: 959 },
+  { id: 'SOMA-M-P15', letter: 'O', title: 'Self-Compassion', theme: 'Gentleness', format: 'Formal',
+    emoji: '💛',
+    image: null,
+    desc: 'A formal practice applying the quality of Gentleness inward — to one\'s own experience of difficulty, self-criticism, or pain. Using soothing touch (hand on heart or cheek), participants cultivate the same tender care toward themselves they would naturally offer a close friend.',
+    grade: 'Grade 5', words: 902 },
+  { id: 'SOMA-M-P16', letter: 'P', title: 'Mindful Handwashing', theme: 'Gentleness', format: 'Informal',
+    emoji: '🤲',
+    image: null,
+    desc: 'Transforms a brief, repeated daily act into a moment of embodied Gentleness. Participants attend to the temperature of the water, the texture of lather against skin, the deliberate care of each movement — practising the gentle, unhurried quality of attention in the midst of ordinary life.',
+    grade: 'Grade 6', words: 920 },
+];
+
+const MATRIX = [
+  { letter: 'A', theme: 'Being (T01A)', practice: 'Opening the Senses (P01)', m: 'SOMA-M-T01A-P01', c: 'SOMA-C-T01A-P01' },
+  { letter: 'B', theme: 'Being (T01B)', practice: 'Being with the Senses (P02)', m: 'SOMA-M-T01B-P02', c: 'SOMA-C-T01B-P02' },
+  { letter: 'C', theme: 'Being (T01B)', practice: 'Being with the Present (P03)', m: 'SOMA-M-T01B-P03', c: 'SOMA-C-T01B-P03' },
+  { letter: 'D', theme: 'Being (T01A)', practice: 'Mindful Drinking (P04)', m: 'SOMA-M-T01A-P04', c: 'SOMA-C-T01B-P04' },
+  { letter: 'E', theme: 'Curiosity (T02A)', practice: 'Brushing Teeth (P05)', m: 'SOMA-M-T02A-P05', c: 'SOMA-C-T02A-P05' },
+  { letter: 'F', theme: 'Curiosity (T02B)', practice: 'Awareness of Breath (P06)', m: 'SOMA-M-T02B-P06', c: 'SOMA-C-T02B-P06' },
+  { letter: 'G', theme: 'Patience (T03A)', practice: 'Mindful Movements (P07)', m: 'SOMA-M-T03A-P07', c: 'SOMA-C-T03A-P07' },
+  { letter: 'H', theme: 'Patience (T03B)', practice: 'Mindful Walking (P08)', m: 'SOMA-M-T03B-P08', c: 'SOMA-C-T03B-P08' },
+  { letter: 'I', theme: 'Acceptance (T04A)', practice: 'Awareness of Body (P09)', m: 'SOMA-M-T04A-P09', c: 'SOMA-C-T04A-P09' },
+  { letter: 'J', theme: 'Acceptance (T04A)', practice: 'Tuning in to the Body (P10)', m: 'SOMA-M-T04A-P10', c: 'SOMA-C-T04A-P10' },
+  { letter: 'K', theme: 'Acceptance (T04B)', practice: 'Listening Practice (P11)', m: 'SOMA-M-T04B-P11', c: 'SOMA-C-T04B-P11' },
+  { letter: 'L', theme: 'Acceptance (T04B)', practice: 'Tuning in to Sounds (P12)', m: 'SOMA-M-T04B-P12', c: 'SOMA-C-T04B-P12' },
+  { letter: 'M', theme: 'Letting Go (T05A)', practice: 'Mindful Eating (P13)', m: 'SOMA-M-T05A-P13', c: 'SOMA-C-T05A-P13' },
+  { letter: 'N', theme: 'Letting Go (T05B)', practice: 'Body Scan (P14)', m: 'SOMA-M-T05B-P14', c: 'SOMA-C-T05B-P14' },
+  { letter: 'O', theme: 'Gentleness (T06A)', practice: 'Self-Compassion (P15)', m: 'SOMA-M-T06A-P15', c: 'SOMA-C-T06A-P15' },
+  { letter: 'P', theme: 'Gentleness (T06B)', practice: 'Mindful Handwashing (P16)', m: 'SOMA-M-T06B-P16', c: 'SOMA-C-T06B-P16' },
+];
+
+// ============================================================
+// RENDER FUNCTIONS
+// ============================================================
+function renderThemes() {
+  const grid = document.getElementById('themes-grid');
+  grid.innerHTML = THEMES.map(t => `
+    <div class="theme-card fade-up">
+      <div class="theme-card-header">
+        <div class="theme-emoji">${t.emoji}</div>
+        <div class="theme-meta">
+          <div class="theme-code">${t.id}</div>
+          <div class="theme-title">${t.title}</div>
+          <div class="theme-variant">${t.variant}</div>
+        </div>
+      </div>
+      <div class="theme-card-body">
+        <p class="theme-desc">${t.description}</p>
+        <div class="theme-actions">
+          <button class="btn-play" onclick="alert('Audio coming in production release')">▶ Play</button>
+          <a class="btn-dl" href="audio/${t.id}.mp3" download>⬇ Download</a>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderPractices(filter = 'all') {
+  const grid = document.getElementById('practices-grid');
+  const data = filter === 'all' ? PRACTICES : PRACTICES.filter(p => p.theme === filter);
+  grid.innerHTML = data.map(p => `
+    <div class="practice-card fade-up" data-theme="${p.theme}">
+      <div class="practice-thumb-placeholder">${p.emoji}</div>
+      <div class="practice-card-body">
+        <div class="practice-code">${p.id}</div>
+        <div class="practice-title">${p.title}</div>
+        <div class="practice-theme-tag">${p.theme} · ${p.format}</div>
+        <p class="practice-desc">${p.desc}</p>
+        <div class="practice-meta">
+          <span>📖 ${p.grade}</span>
+          <span>📝 ~${p.words} words</span>
+          <span>⏱ 10 min</span>
+        </div>
+        <div class="practice-actions">
+          <button class="btn-play" style="flex:1" onclick="alert('Audio coming in production release')">▶ Play</button>
+          <a class="btn-dl" href="audio/${p.id}.mp3" download>⬇</a>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderMatrix() {
+  const table = document.getElementById('matrix-table');
+  table.innerHTML = `
+    <thead>
+      <tr>
+        <th>Script</th>
+        <th>Theme</th>
+        <th>Practice</th>
+        <th>Mindfulness Code</th>
+        <th>Active Control Code</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${MATRIX.map(r => `
+        <tr>
+          <td>${r.letter}</td>
+          <td>${r.theme}</td>
+          <td>${r.practice}</td>
+          <td><span class="matrix-code">${r.m}</span></td>
+          <td><span class="matrix-code" style="background:var(--slate-100);color:var(--slate-600)">${r.c}</span></td>
+        </tr>
+      `).join('')}
+    </tbody>
+  `;
+}
+
+function filterPractices(theme, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderPractices(theme);
+}
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelector(`[data-page="${id}"]`).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.querySelectorAll('.method-nav-item').forEach(i => i.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+// ============================================================
+// AUTH
+// ============================================================
+document.getElementById('auth-btn').addEventListener('click', function() {
+  const val = document.getElementById('auth-input').value;
+  if (val === 'soma2026' || val === '') {
+    document.getElementById('auth-screen').style.display = 'none';
+    document.getElementById('main-nav').style.display = 'block';
+    document.getElementById('main-content').style.display = 'block';
+    document.getElementById('main-footer').style.display = 'block';
+    renderThemes();
+    renderPractices();
+    renderMatrix();
+  } else {
+    document.getElementById('auth-error').style.display = 'block';
+  }
+});
+
+document.getElementById('auth-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') document.getElementById('auth-btn').click();
+});
+</script>
 </body>
 </html>
