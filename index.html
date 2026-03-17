@@ -124,7 +124,7 @@ main{max-width:1280px;margin:0 auto;padding:3rem 2.5rem 6rem}
 .practice-format-tag.m-tag{color:var(--teal-700);background:var(--teal-50)}
 .practice-format-tag.c-tag{color:var(--amber-700);background:var(--amber-50)}
 .practice-desc{font-size:12px;color:var(--slate-500);line-height:1.65;margin-bottom:1rem}
-.practice-meta{display:flex;gap:1rem;font-size:11px;color:var(--slate-400);margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid var(--slate-100)}
+.practice-meta{display:flex;gap:1rem;font-size:12px;color:var(--slate-600);margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid var(--slate-100)}
 .practice-actions{display:flex;gap:.5rem}
 
 /* BUTTONS */
@@ -270,7 +270,7 @@ footer a:hover{color:var(--teal-200)}
   <div class="hero fade-up">
     <div class="hero-eyebrow">Open Science · Mindfulness Research</div>
     <h1>Bridging <em>Equity</em> and Rigor in Digital Mindfulness</h1>
-    <p>Standardized Open-source Mindfulness Audio (SOMA): a modular library of matched mindfulness–control script pairs for mechanistically precise RCT research.</p>
+    <p>Standardized Open-source Mindfulness Architecture (SOMA): a modular library of matched mindfulness–control script pairs for mechanistically precise RCT research.</p>
     <div class="hero-actions">
       <button class="btn-primary" onclick="showPage('library')">Explore Library →</button>
       <button class="btn-ghost" onclick="showPage('methodology')">Methodology</button>
@@ -453,12 +453,12 @@ footer a:hover{color:var(--teal-200)}
       <p>An international committee of mindfulness researchers, clinicians, and psycholinguists collaboratively developed the script content, structural equivalence standards, and pedagogical ordering. Each script went through multiple rounds of review against the committee's operationalised criteria for mechanism specificity and accessibility.</p>
     </div>
     <div class="build-card">
-      <h3>🐍 Two-Layer AI Audit</h3>
-      <p>Scripts underwent a hybrid Python + GPT-4o audit. Python handled all deterministic structural checks (word count matching, banned word detection, readability scoring via Flesch–Kincaid). GPT-4o handled semantic criteria requiring contextual understanding — mechanism leak detection and blinding integrity. The audit is documented as a development aid, not formal verification, to preserve reproducibility.</p>
+      <h3>🐍 AI-Assisted Script Auditing</h3>
+      <p>Scripts were audited using a Python pipeline that called the GPT-4o API with a prompt designed to simulate a clinical psychologist and methodologist. This prompt contained a structured set of operationalised criteria — covering mechanism specificity, attitudinal language, blinding integrity, and banned phrasing — against which each script was evaluated. The AI audit is documented as a <em>development aid</em>, not a formal verification procedure, given the well-known limitations of large language models regarding reproducibility and hallucination. All findings were subsequently reviewed by the expert committee.</p>
     </div>
     <div class="build-card">
-      <h3>🤖 Synthetic Persona Stress-Testing</h3>
-      <p>A balanced factorial simulation (N=256) crossed Attitude × SES × Personality to probe differential responses across diverse participant profiles before any real-world data collection. Results confirmed the predicted AES vs. SMS double dissociation and identified seven control scripts with critical attentional object overlap, triggering the Attentional Object Shift redesign.</p>
+      <h3>🤖 Synthetic Persona Simulation</h3>
+      <p>As an exploratory developmental tool, a Python script called the GPT-4o API to simulate responses from synthetic participant personas varying across SES, personality, and prior attitude toward mindfulness. This exercise provided early qualitative signal about potential differential engagement across script types and helped flag areas for committee review. Given the substantial limitations of LLM-simulated human responses, all findings were treated as illustrative heuristics rather than empirical data, and fed back into the committee's revision process rather than informing any formal analytical decision.</p>
     </div>
     <div class="build-card">
       <h3>📖 Cognitive Scaffolding & Tier Design</h3>
@@ -470,31 +470,46 @@ footer a:hover{color:var(--teal-200)}
     <div class="section-header">
       <div class="section-label">Cognitive Scaffold</div>
       <h2>Three-Tier Practice Architecture</h2>
-      <p>The tier structure reflects best clinical practices for scaffolding naive learners — but SOMA's modularity means researchers are never bound to this sequence.</p>
+      <p>The 16 practices are organized into three tiers based on their inherent working memory and interoceptive demands. Tier 1 (Foundational) minimises cognitive load via immediate, concrete sensory anchors. Tier 2 (Core Extension) builds on these anchors within the context of daily routines. Tier 3 (Specialized) requires higher working memory capacity and finer-grained attentional control. Researchers may follow this sequence as a scaffolded curriculum or decouple tiers entirely for experimental designs.</p>
     </div>
     <table class="method-table">
-      <thead><tr><th>Tier</th><th>Label</th><th>Working Memory Load</th><th>Focus</th><th>Example Practices</th></tr></thead>
+      <thead><tr><th>Tier</th><th>Label</th><th>Type</th><th>Practices</th></tr></thead>
       <tbody>
         <tr>
           <td><span class="tier-badge t1">Tier 1</span></td>
-          <td>Foundational Anchoring</td>
-          <td>Low</td>
-          <td>Simple, immediate sensory anchors. Establishes the mechanics of anchoring and returning attention.</td>
-          <td>Opening the Senses, Awareness of Breath, Listening Practice</td>
+          <td>Foundational</td>
+          <td>Formal</td>
+          <td>Awareness of Breath (F), Mindful Movements (G), Body Scan (N), Self-Compassion (O)</td>
+        </tr>
+        <tr>
+          <td><span class="tier-badge t1">Tier 1</span></td>
+          <td>Foundational</td>
+          <td>Informal</td>
+          <td>Brushing Teeth (E), Mindful Walking (H), Mindful Eating (M), Mindful Handwashing (P)</td>
         </tr>
         <tr>
           <td><span class="tier-badge t2">Tier 2</span></td>
-          <td>Ecological Integration</td>
-          <td>Moderate</td>
-          <td>Applies foundational awareness to daily routines, leveraging existing behavioral habits without additional scheduling.</td>
-          <td>Brushing Teeth, Mindful Drinking, Mindful Handwashing, Mindful Eating</td>
+          <td>Core Extension</td>
+          <td>Formal</td>
+          <td>Being with the Present (C), Awareness of Body (I)</td>
+        </tr>
+        <tr>
+          <td><span class="tier-badge t2">Tier 2</span></td>
+          <td>Core Extension</td>
+          <td>Informal</td>
+          <td>Mindful Drinking (D), Tuning in to Sounds (L)</td>
         </tr>
         <tr>
           <td><span class="tier-badge t3">Tier 3</span></td>
-          <td>Advanced Interoception</td>
-          <td>Higher</td>
-          <td>Requires sustained attention on internal states and observation of transient affective experience.</td>
-          <td>Body Scan, Self-Compassion, Awareness of Body, Letting Go practices</td>
+          <td>Specialized</td>
+          <td>Formal</td>
+          <td>Opening the Senses (A), Listening Practice (K)</td>
+        </tr>
+        <tr>
+          <td><span class="tier-badge t3">Tier 3</span></td>
+          <td>Specialized</td>
+          <td>Informal</td>
+          <td>Being with the Senses (B), Tuning in to the Body (J)</td>
         </tr>
       </tbody>
     </table>
@@ -505,10 +520,10 @@ footer a:hover{color:var(--teal-200)}
       <div class="section-label">Citation</div>
       <h2>How to Cite SOMA</h2>
     </div>
-    <p style="color:var(--slate-500);font-size:14px;margin-bottom:.75rem">Please use the following citation when referencing SOMA materials in your research. Note that the citation is currently tentative pending publication.</p>
+    <p style="color:var(--slate-500);font-size:14px;margin-bottom:.75rem">Please use the following citation when referencing SOMA materials in your research. Note that this citation is tentative — the preprint is not yet publicly available. Please check the OSF page for the most current version of the materials.</p>
     <div class="citation-box">
       Sparacio, A., Ropovik, I., Davies, J., SOMA Development Team, &amp; Rodriguez, A. (2026). The SOMA Framework: Bridging Equity and Rigor in Digital Mindfulness. Available at: https://osf.io/2kfvz
-      <div class="citation-note">⚠ Tentative citation — pending final publication. Please check OSF for the most current version.</div>
+      <div class="citation-note">⚠ Tentative citation — preprint not yet available. Check <a href="https://osf.io/m76cg" target="_blank" style="color:var(--teal-200)">OSF (osf.io/m76cg)</a> for updates.</div>
     </div>
   </div>
 
@@ -523,7 +538,6 @@ footer a:hover{color:var(--teal-200)}
       <a class="method-nav-item" onclick="scrollToSection('m3',event)">Intervention Design</a>
       <a class="method-nav-item" onclick="scrollToSection('m4',event)">Equity by Design</a>
       <a class="method-nav-item" onclick="scrollToSection('m5',event)">Validation Study</a>
-      <a class="method-nav-item" onclick="scrollToSection('m6',event)">Key Measures</a>
     </nav>
     <div>
       <div class="method-section" id="m1">
@@ -532,7 +546,7 @@ footer a:hover{color:var(--teal-200)}
         <table class="method-table">
           <thead><tr><th>Dimension</th><th>Standard Applied</th></tr></thead>
           <tbody>
-            <tr><td>Duration</td><td>Identical 10–12 min commitment across all 32 scripts</td></tr>
+            <tr><td>Duration</td><td>Identical ~12 min commitment across all 32 scripts</td></tr>
             <tr><td>Prosody</td><td>Recorded by the same instructors with matched vocal pace (~100 wpm)</td></tr>
             <tr><td>Architecture</td><td>Intro–Bridge–Practice structure maintained across conditions</td></tr>
             <tr><td>Practice Burden</td><td>Matched daily practice and homework requirements</td></tr>
@@ -543,7 +557,7 @@ footer a:hover{color:var(--teal-200)}
 
       <div class="method-section" id="m2">
         <h2>Principle 2: Mechanistic Orthogonality</h2>
-        <p>The Active Control is designed as Analytical Training. While mindfulness cultivates direct bottom-up sensing, the control directs top-down categorisation and analytical verification of the same sensory objects — producing the predicted double dissociation on the SMS vs. AES measures.</p>
+        <p>The Active Control is designed as Analytical Training. While mindfulness cultivates direct bottom-up sensing, the control directs top-down categorisation and analytical verification of the same sensory objects. This design is intended to produce a double dissociation: participants in the mindfulness condition should score higher on the State Mindfulness Scale (SMS — a measure of in-the-moment experiential awareness), while both conditions score equivalently on the Credibility/Expectancy Questionnaire (CEQ). The Active Engagement Scale (AES) captures the analytical engagement specific to the control condition, completing the predicted cross-over interaction.</p>
         <div class="method-callout">
           <strong>Verb Substitution Protocol</strong>
           <p><strong>Mindfulness:</strong> "Notice the sensation without labeling it."<br><strong>Control:</strong> "Identify the sensation and name its location precisely."</p>
@@ -575,30 +589,14 @@ footer a:hover{color:var(--teal-200)}
 
       <div class="method-section" id="m5">
         <h2>Principle 5: Validation Study Design</h2>
-        <p>The SOMA validation study is a pre-registered RCT (N=360) targeting three confirmatory hypotheses, submitted as a Stage 1 Registered Report to <em>Nature Human Behaviour</em>.</p>
-        <table class="method-table">
-          <thead><tr><th>Hypothesis</th><th>Test</th><th>Key Measure</th></tr></thead>
-          <tbody>
-            <tr><td>H1: Structural Equivalence</td><td>TOST, d = ±0.40</td><td>CEQ 3-item composite (A1, A2, A4)</td></tr>
-            <tr><td>H2: Mechanistic Orthogonality</td><td>2×2 Mixed ANOVA interaction</td><td>SMS vs AES (Condition × Measure)</td></tr>
-            <tr><td>H3: Universal Accessibility</td><td>SES × Condition ANOVA + TOST</td><td>Semantic Differential composite</td></tr>
-          </tbody>
-        </table>
+        <p>The SOMA validation study is a pre-registered randomised controlled trial (N=360) designed to test three confirmatory hypotheses about the library's structural equivalence, mechanistic specificity, and universal accessibility. The study is being submitted as a Stage 1 Registered Report to <em>Nature Human Behaviour</em>.</p>
+        <p>Full details of the study design, power analyses, pre-registration, analysis scripts, and stimuli are openly available on the project's OSF repository.</p>
+        <div class="method-callout">
+          <strong>Full Study Documentation</strong>
+          <p>Pre-registration, analysis plan, stimuli, and supplementary materials are all available at the SOMA OSF repository: <a href="https://osf.io/m76cg" target="_blank" style="color:var(--teal-700);font-weight:600">osf.io/m76cg →</a></p>
+        </div>
       </div>
 
-      <div class="method-section" id="m6">
-        <h2>Key Measures</h2>
-        <table class="method-table">
-          <thead><tr><th>Measure</th><th>Items</th><th>Scale</th><th>Purpose</th></tr></thead>
-          <tbody>
-            <tr><td>CEQ</td><td>4 items (composite = mean of 1, 2, 4)</td><td>1–9</td><td>Expectancy & credibility; blinding check</td></tr>
-            <tr><td>SMS</td><td>7 items (4 body + 3 mind subscales)</td><td>0–4</td><td>State mindfulness; mechanism target</td></tr>
-            <tr><td>AES</td><td>4 purpose-built items</td><td>0–4</td><td>Analytical engagement; control mechanism</td></tr>
-            <tr><td>Semantic Differential</td><td>3 bipolar items</td><td>1–7</td><td>Accessibility & acceptability</td></tr>
-            <tr><td>Blinding Check</td><td>2 items</td><td>5-option + 0–100%</td><td>Experimental integrity verification</td></tr>
-          </tbody>
-        </table>
-      </div>
     </div>
   </div>
 </div>
@@ -668,7 +666,7 @@ const C_THEMES = [
    desc:'Reframes sitting still as active biomechanical work. Like a skyscraper or radio tower resisting wind load, the body must continuously counter gravitational forces. This variation links physical stillness to engineering principles of load-bearing and structural integrity.'},
   {id:'SOMA-C-T02A',title:'Organization (Variation A)',attitude:'Organization',emoji:'🗂️',
    desc:'Frames organization as the antidote to a "scattered" state — a mode of unconnected thoughts and unfinished plans. Participants are directed to engage the planning mind, preparing for the day by deliberately ordering attention and prioritising tasks.'},
-  {id:'SOMA-C-T02B',title:'Reacting vs Organizing (Variation B)',attitude:'Organizing',emoji:'📋',
+  {id:'SOMA-C-T02B',title:'Organization (Variation B)',attitude:'Organizing',emoji:'📋',
    desc:'Distinguishes reactive mode — constantly catching up — from organizational mode, which looks ahead and structures the future. The shift into organizing means directing attention to schedules, categories, and forward-planning rather than immediate sensory input.'},
   {id:'SOMA-C-T03A',title:'Synchronization (Variation A)',attitude:'Synchronization',emoji:'⚙️',
    desc:'Uses the mechanical clock as its central image: every gear must move at exactly the right speed. The body is framed as a complex biological machine requiring calibrated, precise timing. Synchronization means imposing structured order on physical form.'},
