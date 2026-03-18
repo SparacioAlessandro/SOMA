@@ -233,7 +233,7 @@ footer a:hover{color:var(--teal-200)}
 <div class="modal-overlay" id="audio-modal" style="display:none">
   <div class="modal-box">
     <div style="font-size:40px;margin-bottom:1rem">🎧</div>
-    <h2>Audio Coming Soon</h2>
+    <h2>Coming Soon</h2>
     <p>The written scripts and audio files for the Active Control condition are being finalized and will be made freely available concurrent with the Stage 1 Registered Report submission.</p>
     <p style="margin-top:.75rem">For updates, check the <a href="https://osf.io/m76cg" target="_blank" style="color:var(--teal-700);font-weight:600">OSF repository</a> or the <a href="https://github.com/SparacioAlessandro/SOMA" target="_blank" style="color:var(--teal-700);font-weight:600">GitHub repository</a>.</p>
     <button class="modal-close" onclick="closeModal()">Close</button>
@@ -842,7 +842,7 @@ function themeCard(t, isCtrl) {
     ? `<button class="btn-icon btn-icon-soon" onclick="openModal()" title="Audio coming soon">⏳</button>`
     : `<a class="btn-icon btn-icon-play" href="${BASE}audios/${t.id}.mp3" download title="Download audio">▶</a>`;
   const pdfBtn = isCtrl
-    ? `<a class="btn-icon btn-icon-pdf-ctrl" href="${BASE}pdfs/${t.id}.pdf" download title="Download PDF">📄</a>`
+    ? `<button class="btn-icon btn-icon-soon" onclick="openModal()" title="Script coming soon">⏳</button>`
     : `<a class="btn-icon btn-icon-pdf" href="${BASE}pdfs/${t.id}.pdf" download title="Download PDF">📄</a>`;
   return `
   <div class="theme-card ${isCtrl?'ctrl-card':''}">
@@ -870,7 +870,7 @@ function practiceCard(p, isCtrl) {
     ? `<button class="btn-icon btn-icon-soon" onclick="openModal()" title="Audio coming soon">⏳</button>`
     : `<a class="btn-icon btn-icon-play" href="${BASE}audios/${p.id}.mp3" download title="Download audio">▶</a>`;
   const pdfBtn = isCtrl
-    ? `<a class="btn-icon btn-icon-pdf-ctrl" href="${BASE}pdfs/${p.id}.pdf" download title="Download PDF">📄</a>`
+    ? `<button class="btn-icon btn-icon-soon" onclick="openModal()" title="Script coming soon">⏳</button>`
     : `<a class="btn-icon btn-icon-pdf" href="${BASE}pdfs/${p.id}.pdf" download title="Download PDF">📄</a>`;
   return `
   <div class="practice-card ${isCtrl?'ctrl-card':''}" data-format="${p.format}">
@@ -933,7 +933,7 @@ function renderMatrix() {
           <td><span class="c-code">${r.c}</span></td>
           <td style="text-align:center;white-space:nowrap">
             <a style="display:inline-flex;width:28px;height:28px;align-items:center;justify-content:center;margin:.1rem;font-size:12px;border-radius:4px;background:var(--teal-50);color:var(--teal-700);text-decoration:none" href="${BASE}pdfs/${r.m}.pdf" download title="Mindfulness PDF">📄</a>
-            <a style="display:inline-flex;width:28px;height:28px;align-items:center;justify-content:center;margin:.1rem;font-size:12px;border-radius:4px;background:var(--amber-50);color:var(--amber-700);text-decoration:none" href="${BASE}pdfs/${r.c}.pdf" download title="Control PDF">📄</a>
+            <button style="width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;margin:.1rem;font-size:12px;border-radius:4px;background:var(--amber-50);color:var(--amber-700);border:none;cursor:pointer" onclick="openModal()" title="Control script coming soon">⏳</button>
             <a style="display:inline-flex;width:28px;height:28px;align-items:center;justify-content:center;margin:.1rem;font-size:12px;border-radius:4px;background:var(--teal-50);color:var(--teal-700);text-decoration:none" href="${BASE}audios/${r.m}.mp3" download title="Download Mindfulness Audio">▶</a>
             <button style="width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;margin:.1rem;font-size:12px;border-radius:4px;background:var(--amber-50);color:var(--amber-700);border:none;cursor:pointer" onclick="openModal()" title="Control audio coming soon">⏳</button>
           </td>
