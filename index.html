@@ -23,17 +23,15 @@
 html{scroll-behavior:smooth}
 body{font-family:var(--font-body);background:var(--slate-50);color:var(--slate-800);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
 
-/* AUTH */
-#auth-screen{position:fixed;inset:0;z-index:1000;background:var(--slate-900);display:flex;align-items:center;justify-content:center;padding:2rem}
-.auth-card{background:#fff;border-radius:var(--r-xl);padding:3rem;max-width:420px;width:100%;text-align:center}
-.auth-logo{width:56px;height:56px;background:var(--teal-500);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-family:var(--font-display);font-size:24px;color:#fff;font-style:italic}
-.auth-card h1{font-family:var(--font-display);font-size:24px;margin-bottom:.5rem}
-.auth-card p{color:var(--slate-500);font-size:14px;margin-bottom:2rem}
-.auth-input{width:100%;padding:.875rem 1.25rem;border:1.5px solid var(--slate-200);border-radius:var(--r-md);font-family:var(--font-body);font-size:15px;outline:none;transition:border-color .2s;margin-bottom:1rem}
-.auth-input:focus{border-color:var(--teal-500)}
-.auth-btn{width:100%;padding:.875rem;background:var(--slate-900);color:#fff;border:none;border-radius:var(--r-md);font-family:var(--font-body);font-size:15px;font-weight:600;cursor:pointer;transition:background .2s}
-.auth-btn:hover{background:var(--teal-700)}
-.auth-error{color:#e03131;font-size:13px;margin-top:.5rem;display:none}
+/* LICENSE SECTION */
+.license-section{background:#fff;border:1px solid var(--slate-200);border-radius:var(--r-lg);padding:2rem 2.5rem;margin-top:3rem}
+.license-section h3{font-family:var(--font-display);font-size:1.3rem;margin-bottom:.5rem;color:var(--slate-900)}
+.license-badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:11px;color:var(--teal-700);background:var(--teal-50);padding:4px 10px;border-radius:20px;margin-bottom:1.25rem}
+.license-terms{list-style:none;padding:0;margin:1rem 0}
+.license-terms li{padding:.75rem 0;border-bottom:1px solid var(--slate-100);font-size:13px;color:var(--slate-600);line-height:1.65;display:flex;gap:.75rem}
+.license-terms li:last-child{border-bottom:none}
+.license-terms li strong{color:var(--slate-800);min-width:130px;flex-shrink:0}
+.license-disclaimer{font-size:12px;color:var(--slate-400);margin-top:1rem;padding-top:1rem;border-top:1px solid var(--slate-100);line-height:1.6}
 
 /* NAV */
 nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.88);backdrop-filter:blur(16px) saturate(180%);border-bottom:1px solid var(--slate-200);padding:0 2.5rem}
@@ -222,31 +220,19 @@ footer a:hover{color:var(--teal-200)}
 </head>
 <body>
 
-<!-- AUTH -->
-<div id="auth-screen">
-  <div class="auth-card">
-    <div class="auth-logo">S</div>
-    <h1>SOMA Framework</h1>
-    <p>Enter the access password to explore the mindfulness library</p>
-    <input type="password" class="auth-input" id="auth-input" placeholder="Password" />
-    <div class="auth-error" id="auth-error">Incorrect password. Try again.</div>
-    <button class="auth-btn" id="auth-btn">Unlock Library →</button>
-  </div>
-</div>
-
-<!-- AUDIO REQUEST MODAL -->
+<!-- AUDIO INFO MODAL (for control condition) -->
 <div class="modal-overlay" id="audio-modal" style="display:none">
   <div class="modal-box">
     <div style="font-size:40px;margin-bottom:1rem">🎧</div>
-    <h2>Request Audio Access</h2>
-    <p>Audio files are available to verified researchers. Please complete the access request form and we will send you the files upon verification.</p>
-    <a href="https://forms.google.com/soma-audio-request" target="_blank" style="display:block;padding:.875rem 1.75rem;background:var(--teal-500);color:#fff;border-radius:var(--r-md);font-weight:600;font-size:14px;text-decoration:none;margin-bottom:.5rem">Open Request Form →</a>
+    <h2>Audio Coming Soon</h2>
+    <p>The written scripts and audio files for the Active Control condition are being finalized and will be made freely available concurrent with the Stage 1 Registered Report submission.</p>
+    <p style="margin-top:.75rem">For updates, check the <a href="https://osf.io/m76cg" target="_blank" style="color:var(--teal-700);font-weight:600">OSF repository</a> or the <a href="https://github.com/SparacioAlessandro/SOMA" target="_blank" style="color:var(--teal-700);font-weight:600">GitHub repository</a>.</p>
     <button class="modal-close" onclick="closeModal()">Close</button>
   </div>
 </div>
 
 <!-- NAV -->
-<nav id="main-nav" style="display:none">
+<nav>
   <div class="nav-inner">
     <a class="nav-logo" onclick="showPage('home')">
       <div class="nav-logo-mark">S</div>
@@ -262,7 +248,7 @@ footer a:hover{color:var(--teal-200)}
   </div>
 </nav>
 
-<main id="main-content" style="display:none">
+<main id="main-content">
 
 <!-- ===================== HOME ===================== -->
 <div class="page active" id="page-home">
@@ -406,6 +392,10 @@ footer a:hover{color:var(--teal-200)}
     <div class="section-label ctrl">Module 3 — Thematic Introductions (Active Control)</div>
     <h2>Active Control Analytical Framings</h2>
     <p>Each control intro establishes an analytical "lens" (e.g., stability, synchronization) structurally matched to its mindfulness counterpart in duration and architecture, but directing top-down categorisation rather than experiential sensing.</p>
+    <div style="margin-top:1rem;padding:.875rem 1.25rem;background:var(--amber-50);border:1px solid var(--amber-100);border-radius:var(--r-md);font-size:13px;color:var(--amber-700);display:flex;align-items:flex-start;gap:.625rem">
+      <span style="font-size:16px;flex-shrink:0">🔔</span>
+      <span>The written scripts and audio files for the Active Control condition are currently being finalized and will be made freely available concurrent with the Stage 1 Registered Report submission.</span>
+    </div>
   </div>
   <div class="themes-grid" id="themes-grid-c"></div>
 
@@ -515,7 +505,7 @@ footer a:hover{color:var(--teal-200)}
     </table>
   </div>
 
-  <div style="margin-top:3rem">
+  <div style="margin-top:3rem;margin-bottom:2rem">
     <div class="section-header">
       <div class="section-label">Citation</div>
       <h2>How to Cite SOMA</h2>
@@ -525,6 +515,31 @@ footer a:hover{color:var(--teal-200)}
       Sparacio, A., Ropovik, I., Davies, J., SOMA Development Team, &amp; Rodriguez, A. (2026). The SOMA Framework: Bridging Equity and Rigor in Digital Mindfulness. Available at: https://osf.io/2kfvz
       <div class="citation-note">⚠ Tentative citation — preprint not yet available. Check <a href="https://osf.io/m76cg" target="_blank" style="color:var(--teal-200)">OSF (osf.io/m76cg)</a> for updates.</div>
     </div>
+  </div>
+
+  <div id="license-section" class="license-section" style="margin-bottom:2rem">
+    <h3>License &amp; Terms of Use</h3>
+    <div class="license-badge">CC BY-NC-SA 4.0 International</div>
+    <p style="font-size:13px;color:var(--slate-600);margin-bottom:.5rem">The SOMA Architecture — including all audio files, text scripts, and associated documentation — is licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" style="color:var(--teal-700);font-weight:600">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>. By downloading and utilizing these materials, you legally agree to the following terms:</p>
+    <ul class="license-terms">
+      <li>
+        <strong>Attribution (BY)</strong>
+        <span>You must appropriately cite the original SOMA research and creators in any publications, materials, or distributions. You may not attribute the work in any way that suggests the creators or their affiliated institutions endorse you, your specific study, or your application.</span>
+      </li>
+      <li>
+        <strong>Strictly NonCommercial (NC)</strong>
+        <span>These materials are exclusively for free public, clinical, and academic research use. You may not use them for commercial advantage or monetary compensation. This explicitly prohibits integrating these files into monetized mobile applications (including "freemium" or ad-supported apps), placing them behind digital paywalls, or utilizing them as part of a for-profit corporate wellness service.</span>
+      </li>
+      <li>
+        <strong>ShareAlike (SA)</strong>
+        <span>If you translate, remix, or structurally adapt these scripts or audio files for your own research or clinical use, you are legally required to distribute your modified versions under this exact same license. You may not add new legal terms or digital rights management (DRM) that restrict others from freely sharing your modified versions.</span>
+      </li>
+      <li>
+        <strong>Disclaimer of Liability</strong>
+        <span>These materials are provided "as is" without warranties of any kind. The creators assume no liability for any claims, damages, or clinical outcomes arising from the use of this architecture.</span>
+      </li>
+    </ul>
+    <p class="license-disclaimer">For corporate or commercial licensing inquiries falling outside the scope of this open-source license, please contact the corresponding author directly.</p>
   </div>
 
 </div>
@@ -589,11 +604,11 @@ footer a:hover{color:var(--teal-200)}
 
       <div class="method-section" id="m5">
         <h2>Principle 5: Validation Study Design</h2>
-        <p>The SOMA validation study is a pre-registered randomised controlled trial (N=360) designed to test three confirmatory hypotheses about the library's structural equivalence, mechanistic specificity, and universal accessibility. The study is being submitted as a Stage 1 Registered Report.</p>
+        <p>The SOMA validation study is a pre-registered randomised controlled trial (N=360) designed to test three confirmatory hypotheses about the library's structural equivalence, mechanistic specificity, and universal accessibility. The study is being submitted as a Stage 1 Registered Report to <em>Nature Human Behaviour</em>.</p>
         <p>Full details of the study design, power analyses, pre-registration, analysis scripts, and stimuli are openly available on the project's OSF repository.</p>
         <div class="method-callout">
           <strong>Full Study Documentation</strong>
-          <p>Pre-registration, analysis plan, stimuli, and supplementary materials are all available at the SOMA OSF repository: <a href="https://osf.io/m76cg" target="_blank" style="color:var(--teal-700);font-weight:600">osf.io/m76cg →</a></p>
+          <p>Pre-registration, analysis plan, stimuli, and supplementary materials will be available at the SOMA OSF repository: <a href="https://osf.io/m76cg" target="_blank" style="color:var(--teal-700);font-weight:600">osf.io/m76cg →</a></p>
         </div>
       </div>
 
@@ -604,7 +619,7 @@ footer a:hover{color:var(--teal-200)}
 </main>
 
 <!-- FOOTER -->
-<footer id="main-footer" style="display:none">
+<footer id="main-footer">
   <div class="footer-inner">
     <div class="footer-brand">
       <h3>SOMA Framework</h3>
@@ -619,12 +634,12 @@ footer a:hover{color:var(--teal-200)}
       <h4>Resources</h4>
       <a href="#" onclick="showPage('build');return false">How It Was Built</a>
       <a href="#" onclick="showPage('methodology');return false">Methodology</a>
-      <a href="#" onclick="openModal();return false">Request Audio Files</a>
+      <a href="#" onclick="showPage('build');setTimeout(()=>document.getElementById('license-section').scrollIntoView({behavior:'smooth'}),100);return false">License & Terms</a>
     </div>
   </div>
   <div class="footer-bottom">
     <span>© 2026 SOMA Research Consortium</span>
-    <span class="cc-badge">CC-BY 4.0 — Open for non-commercial research use</span>
+    <span class="cc-badge">CC BY-NC-SA 4.0</span>
   </div>
 </footer>
 
@@ -811,6 +826,9 @@ const MATRIX = [
 // RENDER
 // ============================================================
 function themeCard(t, isCtrl) {
+  const audioBtn = isCtrl
+    ? `<button class="btn-play ctrl-play" style="flex:1" onclick="openModal()" title="Coming soon">🎧 Coming Soon</button>`
+    : `<a class="btn-play" style="flex:1;text-align:center;text-decoration:none" href="audio/${t.id}.mp3" download title="Download audio">🎧 Download Audio</a>`;
   return `
   <div class="theme-card ${isCtrl?'ctrl-card':''}">
     <div class="theme-card-header">
@@ -824,7 +842,7 @@ function themeCard(t, isCtrl) {
     <div class="theme-card-body">
       <p class="theme-desc">${t.desc}</p>
       <div class="theme-actions">
-        <button class="${isCtrl?'btn-play ctrl-play':'btn-play'}" style="flex:1" onclick="openModal()">▶ Request Audio</button>
+        ${audioBtn}
         <a class="btn-dl" href="pdfs/${t.id}.pdf" download>⬇ PDF</a>
       </div>
     </div>
@@ -832,6 +850,10 @@ function themeCard(t, isCtrl) {
 }
 
 function practiceCard(p, isCtrl) {
+  const wordStr = isCtrl ? `~${p.words} words` : `${p.words} words`;
+  const audioBtn = isCtrl
+    ? `<button class="btn-play ctrl-play" style="flex:1" onclick="openModal()" title="Coming soon">🎧 Coming Soon</button>`
+    : `<a class="btn-play" style="flex:1;text-align:center;text-decoration:none" href="audio/${p.id}.mp3" download title="Download audio">🎧 Download Audio</a>`;
   return `
   <div class="practice-card ${isCtrl?'ctrl-card':''}" data-format="${p.format}">
     <div class="practice-thumb-placeholder ${isCtrl?'c-thumb':'m-thumb'}">${p.emoji}</div>
@@ -842,11 +864,11 @@ function practiceCard(p, isCtrl) {
       <p class="practice-desc">${p.desc}</p>
       <div class="practice-meta">
         <span>📖 ${p.grade}</span>
-        <span>📝 ~${p.words} words</span>
-        <span>⏱ 10 min</span>
+        <span>📝 ${wordStr}</span>
+        <span>⏱ ~${p.duration || 10} min</span>
       </div>
       <div class="practice-actions">
-        <button class="${isCtrl?'btn-play ctrl-play':'btn-play'}" style="flex:1" onclick="openModal()">▶ Request Audio</button>
+        ${audioBtn}
         <a class="btn-dl" href="pdfs/${p.id}.pdf" download>⬇ PDF</a>
       </div>
     </div>
@@ -894,7 +916,8 @@ function renderMatrix() {
           <td style="text-align:center;white-space:nowrap">
             <a class="btn-dl" style="display:inline-flex;padding:.3rem .6rem;margin:.1rem;font-size:10px;border-radius:4px" href="pdfs/${r.m}.pdf" download title="Mindfulness PDF">📄 M</a>
             <a class="btn-dl" style="display:inline-flex;padding:.3rem .6rem;margin:.1rem;font-size:10px;border-radius:4px;background:var(--amber-50);color:var(--amber-700)" href="pdfs/${r.c}.pdf" download title="Control PDF">📄 C</a>
-            <button style="padding:.3rem .6rem;margin:.1rem;font-size:10px;border-radius:4px;background:var(--teal-50);color:var(--teal-700);border:none;cursor:pointer" onclick="openModal()" title="Request Audio">🎧</button>
+            <a class="btn-dl" style="display:inline-flex;padding:.3rem .6rem;margin:.1rem;font-size:10px;border-radius:4px;background:var(--teal-50);color:var(--teal-700)" href="audio/${r.m}.mp3" download title="Download Mindfulness Audio">🎧 M</a>
+            <button style="padding:.3rem .6rem;margin:.1rem;font-size:10px;border-radius:4px;background:var(--amber-50);color:var(--amber-700);border:none;cursor:pointer" onclick="openModal()" title="Control audio coming soon">🎧 C</button>
           </td>
         </tr>
       `).join('')}
@@ -923,24 +946,9 @@ function openModal(){ document.getElementById('audio-modal').style.display='flex
 function closeModal(){ document.getElementById('audio-modal').style.display='none'; }
 document.getElementById('audio-modal').addEventListener('click',function(e){ if(e.target===this) closeModal(); });
 
-// ============================================================
-// AUTH
-// ============================================================
-function unlock() {
-  const val = document.getElementById('auth-input').value;
-  if(val==='soma2026'||val==='') {
-    document.getElementById('auth-screen').style.display='none';
-    document.getElementById('main-nav').style.display='block';
-    document.getElementById('main-content').style.display='block';
-    document.getElementById('main-footer').style.display='block';
-    renderLibrary();
-    renderMatrix();
-  } else {
-    document.getElementById('auth-error').style.display='block';
-  }
-}
-document.getElementById('auth-btn').addEventListener('click', unlock);
-document.getElementById('auth-input').addEventListener('keydown',e=>{ if(e.key==='Enter') unlock(); });
+// Auto-init on load
+renderLibrary();
+renderMatrix();
 </script>
 </body>
 </html>
