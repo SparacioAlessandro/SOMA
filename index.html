@@ -35,10 +35,13 @@ body{font-family:var(--font-body);background:var(--warm-50);color:var(--slate-80
 /* ─── NAV ─── */
 nav{position:sticky;top:0;z-index:100;background:rgba(250,248,245,.92);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(0,0,0,.06);padding:0 2rem}
 .nav-inner{max-width:1200px;margin:0 auto;height:60px;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none;color:var(--slate-900)}
-.nav-logo-mark{width:32px;height:32px;background:var(--sage-700);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--font-display);font-style:italic;font-size:17px}
-.nav-logo-text{font-family:var(--font-display);font-size:19px;letter-spacing:-.01em}
-.nav-logo-text span{font-style:italic;font-weight:400;color:var(--sage-600);font-size:16px}
+.nav-logo{display:flex;align-items:center;gap:11px;cursor:pointer;text-decoration:none;color:var(--slate-900)}
+.nav-logo-mark{width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.nav-logo-mark svg{width:100%;height:100%;display:block}
+.nav-logo-text{display:flex;flex-direction:column;line-height:1;gap:3px}
+.nav-logo-wordmark{font-family:var(--font-display);font-size:24px;color:var(--sage-700);letter-spacing:.06em;font-weight:400}
+.nav-logo-tagline{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--slate-500);white-space:nowrap}
+.nav-logo-tagline span{color:var(--amber-600)}
 .nav-links{display:flex;gap:2px}
 .nav-link{padding:6px 14px;border-radius:var(--r-sm);font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;border:none;background:transparent;color:var(--slate-500);transition:all .15s;white-space:nowrap;font-family:var(--font-body)}
 .nav-link:hover{color:var(--slate-800);background:rgba(0,0,0,.04)}
@@ -237,6 +240,139 @@ footer a:hover{color:var(--sage-300)}
 .alert-bar{padding:10px 14px;background:var(--sage-50);border:1px solid var(--sage-100);border-radius:var(--r-md);font-size:13px;color:var(--sage-700);display:flex;align-items:flex-start;gap:8px;margin-top:1rem}
 .alert-bar span:first-child{font-size:15px;flex-shrink:0;line-height:1}
 
+/* ─── HOW-TO-USE PAGE ─── */
+.htu-intro{background:linear-gradient(135deg,var(--sage-900) 0%,var(--sage-800) 100%);color:#fff;border-radius:var(--r-xl);padding:2.5rem 2.5rem 2.25rem;margin-bottom:2.5rem;position:relative;overflow:hidden}
+.htu-intro::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 90% 10%,rgba(166,142,109,.18) 0%,transparent 55%);pointer-events:none}
+.htu-intro-inner{position:relative;z-index:1}
+.htu-intro h2{font-family:var(--font-display);font-size:1.85rem;margin-bottom:.75rem;font-weight:400;line-height:1.2}
+.htu-intro p{color:rgba(255,255,255,.7);font-size:14.5px;line-height:1.75;max-width:760px;margin-bottom:.625rem}
+.htu-intro p:last-child{margin-bottom:0}
+
+/* Decision flow: three steps */
+.htu-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:3rem;position:relative}
+.htu-step{background:#fff;border:1px solid var(--slate-200);border-radius:var(--r-lg);padding:1.5rem 1.5rem 1.25rem;position:relative;transition:box-shadow .25s,transform .25s}
+.htu-step:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.htu-step-number{position:absolute;top:-12px;left:1.25rem;width:32px;height:32px;background:var(--sage-700);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1rem;box-shadow:0 4px 10px rgba(54,90,65,.3)}
+.htu-step-eyebrow{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-600);margin:.5rem 0 .375rem}
+.htu-step h3{font-family:var(--font-display);font-size:1.25rem;font-weight:400;color:var(--slate-900);margin-bottom:.625rem;line-height:1.25}
+.htu-step p{font-size:13px;color:var(--slate-600);line-height:1.7;margin-bottom:.875rem}
+.htu-step-options{margin-top:.875rem;padding-top:.875rem;border-top:1px dashed var(--slate-200);display:flex;flex-direction:column;gap:.625rem}
+.htu-option{font-size:12px;color:var(--slate-600);line-height:1.55;padding-left:18px;position:relative}
+.htu-option::before{content:'→';position:absolute;left:0;top:0;color:var(--sage-600);font-weight:700}
+.htu-option strong{color:var(--slate-800);display:block;margin-bottom:1px}
+
+/* Deployment pathway cards */
+.deploy-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:3rem}
+.deploy-card{background:#fff;border:1px solid var(--slate-200);border-radius:var(--r-lg);padding:1.5rem 1.625rem;display:flex;flex-direction:column;gap:.625rem;transition:box-shadow .25s,transform .25s;position:relative;overflow:hidden}
+.deploy-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.deploy-card-icon{width:42px;height:42px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:.25rem}
+.deploy-card.single .deploy-card-icon{background:var(--sage-50);color:var(--sage-700)}
+.deploy-card.multi .deploy-card-icon{background:#f0eeff;color:#6741d9}
+.deploy-card.dismantling .deploy-card-icon{background:var(--amber-50);color:var(--amber-700)}
+.deploy-card.adjacent .deploy-card-icon{background:#fde8e4;color:#c92a2a}
+.deploy-card.corpus .deploy-card-icon{background:var(--slate-100);color:var(--slate-700)}
+.deploy-card-tag{display:inline-flex;align-items:center;gap:5px;font-family:var(--font-mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--sage-700);padding:2px 0;width:fit-content}
+.deploy-card.multi .deploy-card-tag{color:#6741d9}
+.deploy-card.dismantling .deploy-card-tag{color:var(--amber-700)}
+.deploy-card.adjacent .deploy-card-tag{color:#c92a2a}
+.deploy-card.corpus .deploy-card-tag{color:var(--slate-700)}
+.deploy-card h3{font-family:var(--font-display);font-size:1.2rem;font-weight:400;color:var(--slate-900);line-height:1.25}
+.deploy-card p{font-size:13px;color:var(--slate-600);line-height:1.7;margin-bottom:.25rem}
+.deploy-card-example{margin-top:.5rem;padding:.625rem .75rem;background:var(--slate-50);border-left:2px solid var(--sage-500);border-radius:0 var(--r-sm) var(--r-sm) 0;font-size:12px;color:var(--slate-700);line-height:1.65}
+.deploy-card.multi .deploy-card-example{border-left-color:#6741d9}
+.deploy-card.dismantling .deploy-card-example{border-left-color:var(--amber-500)}
+.deploy-card.adjacent .deploy-card-example{border-left-color:#c92a2a}
+.deploy-card.corpus .deploy-card-example{border-left-color:var(--slate-500)}
+.deploy-card-example strong{display:block;font-size:10px;font-family:var(--font-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--slate-500);margin-bottom:3px;font-weight:600}
+
+/* Citation reminder block */
+.htu-cite-block{background:var(--sage-50);border:1px solid var(--sage-100);border-radius:var(--r-lg);padding:1.5rem 1.75rem;margin-bottom:2rem;display:flex;gap:1.25rem;align-items:flex-start}
+.htu-cite-block .htu-cite-icon{font-size:32px;line-height:1;flex-shrink:0}
+.htu-cite-block h3{font-family:var(--font-display);font-size:1.2rem;color:var(--slate-900);font-weight:400;margin-bottom:.5rem}
+.htu-cite-block p{font-size:13px;color:var(--slate-700);line-height:1.7}
+.htu-cite-block code{font-family:var(--font-mono);font-size:11.5px;background:#fff;padding:2px 6px;border-radius:4px;color:var(--sage-700);border:1px solid var(--sage-100)}
+
+/* ─── RESULTS PAGE ─── */
+.results-hero{background:linear-gradient(135deg,var(--sage-900) 0%,var(--sage-800) 100%);color:#fff;border-radius:var(--r-xl);padding:2.5rem 2.5rem 2.25rem;margin-bottom:2.5rem;position:relative;overflow:hidden}
+.results-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 15% 90%,rgba(90,138,100,.22) 0%,transparent 55%);pointer-events:none}
+.results-hero-inner{position:relative;z-index:1}
+.results-hero h2{font-family:var(--font-display);font-size:1.85rem;font-weight:400;margin-bottom:.625rem}
+.results-hero p{color:rgba(255,255,255,.7);font-size:14.5px;line-height:1.75;max-width:780px}
+.results-meta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.25rem}
+.results-meta-chip{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:11px;color:rgba(255,255,255,.75);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:5px 11px;border-radius:20px}
+
+.results-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2.5rem}
+.hyp-card{background:#fff;border:1px solid var(--slate-200);border-radius:var(--r-lg);padding:1.5rem 1.5rem 1.375rem;display:flex;flex-direction:column;gap:.5rem;position:relative;transition:box-shadow .25s,transform .25s}
+.hyp-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.hyp-card.confirmed{border-top:4px solid var(--sage-500)}
+.hyp-card.exploratory{border-top:4px solid #6741d9}
+.hyp-card.notsupported{border-top:4px solid var(--amber-500)}
+.hyp-header{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-bottom:.25rem}
+.hyp-id{font-family:var(--font-mono);font-size:11px;letter-spacing:.07em;color:var(--slate-500)}
+.hyp-status{display:inline-flex;align-items:center;gap:5px;font-family:var(--font-mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:20px;font-weight:600}
+.hyp-card.confirmed .hyp-status{background:var(--sage-50);color:var(--sage-700)}
+.hyp-card.exploratory .hyp-status{background:#f0eeff;color:#6741d9}
+.hyp-card.notsupported .hyp-status{background:var(--amber-50);color:var(--amber-700)}
+.hyp-title{font-family:var(--font-display);font-size:1.15rem;color:var(--slate-900);font-weight:400;line-height:1.25}
+.hyp-summary{font-size:12.5px;color:var(--slate-600);line-height:1.65;margin-top:.25rem}
+.hyp-stats{display:flex;flex-direction:column;gap:.375rem;margin-top:.75rem;padding-top:.75rem;border-top:1px dashed var(--slate-200)}
+.hyp-stat{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;font-size:11.5px}
+.hyp-stat-label{color:var(--slate-500);font-family:var(--font-mono);font-size:10px;letter-spacing:.04em;text-transform:uppercase}
+.hyp-stat-value{color:var(--slate-800);font-family:var(--font-mono);font-weight:500}
+
+/* Outcome split panel */
+.outcome-split{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem}
+.outcome-panel{background:#fff;border:1px solid var(--slate-200);border-radius:var(--r-lg);padding:1.5rem 1.625rem;display:flex;flex-direction:column;gap:.625rem}
+.outcome-panel.m{border-left:4px solid var(--sage-500)}
+.outcome-panel.c{border-left:4px solid var(--amber-500)}
+.outcome-panel-head{display:flex;align-items:center;gap:.75rem}
+.outcome-panel-head h4{font-family:var(--font-display);font-size:1.15rem;font-weight:400;color:var(--slate-900);line-height:1}
+.outcome-panel.m .outcome-panel-head h4{color:var(--sage-700)}
+.outcome-panel.c .outcome-panel-head h4{color:var(--amber-700)}
+.outcome-bars{display:flex;flex-direction:column;gap:.875rem;margin-top:.5rem}
+.outcome-bar-row{display:flex;flex-direction:column;gap:5px}
+.outcome-bar-meta{display:flex;justify-content:space-between;align-items:baseline;font-size:11.5px}
+.outcome-bar-label{color:var(--slate-600);font-weight:500}
+.outcome-bar-value{color:var(--slate-800);font-family:var(--font-mono);font-size:11px}
+.outcome-bar-track{height:10px;background:var(--slate-100);border-radius:5px;overflow:hidden;position:relative}
+.outcome-bar-fill{height:100%;border-radius:5px;transition:width .5s ease}
+.outcome-bar-fill.sms-m{background:var(--sage-500);width:62%}
+.outcome-bar-fill.sms-c{background:var(--amber-500);width:52%}
+.outcome-bar-fill.aes-m{background:var(--sage-500);width:53%}
+.outcome-bar-fill.aes-c{background:var(--amber-500);width:68%}
+.outcome-effect{margin-top:.625rem;padding:.625rem .75rem;background:var(--slate-50);border-radius:var(--r-sm);font-size:11.5px;color:var(--slate-700);line-height:1.6}
+.outcome-effect strong{color:var(--slate-900);font-family:var(--font-mono);font-size:11px}
+
+/* Equity callout */
+.equity-callout{background:#fff;border:1px solid var(--slate-200);border-radius:var(--r-lg);padding:1.625rem 1.75rem;margin-bottom:2.5rem;display:grid;grid-template-columns:auto 1fr auto;gap:1.75rem;align-items:center}
+.equity-icon{width:54px;height:54px;border-radius:var(--r-md);background:linear-gradient(135deg,var(--sage-100) 0%,var(--sage-200) 100%);display:flex;align-items:center;justify-content:center;font-size:24px}
+.equity-text h3{font-family:var(--font-display);font-size:1.2rem;color:var(--slate-900);font-weight:400;margin-bottom:.375rem}
+.equity-text p{font-size:13px;color:var(--slate-600);line-height:1.7}
+.equity-stats{display:flex;gap:1rem;flex-shrink:0}
+.equity-stat-block{text-align:center;padding:.625rem .875rem;background:var(--slate-50);border-radius:var(--r-md);min-width:90px}
+.equity-stat-num{font-family:var(--font-display);font-size:1.4rem;color:var(--sage-700);display:block;line-height:1}
+.equity-stat-lab{font-family:var(--font-mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--slate-500);margin-top:4px}
+
+/* Mechanism ID */
+.mechanism-card{background:#fff;border:1px solid var(--slate-200);border-radius:var(--r-lg);padding:1.625rem 1.75rem;margin-bottom:2.5rem}
+.mechanism-card h3{font-family:var(--font-display);font-size:1.25rem;color:var(--slate-900);font-weight:400;margin-bottom:.5rem}
+.mechanism-card > p{font-size:13px;color:var(--slate-600);line-height:1.7;margin-bottom:1rem}
+.mechanism-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.mech-side{padding:1rem 1.125rem;background:var(--slate-50);border-radius:var(--r-md);border-left:3px solid var(--slate-300)}
+.mech-side.m-side{border-left-color:var(--sage-500);background:var(--sage-50)}
+.mech-side.c-side{border-left-color:var(--amber-500);background:var(--amber-50)}
+.mech-side-title{font-family:var(--font-mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--slate-600);margin-bottom:.5rem;font-weight:600}
+.mech-side.m-side .mech-side-title{color:var(--sage-700)}
+.mech-side.c-side .mech-side-title{color:var(--amber-700)}
+.mech-side-stat{font-family:var(--font-display);font-size:1.85rem;color:var(--slate-900);line-height:1;margin-bottom:.25rem}
+.mech-side-desc{font-size:12px;color:var(--slate-600);line-height:1.6}
+
+/* Discussion */
+.discussion-section{background:#fff;border:1px solid var(--slate-200);border-radius:var(--r-lg);padding:1.75rem 2rem;margin-bottom:2rem}
+.discussion-section h3{font-family:var(--font-display);font-size:1.25rem;color:var(--slate-900);font-weight:400;margin-bottom:.75rem}
+.discussion-section p{font-size:13.5px;color:var(--slate-600);line-height:1.75;margin-bottom:.625rem}
+.discussion-section p:last-child{margin-bottom:0}
+
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .fade-up{animation:fadeUp .45s ease-out both}
 
@@ -255,7 +391,14 @@ footer a:hover{color:var(--sage-300)}
   .practices-grid{grid-template-columns:1fr}
   .matrix-wrapper{font-size:11px}
   .team-grid{grid-template-columns:1fr}
-}
+  .htu-steps{grid-template-columns:1fr;gap:1.75rem}
+  .deploy-grid{grid-template-columns:1fr}
+  .results-summary{grid-template-columns:1fr}
+  .outcome-split{grid-template-columns:1fr}
+  .equity-callout{grid-template-columns:1fr;gap:1rem;text-align:left}
+  .mechanism-grid{grid-template-columns:1fr}
+  .nav-logo-tagline{display:none}
+}}
 </style>
 </head>
 <body>
@@ -263,14 +406,21 @@ footer a:hover{color:var(--sage-300)}
 <!-- NAV -->
 <nav aria-label="Main navigation">
   <div class="nav-inner">
-    <a class="nav-logo" onclick="showPage('home')" role="button" tabindex="0" aria-label="SOMA Framework home">
-      <div class="nav-logo-mark">S</div>
-      <div class="nav-logo-text">SOMA <span>Framework</span></div>
+    <a class="nav-logo" onclick="showPage('home')" role="button" tabindex="0" aria-label="SOMA — Standardized Open-source Mindfulness Architecture, home">
+      <div class="nav-logo-mark">
+        <svg viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0" y="0" width="10" height="10" fill="#365a41"/><rect x="14" y="0" width="10" height="10" fill="none" stroke="#365a41" stroke-width="1.3"/><rect x="28" y="0" width="10" height="10" fill="#365a41"/><rect x="42" y="0" width="10" height="10" fill="none" stroke="#365a41" stroke-width="1.3"/><rect x="0" y="14" width="10" height="10" fill="none" stroke="#365a41" stroke-width="1.3"/><rect x="14" y="14" width="10" height="10" fill="#365a41"/><rect x="28" y="14" width="10" height="10" fill="none" stroke="#365a41" stroke-width="1.3"/><rect x="42" y="14" width="10" height="10" fill="#365a41"/><rect x="0" y="28" width="10" height="10" fill="#365a41"/><rect x="14" y="28" width="10" height="10" fill="none" stroke="#365a41" stroke-width="1.3"/><circle cx="33" cy="33" r="4.5" fill="#e69b3a"/><rect x="42" y="28" width="10" height="10" fill="none" stroke="#365a41" stroke-width="1.3"/><rect x="0" y="42" width="10" height="10" fill="none" stroke="#365a41" stroke-width="1.3"/><rect x="14" y="42" width="10" height="10" fill="#365a41"/><rect x="28" y="42" width="10" height="10" fill="none" stroke="#365a41" stroke-width="1.3"/><rect x="42" y="42" width="10" height="10" fill="#365a41"/></svg>
+      </div>
+      <div class="nav-logo-text">
+        <span class="nav-logo-wordmark">SOMA</span>
+        <span class="nav-logo-tagline">Standardized Open-source <span>Mindfulness Architecture</span></span>
+      </div>
     </a>
     <div class="nav-links" role="tablist">
       <button class="nav-link active" data-page="home" onclick="showPage('home')" role="tab">Home</button>
+      <button class="nav-link" data-page="how-to-use" onclick="showPage('how-to-use')" role="tab">How to Use</button>
       <button class="nav-link" data-page="library" onclick="showPage('library')" role="tab">Library</button>
       <button class="nav-link" data-page="matrix" onclick="showPage('matrix')" role="tab">Matrix</button>
+      <button class="nav-link" data-page="results" onclick="showPage('results')" role="tab">Results</button>
       <button class="nav-link" data-page="team" onclick="showPage('team')" role="tab">Team</button>
       <button class="nav-link" data-page="build" onclick="showPage('build')" role="tab">How It Was Built</button>
       <button class="nav-link" data-page="methodology" onclick="showPage('methodology')" role="tab">Methodology</button>
@@ -287,10 +437,11 @@ footer a:hover{color:var(--sage-300)}
     <div class="hero-inner">
       <div class="hero-eyebrow">Open Science · Mindfulness Research · CC BY-NC-SA 4.0</div>
       <h1>Bridging <em>Equity</em> and Rigor in Digital Mindfulness</h1>
-      <p class="hero-sub">SOMA is the first modular, open-source stimulus library purpose-built to provide mechanistically orthogonal active controls and equity-engineered materials for mindfulness RCT research.</p>
+      <p class="hero-sub"><strong style="color:rgba(255,255,255,.85);font-weight:600">SOMA</strong> — the <strong style="color:var(--sage-300);font-weight:500">S</strong>tandardized <strong style="color:var(--sage-300);font-weight:500">O</strong>pen-source <strong style="color:var(--sage-300);font-weight:500">M</strong>indfulness <strong style="color:var(--sage-300);font-weight:500">A</strong>rchitecture — is the first modular, open-source stimulus library purpose-built to provide mechanistically orthogonal active controls and equity-engineered materials for mindfulness RCT research.</p>
       <div class="hero-actions">
-        <button class="btn-primary" onclick="showPage('library')">Explore Library →</button>
-        <button class="btn-ghost" onclick="showPage('methodology')">Methodology</button>
+        <button class="btn-primary" onclick="showPage('how-to-use')">How to Use SOMA →</button>
+        <button class="btn-ghost" onclick="showPage('library')">Explore Library</button>
+        <button class="btn-ghost" onclick="showPage('results')">Validation Results</button>
       </div>
     </div>
   </div>
@@ -379,6 +530,185 @@ footer a:hover{color:var(--sage-300)}
       </div>
     </div>
   </div>
+
+  <!-- VALIDATION SNAPSHOT -->
+  <div class="section-header"><div class="section-label">Validation Snapshot</div><h2>Pre-registered RCT (N = 360) — empirical proof-of-concept</h2><p>A pre-registered randomised controlled trial deployed all 16 SOMA pairings simultaneously. Two of three pre-specified hypotheses were supported; the third — credibility equivalence — revealed a residual gap we document transparently rather than obscure.</p></div>
+
+  <div class="results-summary" style="margin-bottom:1rem">
+    <div class="hyp-card confirmed fade-up">
+      <div class="hyp-header"><div class="hyp-id">H2 · Confirmatory</div><div class="hyp-status">✓ Confirmed</div></div>
+      <div class="hyp-title">Mechanistic double dissociation</div>
+      <div class="hyp-summary">SMS and AES dissociated as predicted, with extraordinary statistical strength. The dissociation held equally in formal and informal pairings.</div>
+      <div class="hyp-stats">
+        <div class="hyp-stat"><span class="hyp-stat-label">F (1, 358)</span><span class="hyp-stat-value">185.95</span></div>
+        <div class="hyp-stat"><span class="hyp-stat-label">p</span><span class="hyp-stat-value">2.2 × 10<sup>−34</sup></span></div>
+      </div>
+    </div>
+    <div class="hyp-card exploratory fade-up" style="animation-delay:.06s">
+      <div class="hyp-header"><div class="hyp-id">H3 · Exploratory</div><div class="hyp-status">✓ Supported</div></div>
+      <div class="hyp-title">Experiential equity across SES</div>
+      <div class="hyp-summary">Low- and High-SES participants experienced SOMA equivalently. The Condition × SES interaction effect size was empirically indistinguishable from zero.</div>
+      <div class="hyp-stats">
+        <div class="hyp-stat"><span class="hyp-stat-label">Hedges' g</span><span class="hyp-stat-value">−0.07</span></div>
+        <div class="hyp-stat"><span class="hyp-stat-label">90% CI</span><span class="hyp-stat-value">[−.25, .10]</span></div>
+      </div>
+    </div>
+    <div class="hyp-card notsupported fade-up" style="animation-delay:.12s">
+      <div class="hyp-header"><div class="hyp-id">H1 · Confirmatory</div><div class="hyp-status">⚠ Not supported</div></div>
+      <div class="hyp-title">Credibility equivalence</div>
+      <div class="hyp-summary">A residual credibility gap favouring the Mindfulness condition emerged across all four CEQ items. We interpret this as theoretically informative rather than a simple failure.</div>
+      <div class="hyp-stats">
+        <div class="hyp-stat"><span class="hyp-stat-label">g<sub>av</sub></span><span class="hyp-stat-value">0.44 [.26, .61]</span></div>
+        <div class="hyp-stat"><span class="hyp-stat-label">TOST</span><span class="hyp-stat-value">p = .987 (n.s.)</span></div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:center;margin-bottom:3.5rem">
+    <button class="btn-primary" onclick="showPage('results')" style="background:var(--sage-700)">See Full Validation Results →</button>
+  </div>
+</div>
+
+<!-- ═══════════════ HOW TO USE ═══════════════ -->
+<div class="page" id="page-how-to-use">
+
+  <div class="htu-intro fade-up">
+    <div class="htu-intro-inner">
+      <div class="hero-eyebrow" style="color:rgba(255,255,255,.55);margin-bottom:1rem">A Practical Guide for Researchers</div>
+      <h2>Three steps from research question to deployment</h2>
+      <p>SOMA employs a <strong style="color:#fff;font-weight:500">Modular Matrix</strong> that formally decouples three orthogonal dimensions: <em style="color:var(--sage-300);font-style:normal">thematic framing</em> (Introduction module), <em style="color:var(--sage-300);font-style:normal">sensory or analytical delivery mode</em> (Practice module), and <em style="color:var(--sage-300);font-style:normal">experimental condition</em> (Mindfulness vs. Active Control). A standardised Universal Bridge — a 10–20 second resource-neutral transition — connects each thematic introduction to each practice module, enabling future dismantling studies to isolate contributions of attitudinal versus attentional components independently.</p>
+      <p>The library is designed for flexible deployment. Pairings can be used as single-session interventions or combined across multiple sessions to construct longitudinal curricula of any duration, varying the ratio of formal to informal practices to suit the population, setting, and research question. The three steps below involve researcher judgment rather than a fixed algorithm.</p>
+    </div>
+  </div>
+
+  <!-- THREE STEPS -->
+  <div class="section-header"><div class="section-label">Selecting a Pairing</div><h2>The three decisions</h2><p>Each step is a deliberate research design choice. None is mechanical — but each is bounded and documented, so methods sections can describe exactly what was deployed.</p></div>
+
+  <div class="htu-steps">
+    <div class="htu-step fade-up">
+      <div class="htu-step-number">1</div>
+      <div class="htu-step-eyebrow">Theme</div>
+      <h3>Pick a target attitudinal orientation</h3>
+      <p>Select the Theme that best matches the construct your study is targeting. As a general indication:</p>
+      <div class="htu-step-options">
+        <div class="htu-option"><strong>Distress tolerance</strong>Consider Patience (T03)</div>
+        <div class="htu-option"><strong>Non-reactive awareness of internal states</strong>Consider Acceptance (T04)</div>
+        <div class="htu-option"><strong>Habitual inattention &amp; sensory grounding</strong>Consider Being (T01)</div>
+        <div class="htu-option"><strong>Beginner's Mind / open exploration</strong>Consider Curiosity (T02)</div>
+        <div class="htu-option"><strong>Cognitive flexibility / decentering</strong>Consider Letting Go (T05)</div>
+        <div class="htu-option"><strong>Self-compassion / kind self-orientation</strong>Consider Gentleness (T06)</div>
+      </div>
+    </div>
+
+    <div class="htu-step fade-up" style="animation-delay:.08s">
+      <div class="htu-step-number">2</div>
+      <div class="htu-step-eyebrow">Delivery Mode</div>
+      <h3>Choose Formal or Informal practice</h3>
+      <p>The practice module carries the active ingredient. Match the delivery mode to your design constraints:</p>
+      <div class="htu-step-options">
+        <div class="htu-option"><strong>Formal</strong>Seated, structured, ~10 min. Best for efficacy-oriented or clinical trials.</div>
+        <div class="htu-option"><strong>Informal</strong>Embedded in daily activity (eating, walking, handwashing). Best for feasibility, scalability, or low-burden contexts.</div>
+        <div class="htu-option"><strong>Mixed sequencing</strong>For multi-session protocols, pairings can be sequenced in any combination across sessions — from entirely formal to entirely informal — depending on the design.</div>
+      </div>
+    </div>
+
+    <div class="htu-step fade-up" style="animation-delay:.16s">
+      <div class="htu-step-number">3</div>
+      <div class="htu-step-eyebrow">Active Control</div>
+      <h3>Confirm the comparator</h3>
+      <p>By default, every pairing comes with an Attentional Object Shift-matched Active Control. You can choose how conservative to be:</p>
+      <div class="htu-step-options">
+        <div class="htu-option"><strong>Default (AOS-matched)</strong>All 16 pairings use Attentional Object Shift-matched domain design out of the box. Recommended for most use cases.</div>
+        <div class="htu-option"><strong>More conservative (domain-matched)</strong>For dismantling designs requiring strict format match: domain-matched alternative pairs are documented at osf.io/m76cg.</div>
+        <div class="htu-option"><strong>No comparator needed</strong>If your design needs only the mindfulness side (single-arm exploratory studies, feasibility piloting), use M-only pairings.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEPLOYMENT PATHWAYS -->
+  <div class="section-header"><div class="section-label">Deployment Pathways</div><h2>Five ways to use SOMA</h2><p>The same 88 assets serve very different research designs. Pick the pathway that matches your question — single-session, longitudinal, dismantling, comparator for adjacent therapies, or as a labelled corpus.</p></div>
+
+  <div class="deploy-grid">
+    <div class="deploy-card single fade-up">
+      <div class="deploy-card-icon">🎯</div>
+      <div class="deploy-card-tag">Pathway 1 · Most Common</div>
+      <h3>Single-session intervention</h3>
+      <p>Deploy one full Mindfulness–Active Control pairing (~12 min per arm) as a brief intervention. Ideal for mechanistic RCTs, classroom studies, or stress-induction follow-ups where time and budget are constrained.</p>
+      <div class="deploy-card-example">
+        <strong>Example</strong>
+        Patience theme (T03A) paired with Mindful Movements (P07), randomized against the Synchronization theme paired with Room Geometry Analysis. Cite as <code style="font-family:var(--font-mono);font-size:11px;background:#fff;padding:1px 5px;border-radius:3px">SOMA-M-T03A-P07 / SOMA-C-T03A-P07</code>.
+      </div>
+    </div>
+
+    <div class="deploy-card multi fade-up" style="animation-delay:.06s">
+      <div class="deploy-card-icon">📅</div>
+      <div class="deploy-card-tag">Pathway 2</div>
+      <h3>Multi-session longitudinal curriculum</h3>
+      <p>Sequence multiple pairings across sessions to construct a curriculum of any duration — 2, 4, 8 weeks, or longer. Vary the formal-to-informal ratio to suit the population and setting.</p>
+      <div class="deploy-card-example">
+        <strong>Example sequences</strong>
+        Clinical efficacy (8 sessions, all Formal: A→C→F→G→I→K→N→O); Scalability study (8 sessions, all Informal: B→D→E→H→J→L→M→P); 70/30 mix tuned for adolescents (6 Formal + 2 Informal in the desired thematic order).
+      </div>
+    </div>
+
+    <div class="deploy-card dismantling fade-up" style="animation-delay:.12s">
+      <div class="deploy-card-icon">🧩</div>
+      <div class="deploy-card-tag">Pathway 3</div>
+      <h3>Dismantling study</h3>
+      <p>The Universal Bridge formally decouples theme from practice. Mix-and-match introductions and practices to isolate the contribution of attitudinal framing versus attentional task — something the existing literature cannot do cleanly.</p>
+      <div class="deploy-card-example">
+        <strong>Example</strong>
+        Hold practice constant (P14 Body Scan) and vary the theme across arms (T03 Patience vs. T04 Acceptance vs. T06 Gentleness) to test which attitudinal framing drives effects on outcomes.
+      </div>
+    </div>
+
+    <div class="deploy-card adjacent fade-up" style="animation-delay:.18s">
+      <div class="deploy-card-icon">🔬</div>
+      <div class="deploy-card-tag">Pathway 4</div>
+      <h3>Comparator for adjacent therapies</h3>
+      <p>SOMA's Active Control modules can serve as principled comparators for any intervention whose proposed mechanism involves experiential, bottom-up, or interoceptive processing — even outside mindfulness proper.</p>
+      <div class="deploy-card-example">
+        <strong>Adjacent applications</strong>
+        ACT-based protocols, compassion training, somatic therapies, body-based trauma interventions. Use any C-side asset as a structurally matched, equity-engineered control without rebuilding from scratch.
+      </div>
+    </div>
+
+    <div class="deploy-card corpus fade-up" style="animation-delay:.24s">
+      <div class="deploy-card-icon">📚</div>
+      <div class="deploy-card-tag">Pathway 5</div>
+      <h3>Labelled corpus for AI / NLP work</h3>
+      <p>The 88 expert-validated assets constitute a publicly available, mechanistically labelled corpus — every script tagged as experiential or analytical — usable for AI-guided psychoeducational tools, content classifiers, or training data for mindfulness chatbots.</p>
+      <div class="deploy-card-example">
+        <strong>Possible uses</strong>
+        Train a classifier to detect bottom-up vs. top-down attentional framings; build an LLM-powered triage tool that recommends a SOMA pairing based on participant profile; audit other apps' content for mechanistic clarity using SOMA as ground truth.
+      </div>
+    </div>
+
+    <div class="deploy-card single fade-up" style="animation-delay:.3s">
+      <div class="deploy-card-icon">🌐</div>
+      <div class="deploy-card-tag">Coming soon · Pathway 6</div>
+      <h3>Translation and cross-cultural deployment</h3>
+      <p>The English baseline is finalized. Translation protocols and back-translation guidelines for non-Anglophone deployments will be released on OSF, with controlled-vocabulary glossaries to preserve the Attentional Object Shift principle across languages.</p>
+      <div class="deploy-card-example">
+        <strong>Status</strong>
+        English (v1.0) released. Translation protocol documentation forthcoming on osf.io/m76cg. Researchers interested in leading a translation effort are encouraged to contact the corresponding author.
+      </div>
+    </div>
+  </div>
+
+  <!-- CITATION REMINDER -->
+  <div class="htu-cite-block fade-up">
+    <div class="htu-cite-icon">📎</div>
+    <div>
+      <h3>Always cite the specific pairing codes</h3>
+      <p>All deployments — single-session, longitudinal, or dismantling — should cite specific pairing codes in their method sections and pre-registrations, e.g., <code>SOMA-M-T03A-P07</code> for the Mindfulness arm and <code>SOMA-C-T03A-P07</code> for its matched Active Control. This is what makes pairing-level meta-analytic synthesis possible across studies that deploy SOMA, and it lets future replications target the exact same materials.</p>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;margin-top:2rem">
+    <button class="btn-primary" onclick="showPage('matrix')">View the Full Matrix →</button>
+    <button class="btn-ghost" style="background:var(--slate-100);color:var(--slate-700);border-color:var(--slate-200)" onclick="showPage('library')">Browse the Library</button>
+    <button class="btn-ghost" style="background:var(--slate-100);color:var(--slate-700);border-color:var(--slate-200)" onclick="showPage('results')">See Validation Results</button>
+  </div>
 </div>
 
 <!-- ═══════════════ LIBRARY ═══════════════ -->
@@ -404,6 +734,176 @@ footer a:hover{color:var(--sage-300)}
   <div style="margin-bottom:3.5rem"><div class="matrix-wrapper"><table class="matrix-table" id="matrix-table"></table></div></div>
 </div>
 
+<!-- ═══════════════ RESULTS ═══════════════ -->
+<div class="page" id="page-results">
+
+  <div class="results-hero fade-up">
+    <div class="results-hero-inner">
+      <div class="hero-eyebrow" style="color:rgba(255,255,255,.55);margin-bottom:1rem">Pre-registered Validation RCT — Proof-of-Concept Deployment</div>
+      <h2>SOMA achieves mechanistic separation and experiential equity</h2>
+      <p>A pre-registered, randomised, single-blind, parallel-group RCT (N = 360, Anglophone Prolific sample) deployed all 16 SOMA pairings to test three hypotheses simultaneously. Mechanistic orthogonality was confirmed with extraordinary strength; experiential equity across SES strata was supported with a near-zero effect size; and a residual credibility gap favouring the Mindfulness condition was documented transparently rather than obscured.</p>
+      <div class="results-meta">
+        <div class="results-meta-chip"><span>📊</span><span>N = 360</span></div>
+        <div class="results-meta-chip"><span>🌍</span><span>4-country Prolific sample</span></div>
+        <div class="results-meta-chip"><span>📋</span><span>NCT07556744</span></div>
+        <div class="results-meta-chip"><span>🔓</span><span>OSF: osf.io/m76cg</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HYPOTHESIS SUMMARY -->
+  <div class="section-header"><div class="section-label">Three Pre-registered Hypotheses</div><h2>What we tested, what we found</h2><p>Each hypothesis had a pre-specified test, equivalence bound, and decision rule, registered before data collection on OSF and ClinicalTrials.gov.</p></div>
+
+  <div class="results-summary">
+    <div class="hyp-card notsupported fade-up">
+      <div class="hyp-header">
+        <div class="hyp-id">H1 · Confirmatory</div>
+        <div class="hyp-status">⚠ Not supported</div>
+      </div>
+      <div class="hyp-title">Credibility equivalence</div>
+      <div class="hyp-summary">The pre-specified equivalence test (TOST within ±0.40) was not satisfied. The Mindfulness condition was rated as more credible across all four CEQ items, both practice types, and both SES groups — a stable expectancy structure that pre-dates the specific exercise delivered.</div>
+      <div class="hyp-stats">
+        <div class="hyp-stat"><span class="hyp-stat-label">M condition CEQ</span><span class="hyp-stat-value">M = 6.46, SD = 1.77</span></div>
+        <div class="hyp-stat"><span class="hyp-stat-label">C condition CEQ</span><span class="hyp-stat-value">M = 5.58, SD = 2.20</span></div>
+        <div class="hyp-stat"><span class="hyp-stat-label">Effect size</span><span class="hyp-stat-value">g<sub>av</sub> = .44 [.26, .61]</span></div>
+        <div class="hyp-stat"><span class="hyp-stat-label">TOST upper bound</span><span class="hyp-stat-value">p = .987 (n.s.)</span></div>
+      </div>
+    </div>
+
+    <div class="hyp-card confirmed fade-up" style="animation-delay:.06s">
+      <div class="hyp-header">
+        <div class="hyp-id">H2 · Confirmatory</div>
+        <div class="hyp-status">✓ Confirmed</div>
+      </div>
+      <div class="hyp-title">Mechanistic double dissociation</div>
+      <div class="hyp-summary">A Condition × Measure interaction confirmed both directional predictions: Mindfulness participants scored higher on the State Mindfulness Scale; Active Control participants scored higher on the Analytical Engagement Scale. The dissociation was equally strong in formal and informal practices and survived all sensitivity analyses.</div>
+      <div class="hyp-stats">
+        <div class="hyp-stat"><span class="hyp-stat-label">Interaction F (1, 358)</span><span class="hyp-stat-value">F = 185.95</span></div>
+        <div class="hyp-stat"><span class="hyp-stat-label">p-value</span><span class="hyp-stat-value">p = 2.2 × 10<sup>−34</sup></span></div>
+        <div class="hyp-stat"><span class="hyp-stat-label">Generalized η²</span><span class="hyp-stat-value">η²<sub>G</sub> = .117</span></div>
+        <div class="hyp-stat"><span class="hyp-stat-label">Bayes Factor</span><span class="hyp-stat-value">BF<sub>10</sub> ≈ 9.5 × 10<sup>63</sup></span></div>
+      </div>
+    </div>
+
+    <div class="hyp-card exploratory fade-up" style="animation-delay:.12s">
+      <div class="hyp-header">
+        <div class="hyp-id">H3 · Pre-specified Exploratory</div>
+        <div class="hyp-status">✓ Supported</div>
+      </div>
+      <div class="hyp-title">Experiential equity across SES strata</div>
+      <div class="hyp-summary">Low-SES and High-SES participants reported statistically and practically equivalent experiential responses to the SOMA exercises. Both TOST bounds were met, and the Condition × SES interaction was negligible — evidence that equity-engineered constraints eliminate the SES gradient that pervades the mindfulness literature.</div>
+      <div class="hyp-stats">
+        <div class="hyp-stat"><span class="hyp-stat-label">Low-SES (n = 177)</span><span class="hyp-stat-value">M = 5.00, SD = 1.11</span></div>
+        <div class="hyp-stat"><span class="hyp-stat-label">High-SES (n = 183)</span><span class="hyp-stat-value">M = 5.06, SD = 1.06</span></div>
+        <div class="hyp-stat"><span class="hyp-stat-label">Effect size</span><span class="hyp-stat-value">g<sub>av</sub> = −.07</span></div>
+        <div class="hyp-stat"><span class="hyp-stat-label">Condition × SES η²</span><span class="hyp-stat-value">8.9 × 10<sup>−6</sup></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOUBLE DISSOCIATION DETAIL -->
+  <div class="section-header"><div class="section-label">H2 in Detail</div><h2>The double dissociation, visualized</h2><p>Mindfulness participants experience more state mindfulness; Active Control participants experience more analytical engagement. The cross-over is the empirical signature of mechanistic orthogonality.</p></div>
+
+  <div class="outcome-split">
+    <div class="outcome-panel m fade-up">
+      <div class="outcome-panel-head">
+        <div class="pillar-icon" style="background:var(--sage-50);margin:0;width:36px;height:36px;font-size:16px">🧘</div>
+        <h4>Mindfulness Condition</h4>
+      </div>
+      <div class="outcome-bars">
+        <div class="outcome-bar-row">
+          <div class="outcome-bar-meta"><span class="outcome-bar-label">State Mindfulness Scale (SMS)</span><span class="outcome-bar-value">M = 3.09 (SD = 0.77)</span></div>
+          <div class="outcome-bar-track"><div class="outcome-bar-fill sms-m"></div></div>
+        </div>
+        <div class="outcome-bar-row">
+          <div class="outcome-bar-meta"><span class="outcome-bar-label">Analytical Engagement Scale (AES)</span><span class="outcome-bar-value">M = 2.64 (SD = 1.00)</span></div>
+          <div class="outcome-bar-track"><div class="outcome-bar-fill aes-m"></div></div>
+        </div>
+      </div>
+      <div class="outcome-effect">SMS advantage: <strong>d = 0.60</strong>. Mindfulness participants showed the expected elevation on experiential / sensory state measures.</div>
+    </div>
+
+    <div class="outcome-panel c fade-up" style="animation-delay:.08s">
+      <div class="outcome-panel-head">
+        <div class="pillar-icon" style="background:var(--amber-50);margin:0;width:36px;height:36px;font-size:16px">🔬</div>
+        <h4>Active Control Condition</h4>
+      </div>
+      <div class="outcome-bars">
+        <div class="outcome-bar-row">
+          <div class="outcome-bar-meta"><span class="outcome-bar-label">State Mindfulness Scale (SMS)</span><span class="outcome-bar-value">M = 2.62 (SD = 0.81)</span></div>
+          <div class="outcome-bar-track"><div class="outcome-bar-fill sms-c"></div></div>
+        </div>
+        <div class="outcome-bar-row">
+          <div class="outcome-bar-meta"><span class="outcome-bar-label">Analytical Engagement Scale (AES)</span><span class="outcome-bar-value">M = 3.42 (SD = 0.89)</span></div>
+          <div class="outcome-bar-track"><div class="outcome-bar-fill aes-c"></div></div>
+        </div>
+      </div>
+      <div class="outcome-effect">AES advantage: <strong>d = 0.80</strong>. Active Control participants showed the predicted elevation on analytical / categorization measures.</div>
+    </div>
+  </div>
+
+  <div class="alert-bar" style="margin-bottom:2.5rem;background:var(--sage-50);border-color:var(--sage-100)"><span>✓</span><span>The dissociation was equally strong in <strong>formal</strong> pairings (F(1, 179) = 93.85, η²<sub>G</sub> = .129) and <strong>informal</strong> pairings (F(1, 177) = 92.29, η²<sub>G</sub> = .107) — confirming the library works across the full range of practice types and difficulty tiers.</span></div>
+
+  <!-- EQUITY -->
+  <div class="section-header"><div class="section-label">H3 in Detail</div><h2>Equity-engineering eliminated the SES gradient</h2></div>
+
+  <div class="equity-callout fade-up">
+    <div class="equity-icon">🌍</div>
+    <div class="equity-text">
+      <h3>Low-SES and High-SES participants experienced SOMA equivalently</h3>
+      <p>Both equivalence bounds met (90% CI [−.246, .101] within the ±.40 region). The Condition × SES interaction effect size was 8.9 × 10⁻⁶ — empirically indistinguishable from zero. This is, to our knowledge, the first published demonstration that the SES gradient in mindfulness research can be eliminated by deliberate equity-engineering constraints rather than post-hoc reweighting.</p>
+    </div>
+    <div class="equity-stats">
+      <div class="equity-stat-block"><span class="equity-stat-num">−0.07</span><div class="equity-stat-lab">Hedges' g</div></div>
+      <div class="equity-stat-block"><span class="equity-stat-num">177 / 183</span><div class="equity-stat-lab">Low / High SES</div></div>
+    </div>
+  </div>
+
+  <!-- MECHANISM ID -->
+  <div class="section-header"><div class="section-label">Additional Analyses</div><h2>Participants correctly identified their condition's mechanism</h2><p>After completing the practice, participants were asked to label the cognitive mechanism they had been engaging.</p></div>
+
+  <div class="mechanism-card fade-up">
+    <h3>Mechanism identification accuracy</h3>
+    <p>Both conditions produced highly significant departures from chance in the predicted direction, providing converging evidence for mechanistic separation independent of the SMS/AES dissociation.</p>
+    <div class="mechanism-grid">
+      <div class="mech-side m-side">
+        <div class="mech-side-title">Mindfulness participants selecting "Experiential Awareness"</div>
+        <div class="mech-side-stat">76.9%</div>
+        <div class="mech-side-desc">χ²(1) = 368.58, p &lt; .001. Confidence in mechanism label: M = 78.5% (SD = 18.4).</div>
+      </div>
+      <div class="mech-side c-side">
+        <div class="mech-side-title">Active Control participants selecting "Analytical Thinking"</div>
+        <div class="mech-side-stat">56.2%</div>
+        <div class="mech-side-desc">χ²(1) = 145.62, p &lt; .001. Confidence: M = 73.7% (SD = 21.9). The 36.5% selecting "Experiential Awareness" is consistent with the Attentional Object Shift principle — analytical absorption shares surface phenomenology with experiential awareness.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISCUSSION -->
+  <div class="section-header"><div class="section-label">Interpretation</div><h2>What the results mean for SOMA — and for the field</h2></div>
+
+  <div class="discussion-section fade-up">
+    <h3>The H1 credibility gap is theoretically informative, not a failure</h3>
+    <p>The gap was uniform across all four CEQ items, both practice types, and both SES groups — a stable expectancy structure that pre-dates the specific exercise delivered. One plausible account is the well-documented cultural expectancy advantage for mindfulness-like practices: body-based, sensory exercises activate pre-existing beliefs about contemplative interventions that analytical exercises cannot easily override. A second concerns the CEQ instrument itself, which asks participants to project future therapeutic benefit before any outcome is known — a forward-looking judgment especially susceptible to pre-existing cultural narratives.</p>
+    <p>Crucially, the credibility gap does <em>not</em> undermine H2. The CEQ assesses expected benefit; the SMS and AES assess experienced mechanisms — and these dissociate. If expectancy were driving responses, the Mindfulness condition (rated as more credible) should score higher on <em>all</em> outcome measures. Instead, Active Control participants scored higher on the AES despite rating the exercise as less credible — the opposite pattern from what demand-characteristics responding would produce.</p>
+  </div>
+
+  <div class="discussion-section fade-up">
+    <h3>Equity is achievable as a design constraint, not a post-hoc analysis</h3>
+    <p>Demonstrating that the SES gradient in mindfulness research can be eliminated through deliberate equity-engineering constraints — rather than statistical reweighting or sub-group analysis — represents a qualitatively different contribution to the equity literature, and provides an empirical counterpoint to the widely documented SES gradient in mindfulness programme reach. The equity result is exploratory in our pre-registration, but the effect size is near-zero and the equivalence test is met under the most stringent pre-specified criterion.</p>
+  </div>
+
+  <div class="discussion-section fade-up">
+    <h3>Why this matters: the next step is community use</h3>
+    <p>SOMA's open-science architecture is designed to support cumulative evidence synthesis: because all deployments share a common documented stimulus set with archived version histories, results can be prospectively aggregated across independent studies — including null findings. A registry of SOMA-based studies will be maintained at osf.io/m76cg. Researchers using SOMA are asked to report specific pairing codes (e.g., <code style="font-family:var(--font-mono);font-size:12px;background:var(--slate-100);padding:1px 5px;border-radius:3px">SOMA-M-T01A-P01 / SOMA-C-T01A-P01</code>) in method sections and pre-registrations, enabling pairing-level meta-analysis and the identification of replication gaps as the field accumulates evidence.</p>
+  </div>
+
+  <div style="display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;margin-top:2.5rem">
+    <a class="btn-primary" href="https://osf.io/m76cg" target="_blank" rel="noopener" style="text-decoration:none">Full Pre-registration &amp; Materials ↗</a>
+    <button class="btn-ghost" style="background:var(--slate-100);color:var(--slate-700);border-color:var(--slate-200)" onclick="showPage('how-to-use')">How to Deploy SOMA</button>
+  </div>
+</div>
+
 <!-- ═══════════════ TEAM ═══════════════ -->
 <div class="page" id="page-team">
   <div class="section-header"><div class="section-label">The Team</div><h2>The SOMA Research Consortium</h2><p>SOMA is the product of an international expert committee: two research scientists, three certified mindfulness instructors with experience working with diverse and underserved populations, a methodologist, and senior supervisory scientists.</p></div>
@@ -418,7 +918,7 @@ footer a:hover{color:var(--sage-300)}
       <div class="team-name">Alessandro Sparacio, Ph.D.</div>
       <div class="team-role">Principal Investigator · Corresponding Author</div>
       <div class="team-affiliation">A*STAR Institute for Human Development and Potential (IHDP), Singapore</div>
-      <div class="team-contribution"><strong>CRediT:</strong> Conceptualization, Methodology, Project Administration, Writing – Original Draft, Formal Analysis, Writing – Review &amp; Editing.</div>
+      <div class="team-contribution"><strong>Research expertise:</strong> Meta-science, stress regulation, and mental health. Lead author of a prior multi-site randomized controlled trial on self-administered mindfulness interventions for stress reduction published in <em>Nature Human Behaviour</em> (<em>N</em> = 2,239 across 37 sites) — the largest pre-registered test to date of brief, self-administered mindfulness for stress reduction, and the work whose findings motivated SOMA's design.<br><strong>CRediT:</strong> Conceptualization, Methodology, Project Administration, Writing – Original Draft, Formal Analysis, Writing – Review &amp; Editing.</div>
       <div class="team-links">
         <a class="team-link" href="https://sparacioalessandro.com" target="_blank" rel="noopener">↗ Website</a>
         <a class="team-link" href="https://orcid.org/0009-0008-9818-3920" target="_blank" rel="noopener">↗ ORCID</a>
@@ -432,13 +932,13 @@ footer a:hover{color:var(--sage-300)}
       <div class="team-name">Jonathan Davies, Ph.D.</div>
       <div class="team-role">Materials Development — Active Control Lead</div>
       <div class="team-affiliation">School of Psychology, The University of Queensland, Australia · Mindful Moments, Singapore</div>
-      <div class="team-contribution"><strong>CRediT:</strong> Conceptualization, Methodology, Materials Development (Active Control Design), Writing – Review &amp; Editing.</div>
+      <div class="team-contribution"><strong>Research expertise:</strong> Contemplative science, placebo effects, and the design of structurally equivalent active control conditions for mindfulness research — the methodological space SOMA's active controls are built on.<br><strong>CRediT:</strong> Conceptualization, Methodology, Materials Development (Active Control Design), Writing – Review &amp; Editing.</div>
     </div>
     <div class="team-card scientist">
       <div class="team-name">Ivan Ropovik, Ph.D.</div>
       <div class="team-role">Methodologist · Statistical Analysis</div>
       <div class="team-affiliation">Institute of Psychology, Czech Academy of Sciences, Prague · Charles University, Prague · Slovak Academy of Sciences, Bratislava</div>
-      <div class="team-contribution"><strong>CRediT:</strong> Methodology, Formal Analysis, Writing – Review &amp; Editing.</div>
+      <div class="team-contribution"><strong>Research expertise:</strong> Meta-science and statistical methodology, with a focus on replicability, evidence synthesis, and rigorous inferential testing — anchoring the analytic plan and equivalence testing in the SOMA validation RCT.<br><strong>CRediT:</strong> Methodology, Formal Analysis, Writing – Review &amp; Editing.</div>
     </div>
   </div>
 
@@ -448,19 +948,19 @@ footer a:hover{color:var(--sage-300)}
       <div class="team-name">Erin Lee</div>
       <div class="team-role">Mindfulness Script Lead · Committee Coordinator</div>
       <div class="team-affiliation">Mindful Moments, Singapore</div>
-      <div class="team-contribution"><strong>Specialist expertise:</strong> Extensive experience delivering mindfulness programmes through non-profit organisations for elderly populations, caregivers, and educators working with individuals with special needs. Collaborator on a National University of Singapore study examining mindfulness and related interventions for couples undergoing IVF fertility treatment.<br><strong>CRediT:</strong> Materials Development (Mindfulness Script Lead, Committee Coordinator), Methodology.</div>
+      <div class="team-contribution"><strong>Qualification:</strong> MA in Mindfulness, University of Aberdeen.<br><strong>Specialist expertise:</strong> Extensive experience delivering mindfulness programmes through non-profit organisations for elderly populations, caregivers, and educators working with individuals with special needs. Collaborator on a National University of Singapore study examining mindfulness and related interventions for couples undergoing IVF fertility treatment.<br><strong>CRediT:</strong> Materials Development (Mindfulness Script Lead, Committee Coordinator), Methodology.</div>
+    </div>
+    <div class="team-card committee">
+      <div class="team-name">Christoph Spiessens</div>
+      <div class="team-role">Script Development · Supervisor · Audio Narrator</div>
+      <div class="team-affiliation">Christoph Spiessens Coaching Solutions, Manchester, UK</div>
+      <div class="team-contribution"><strong>Qualification:</strong> MA in Teaching Mindfulness, Bangor University; mindfulness teacher supervisor.<br><strong>Specialist expertise:</strong> Author of <em>Neurodiversity Tips for Mindfulness Teachers</em>; specialist expertise in neurodiversity-affirming, trauma-sensitive, and LGBTQIA+-inclusive script design. Served as audio narrator for all 88 SOMA assets — providing <em>a priori</em> cross-cultural validation of the vocal delivery (same narrator as in a prior multi-site mindfulness trial, <em>N</em> = 2,239 across 37 sites).<br><strong>CRediT:</strong> Materials Development (Mindfulness Script Development, Audio Narration).</div>
     </div>
     <div class="team-card committee">
       <div class="team-name">Ted Meissner</div>
       <div class="team-role">Mindfulness Script Development</div>
       <div class="team-affiliation">Present Moment Mindfulness LLC, USA</div>
       <div class="team-contribution"><strong>Specialist expertise:</strong> Developer and deliverer of three specialist curricula targeting underserved populations: <em>Burnout Prevention and Remediation</em> (healthcare workers); <em>Mindfulness Foundations</em> (busy professionals with limited time and resources); and <em>Mindfulness in the Workplace</em> (a customizable portfolio addressing neurodiverse, trauma-informed, and accessibility needs).<br><strong>CRediT:</strong> Materials Development (Mindfulness Script Development).</div>
-    </div>
-    <div class="team-card committee">
-      <div class="team-name">Christoph Spiessens</div>
-      <div class="team-role">Script Development · Audio Narrator</div>
-      <div class="team-affiliation">Christoph Spiessens Coaching Solutions, Manchester, UK</div>
-      <div class="team-contribution"><strong>Specialist expertise:</strong> Leader of the LGBTQIA+ mindfulness sessions for The Mindfulness Network and author of <em>Neurodiversity Tips for Mindfulness Teachers</em>; specialist expertise in neurodiversity-affirming and trauma-sensitive script design. Served as audio narrator for all 88 SOMA assets, providing <em>a priori</em> cross-cultural validation of the vocal delivery (same narrator as in the prior multi-site mindfulness trial; N = 2,239, 37 sites).<br><strong>CRediT:</strong> Materials Development (Mindfulness Script Development, Audio Narration).</div>
     </div>
   </div>
 
@@ -600,7 +1100,7 @@ footer a:hover{color:var(--sage-300)}
   <div class="footer-inner">
     <div class="footer-brand"><h3>SOMA Framework</h3><p>An international open-science initiative bridging the equity gap in mindfulness research through rigorously standardised, freely available materials.</p></div>
     <div><h4>Repository</h4><a href="https://osf.io/m76cg" target="_blank" rel="noopener">OSF Repository ↗</a><a href="https://github.com/SparacioAlessandro/SOMA" target="_blank" rel="noopener">GitHub ↗</a><a href="https://clinicaltrials.gov/study/NCT07556744" target="_blank" rel="noopener">ClinicalTrials.gov ↗</a></div>
-    <div><h4>Resources</h4><a href="#" onclick="showPage('team');return false">Team</a><a href="#" onclick="showPage('build');return false">How It Was Built</a><a href="#" onclick="showPage('methodology');return false">Methodology</a><a href="#" onclick="showPage('build');setTimeout(()=>document.getElementById('license-section').scrollIntoView({behavior:'smooth'}),100);return false">License &amp; Terms</a></div>
+    <div><h4>Resources</h4><a href="#" onclick="showPage('how-to-use');return false">How to Use SOMA</a><a href="#" onclick="showPage('results');return false">Validation Results</a><a href="#" onclick="showPage('team');return false">Team</a><a href="#" onclick="showPage('build');return false">How It Was Built</a><a href="#" onclick="showPage('methodology');return false">Methodology</a><a href="#" onclick="showPage('build');setTimeout(()=>document.getElementById('license-section').scrollIntoView({behavior:'smooth'}),100);return false">License &amp; Terms</a></div>
   </div>
   <div class="footer-bottom"><span>© 2026 SOMA Research Consortium</span><span style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,.25)">CC BY-NC-SA 4.0</span></div>
 </footer>
