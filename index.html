@@ -40,7 +40,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(250,248,245,.92);backdrop-
 .nav-logo-mark svg{width:100%;height:100%;display:block}
 .nav-logo-text{display:flex;flex-direction:column;line-height:1;gap:3px}
 .nav-logo-wordmark{font-family:var(--font-display);font-size:24px;color:var(--sage-700);letter-spacing:.06em;font-weight:400}
-.nav-logo-tagline{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--slate-500);white-space:nowrap}
+.nav-logo-tagline{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--slate-500);white-space:nowrap;display:flex;flex-direction:column;gap:1px;line-height:1.5}
 .nav-logo-tagline span{color:var(--amber-600)}
 .nav-links{display:flex;gap:2px}
 .nav-link{padding:6px 14px;border-radius:var(--r-sm);font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;border:none;background:transparent;color:var(--slate-500);transition:all .15s;white-space:nowrap;font-family:var(--font-body)}
@@ -412,7 +412,7 @@ footer a:hover{color:var(--sage-300)}
       </div>
       <div class="nav-logo-text">
         <span class="nav-logo-wordmark">SOMA</span>
-        <span class="nav-logo-tagline">Standardized Open-source <span>Mindfulness Architecture</span></span>
+        <span class="nav-logo-tagline"><span style="color:var(--slate-500)">Standardized Open-source</span><span>Mindfulness Architecture</span></span>
       </div>
     </a>
     <div class="nav-links" role="tablist">
@@ -739,70 +739,55 @@ footer a:hover{color:var(--sage-300)}
 
   <div class="results-hero fade-up">
     <div class="results-hero-inner">
-      <div class="hero-eyebrow" style="color:rgba(255,255,255,.55);margin-bottom:1rem">Pre-registered Validation RCT — Proof-of-Concept Deployment</div>
-      <h2>SOMA achieves mechanistic separation and experiential equity</h2>
-      <p>A pre-registered, randomised, single-blind, parallel-group RCT (N = 360, Anglophone Prolific sample) deployed all 16 SOMA pairings to test three hypotheses simultaneously. Mechanistic orthogonality was confirmed with extraordinary strength; experiential equity across SES strata was supported with a near-zero effect size; and a residual credibility gap favouring the Mindfulness condition was documented transparently rather than obscured.</p>
+      <div class="hero-eyebrow" style="color:rgba(255,255,255,.55);margin-bottom:1rem">Pre-registered Validation RCT · N = 360 · ClinicalTrials.gov NCT07556744</div>
+      <h2>Proof-of-concept deployment: what we found</h2>
+      <p>A pre-registered, randomised, single-blind, parallel-group RCT deployed all 16 SOMA pairings simultaneously. Two of three pre-specified hypotheses were supported. The third — credibility equivalence — revealed a residual gap we document transparently. Full data, analysis pipeline, and pre-registration are publicly available.</p>
       <div class="results-meta">
         <div class="results-meta-chip"><span>📊</span><span>N = 360</span></div>
-        <div class="results-meta-chip"><span>🌍</span><span>4-country Prolific sample</span></div>
+        <div class="results-meta-chip"><span>🌍</span><span>Anglophone Prolific sample</span></div>
         <div class="results-meta-chip"><span>📋</span><span>NCT07556744</span></div>
-        <div class="results-meta-chip"><span>🔓</span><span>OSF: osf.io/m76cg</span></div>
+        <div class="results-meta-chip"><span>🔓</span><span>osf.io/m76cg</span></div>
       </div>
     </div>
   </div>
 
-  <!-- HYPOTHESIS SUMMARY -->
-  <div class="section-header"><div class="section-label">Three Pre-registered Hypotheses</div><h2>What we tested, what we found</h2><p>Each hypothesis had a pre-specified test, equivalence bound, and decision rule, registered before data collection on OSF and ClinicalTrials.gov.</p></div>
+  <!-- THREE HYPOTHESES -->
+  <div class="section-header"><div class="section-label">Three Pre-registered Hypotheses</div><h2>What we tested, what we found</h2><p>Each hypothesis had a pre-specified test, equivalence bound, and decision rule, registered on OSF and ClinicalTrials.gov before data collection began on 5 May 2026.</p></div>
 
   <div class="results-summary">
     <div class="hyp-card notsupported fade-up">
-      <div class="hyp-header">
-        <div class="hyp-id">H1 · Confirmatory</div>
-        <div class="hyp-status">⚠ Not supported</div>
-      </div>
+      <div class="hyp-header"><div class="hyp-id">H1 · Confirmatory</div><div class="hyp-status">⚠ Not supported</div></div>
       <div class="hyp-title">Credibility equivalence</div>
-      <div class="hyp-summary">The pre-specified equivalence test (TOST within ±0.40) was not satisfied. The Mindfulness condition was rated as more credible across all four CEQ items, both practice types, and both SES groups — a stable expectancy structure that pre-dates the specific exercise delivered.</div>
+      <div class="hyp-summary">The Mindfulness condition was rated as more credible across all four CEQ items, both practice types, and both SES groups — a stable expectancy structure predating the specific exercise delivered. The pre-specified TOST equivalence bounds (±0.40) were not met.</div>
       <div class="hyp-stats">
-        <div class="hyp-stat"><span class="hyp-stat-label">M condition CEQ</span><span class="hyp-stat-value">M = 6.46, SD = 1.77</span></div>
-        <div class="hyp-stat"><span class="hyp-stat-label">C condition CEQ</span><span class="hyp-stat-value">M = 5.58, SD = 2.20</span></div>
         <div class="hyp-stat"><span class="hyp-stat-label">Effect size</span><span class="hyp-stat-value">g<sub>av</sub> = .44 [.26, .61]</span></div>
-        <div class="hyp-stat"><span class="hyp-stat-label">TOST upper bound</span><span class="hyp-stat-value">p = .987 (n.s.)</span></div>
+        <div class="hyp-stat"><span class="hyp-stat-label">Largest gap</span><span class="hyp-stat-value">CEQ Logic item (d = .43)</span></div>
       </div>
     </div>
 
     <div class="hyp-card confirmed fade-up" style="animation-delay:.06s">
-      <div class="hyp-header">
-        <div class="hyp-id">H2 · Confirmatory</div>
-        <div class="hyp-status">✓ Confirmed</div>
-      </div>
+      <div class="hyp-header"><div class="hyp-id">H2 · Confirmatory</div><div class="hyp-status">✓ Supported</div></div>
       <div class="hyp-title">Mechanistic double dissociation</div>
-      <div class="hyp-summary">A Condition × Measure interaction confirmed both directional predictions: Mindfulness participants scored higher on the State Mindfulness Scale; Active Control participants scored higher on the Analytical Engagement Scale. The dissociation was equally strong in formal and informal practices and survived all sensitivity analyses.</div>
+      <div class="hyp-summary">Mindfulness participants scored higher on the State Mindfulness Scale (SMS); Active Control participants scored higher on the Analytical Engagement Scale (AES). The cross-over was equally strong in formal and informal pairings, and survived all four pre-specified sensitivity analyses.</div>
       <div class="hyp-stats">
-        <div class="hyp-stat"><span class="hyp-stat-label">Interaction F (1, 358)</span><span class="hyp-stat-value">F = 185.95</span></div>
-        <div class="hyp-stat"><span class="hyp-stat-label">p-value</span><span class="hyp-stat-value">p = 2.2 × 10<sup>−34</sup></span></div>
-        <div class="hyp-stat"><span class="hyp-stat-label">Generalized η²</span><span class="hyp-stat-value">η²<sub>G</sub> = .117</span></div>
+        <div class="hyp-stat"><span class="hyp-stat-label">Interaction F (1, 358)</span><span class="hyp-stat-value">185.95, p = 2.2 × 10<sup>−34</sup></span></div>
         <div class="hyp-stat"><span class="hyp-stat-label">Bayes Factor</span><span class="hyp-stat-value">BF<sub>10</sub> ≈ 9.5 × 10<sup>63</sup></span></div>
       </div>
     </div>
 
     <div class="hyp-card exploratory fade-up" style="animation-delay:.12s">
-      <div class="hyp-header">
-        <div class="hyp-id">H3 · Pre-specified Exploratory</div>
-        <div class="hyp-status">✓ Supported</div>
-      </div>
+      <div class="hyp-header"><div class="hyp-id">H3 · Pre-specified Exploratory</div><div class="hyp-status">✓ Supported</div></div>
       <div class="hyp-title">Experiential equity across SES strata</div>
-      <div class="hyp-summary">Low-SES and High-SES participants reported statistically and practically equivalent experiential responses to the SOMA exercises. Both TOST bounds were met, and the Condition × SES interaction was negligible — evidence that equity-engineered constraints eliminate the SES gradient that pervades the mindfulness literature.</div>
+      <div class="hyp-summary">Low-SES and High-SES participants experienced SOMA equivalently on the Semantic Differential composite. Both TOST bounds were met; the Condition × SES interaction was negligible. Equity-engineering eliminated the SES gradient without compromising scientific rigour.</div>
       <div class="hyp-stats">
-        <div class="hyp-stat"><span class="hyp-stat-label">Low-SES (n = 177)</span><span class="hyp-stat-value">M = 5.00, SD = 1.11</span></div>
-        <div class="hyp-stat"><span class="hyp-stat-label">High-SES (n = 183)</span><span class="hyp-stat-value">M = 5.06, SD = 1.06</span></div>
-        <div class="hyp-stat"><span class="hyp-stat-label">Effect size</span><span class="hyp-stat-value">g<sub>av</sub> = −.07</span></div>
+        <div class="hyp-stat"><span class="hyp-stat-label">Hedges' g</span><span class="hyp-stat-value">−0.07, 90% CI [−.25, .10]</span></div>
         <div class="hyp-stat"><span class="hyp-stat-label">Condition × SES η²</span><span class="hyp-stat-value">8.9 × 10<sup>−6</sup></span></div>
       </div>
     </div>
   </div>
 
   <!-- DOUBLE DISSOCIATION DETAIL -->
-  <div class="section-header"><div class="section-label">H2 in Detail</div><h2>The double dissociation, visualized</h2><p>Mindfulness participants experience more state mindfulness; Active Control participants experience more analytical engagement. The cross-over is the empirical signature of mechanistic orthogonality.</p></div>
+  <div class="section-header"><div class="section-label">H2 in Detail</div><h2>The mechanistic double dissociation</h2><p>The cross-over pattern — the empirical signature of mechanistic orthogonality — was consistent across all 16 pairings and both practice types.</p></div>
 
   <div class="outcome-split">
     <div class="outcome-panel m fade-up">
@@ -812,15 +797,15 @@ footer a:hover{color:var(--sage-300)}
       </div>
       <div class="outcome-bars">
         <div class="outcome-bar-row">
-          <div class="outcome-bar-meta"><span class="outcome-bar-label">State Mindfulness Scale (SMS)</span><span class="outcome-bar-value">M = 3.09 (SD = 0.77)</span></div>
+          <div class="outcome-bar-meta"><span class="outcome-bar-label">State Mindfulness Scale (SMS, 1–5)</span><span class="outcome-bar-value">M = 3.09</span></div>
           <div class="outcome-bar-track"><div class="outcome-bar-fill sms-m"></div></div>
         </div>
         <div class="outcome-bar-row">
-          <div class="outcome-bar-meta"><span class="outcome-bar-label">Analytical Engagement Scale (AES)</span><span class="outcome-bar-value">M = 2.64 (SD = 1.00)</span></div>
+          <div class="outcome-bar-meta"><span class="outcome-bar-label">Analytical Engagement Scale (AES, 1–5)</span><span class="outcome-bar-value">M = 2.64</span></div>
           <div class="outcome-bar-track"><div class="outcome-bar-fill aes-m"></div></div>
         </div>
       </div>
-      <div class="outcome-effect">SMS advantage: <strong>d = 0.60</strong>. Mindfulness participants showed the expected elevation on experiential / sensory state measures.</div>
+      <div class="outcome-effect">SMS > AES: <strong>d = 0.60</strong>. Mindfulness participants showed the expected elevation on state mindfulness measures.</div>
     </div>
 
     <div class="outcome-panel c fade-up" style="animation-delay:.08s">
@@ -830,77 +815,52 @@ footer a:hover{color:var(--sage-300)}
       </div>
       <div class="outcome-bars">
         <div class="outcome-bar-row">
-          <div class="outcome-bar-meta"><span class="outcome-bar-label">State Mindfulness Scale (SMS)</span><span class="outcome-bar-value">M = 2.62 (SD = 0.81)</span></div>
+          <div class="outcome-bar-meta"><span class="outcome-bar-label">State Mindfulness Scale (SMS, 1–5)</span><span class="outcome-bar-value">M = 2.62</span></div>
           <div class="outcome-bar-track"><div class="outcome-bar-fill sms-c"></div></div>
         </div>
         <div class="outcome-bar-row">
-          <div class="outcome-bar-meta"><span class="outcome-bar-label">Analytical Engagement Scale (AES)</span><span class="outcome-bar-value">M = 3.42 (SD = 0.89)</span></div>
+          <div class="outcome-bar-meta"><span class="outcome-bar-label">Analytical Engagement Scale (AES, 1–5)</span><span class="outcome-bar-value">M = 3.42</span></div>
           <div class="outcome-bar-track"><div class="outcome-bar-fill aes-c"></div></div>
         </div>
       </div>
-      <div class="outcome-effect">AES advantage: <strong>d = 0.80</strong>. Active Control participants showed the predicted elevation on analytical / categorization measures.</div>
+      <div class="outcome-effect">AES > SMS: <strong>d = 0.80</strong>. Active Control participants showed the predicted elevation on analytical engagement measures.</div>
     </div>
   </div>
 
-  <div class="alert-bar" style="margin-bottom:2.5rem;background:var(--sage-50);border-color:var(--sage-100)"><span>✓</span><span>The dissociation was equally strong in <strong>formal</strong> pairings (F(1, 179) = 93.85, η²<sub>G</sub> = .129) and <strong>informal</strong> pairings (F(1, 177) = 92.29, η²<sub>G</sub> = .107) — confirming the library works across the full range of practice types and difficulty tiers.</span></div>
-
-  <!-- EQUITY -->
-  <div class="section-header"><div class="section-label">H3 in Detail</div><h2>Equity-engineering eliminated the SES gradient</h2></div>
-
-  <div class="equity-callout fade-up">
-    <div class="equity-icon">🌍</div>
-    <div class="equity-text">
-      <h3>Low-SES and High-SES participants experienced SOMA equivalently</h3>
-      <p>Both equivalence bounds met (90% CI [−.246, .101] within the ±.40 region). The Condition × SES interaction effect size was 8.9 × 10⁻⁶ — empirically indistinguishable from zero. This is, to our knowledge, the first published demonstration that the SES gradient in mindfulness research can be eliminated by deliberate equity-engineering constraints rather than post-hoc reweighting.</p>
-    </div>
-    <div class="equity-stats">
-      <div class="equity-stat-block"><span class="equity-stat-num">−0.07</span><div class="equity-stat-lab">Hedges' g</div></div>
-      <div class="equity-stat-block"><span class="equity-stat-num">177 / 183</span><div class="equity-stat-lab">Low / High SES</div></div>
-    </div>
-  </div>
+  <div class="alert-bar" style="margin-bottom:2.5rem;background:var(--sage-50);border-color:var(--sage-100)"><span>✓</span><span>The dissociation was equally strong in <strong>formal</strong> pairings (F(1,179) = 93.85, η²<sub>G</sub> = .129) and <strong>informal</strong> pairings (F(1,177) = 92.29, η²<sub>G</sub> = .107) — confirming the library works across the full range of practice types and difficulty tiers.</span></div>
 
   <!-- MECHANISM ID -->
-  <div class="section-header"><div class="section-label">Additional Analyses</div><h2>Participants correctly identified their condition's mechanism</h2><p>After completing the practice, participants were asked to label the cognitive mechanism they had been engaging.</p></div>
+  <div class="section-header"><div class="section-label">Convergent Evidence</div><h2>Participants correctly identified their condition's mechanism</h2><p>After completing the audio, participants labelled the cognitive mechanism they had been engaging — providing instrument-independent corroboration of mechanistic separation.</p></div>
 
   <div class="mechanism-card fade-up">
-    <h3>Mechanism identification accuracy</h3>
-    <p>Both conditions produced highly significant departures from chance in the predicted direction, providing converging evidence for mechanistic separation independent of the SMS/AES dissociation.</p>
     <div class="mechanism-grid">
       <div class="mech-side m-side">
-        <div class="mech-side-title">Mindfulness participants selecting "Experiential Awareness"</div>
+        <div class="mech-side-title">Mindfulness → "Experiential Awareness"</div>
         <div class="mech-side-stat">76.9%</div>
-        <div class="mech-side-desc">χ²(1) = 368.58, p &lt; .001. Confidence in mechanism label: M = 78.5% (SD = 18.4).</div>
+        <div class="mech-side-desc">χ²(1) = 368.58, p &lt; .001. Confidence: M = 78.5%. Near-zero misidentification of an analytical mechanism (&lt;2%).</div>
       </div>
       <div class="mech-side c-side">
-        <div class="mech-side-title">Active Control participants selecting "Analytical Thinking"</div>
+        <div class="mech-side-title">Active Control → "Analytical Thinking"</div>
         <div class="mech-side-stat">56.2%</div>
-        <div class="mech-side-desc">χ²(1) = 145.62, p &lt; .001. Confidence: M = 73.7% (SD = 21.9). The 36.5% selecting "Experiential Awareness" is consistent with the Attentional Object Shift principle — analytical absorption shares surface phenomenology with experiential awareness.</div>
+        <div class="mech-side-desc">χ²(1) = 145.62, p &lt; .001. Confidence: M = 73.7%. The 36.5% selecting "Experiential Awareness" is consistent with the Attentional Object Shift principle — analytical absorption shares surface phenomenology with experiential awareness.</div>
       </div>
     </div>
   </div>
 
-  <!-- DISCUSSION -->
-  <div class="section-header"><div class="section-label">Interpretation</div><h2>What the results mean for SOMA — and for the field</h2></div>
+  <!-- H1 INTERPRETATION -->
+  <div class="section-header"><div class="section-label">Interpretation</div><h2>The H1 credibility gap: transparent, not fatal</h2></div>
 
   <div class="discussion-section fade-up">
-    <h3>The H1 credibility gap is theoretically informative, not a failure</h3>
-    <p>The gap was uniform across all four CEQ items, both practice types, and both SES groups — a stable expectancy structure that pre-dates the specific exercise delivered. One plausible account is the well-documented cultural expectancy advantage for mindfulness-like practices: body-based, sensory exercises activate pre-existing beliefs about contemplative interventions that analytical exercises cannot easily override. A second concerns the CEQ instrument itself, which asks participants to project future therapeutic benefit before any outcome is known — a forward-looking judgment especially susceptible to pre-existing cultural narratives.</p>
-    <p>Crucially, the credibility gap does <em>not</em> undermine H2. The CEQ assesses expected benefit; the SMS and AES assess experienced mechanisms — and these dissociate. If expectancy were driving responses, the Mindfulness condition (rated as more credible) should score higher on <em>all</em> outcome measures. Instead, Active Control participants scored higher on the AES despite rating the exercise as less credible — the opposite pattern from what demand-characteristics responding would produce.</p>
+    <h3>Why the credibility gap does not undermine the double dissociation</h3>
+    <p>The CEQ assesses anticipated future therapeutic benefit — a forward-looking judgment susceptible to pre-existing cultural beliefs about mindfulness. The SMS and AES assess in-session mechanism engagement. These two things dissociate cleanly, and the pattern runs in the direction that refutes a demand characteristics account: Active Control participants scored <em>higher</em> on the AES despite rating the exercise as <em>less</em> credible. If expectancy were inflating responses, the Mindfulness condition should dominate both measures. It does not.</p>
+    <p>The Active Control was also rated as more cognitively demanding (d = 0.40), consistent with top-down analytical processing being effortful — which may compound the credibility gap independently of the exercise's perceived therapeutic logic. Instruction clarity ratings did not differ between conditions, suggesting the exercises were broadly comprehensible. Future iterations can address the gap through cover story refinement and titrated task density without altering the library's mechanistic architecture.</p>
   </div>
 
-  <div class="discussion-section fade-up">
-    <h3>Equity is achievable as a design constraint, not a post-hoc analysis</h3>
-    <p>Demonstrating that the SES gradient in mindfulness research can be eliminated through deliberate equity-engineering constraints — rather than statistical reweighting or sub-group analysis — represents a qualitatively different contribution to the equity literature, and provides an empirical counterpoint to the widely documented SES gradient in mindfulness programme reach. The equity result is exploratory in our pre-registration, but the effect size is near-zero and the equivalence test is met under the most stringent pre-specified criterion.</p>
-  </div>
-
-  <div class="discussion-section fade-up">
-    <h3>Why this matters: the next step is community use</h3>
-    <p>SOMA's open-science architecture is designed to support cumulative evidence synthesis: because all deployments share a common documented stimulus set with archived version histories, results can be prospectively aggregated across independent studies — including null findings. A registry of SOMA-based studies will be maintained at osf.io/m76cg. Researchers using SOMA are asked to report specific pairing codes (e.g., <code style="font-family:var(--font-mono);font-size:12px;background:var(--slate-100);padding:1px 5px;border-radius:3px">SOMA-M-T01A-P01 / SOMA-C-T01A-P01</code>) in method sections and pre-registrations, enabling pairing-level meta-analysis and the identification of replication gaps as the field accumulates evidence.</p>
-  </div>
-
+  <!-- LINKS -->
   <div style="display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;margin-top:2.5rem">
-    <a class="btn-primary" href="https://osf.io/m76cg" target="_blank" rel="noopener" style="text-decoration:none">Full Pre-registration &amp; Materials ↗</a>
-    <button class="btn-ghost" style="background:var(--slate-100);color:var(--slate-700);border-color:var(--slate-200)" onclick="showPage('how-to-use')">How to Deploy SOMA</button>
+    <a class="btn-primary" href="https://osf.io/m76cg" target="_blank" rel="noopener" style="text-decoration:none">Full Data &amp; Analysis Pipeline ↗</a>
+    <a class="btn-primary" href="https://clinicaltrials.gov/study/NCT07556744" target="_blank" rel="noopener" style="text-decoration:none;background:var(--sage-700)">Pre-registration ↗</a>
+    <button class="btn-ghost" style="background:var(--slate-100);color:var(--slate-700);border-color:var(--slate-200)" onclick="showPage('how-to-use')">Deploy SOMA in your study</button>
   </div>
 </div>
 
@@ -1158,22 +1118,22 @@ const M_PRACTICES=[
 ];
 
 const C_PRACTICES=[
-{id:'SOMA-C-T01A-P01',letter:'A',title:'Environmental Survey',format:'Formal',emoji:'📐',desc:'A systematic formal survey of the immediate physical environment. Participants identify and categorise structural features — surfaces, dimensions, materials — using an engineering framework.',grade:'Grade 6',words:911},
-{id:'SOMA-C-T01B-P02',letter:'B',title:'Life Logistics Planning',format:'Informal',emoji:'📅',desc:'An informal analytical exercise directing attention to practical logistics of daily life — systematically reviewing and categorising tasks, obligations, and scheduling requirements.',grade:'Grade 6',words:933},
-{id:'SOMA-C-T01B-P03',letter:'C',title:'Mental Filing',format:'Formal',emoji:'🗃️',desc:'Directing participants to systematically identify, label, and mentally categorise experience contents — thoughts, sensations, perceptions — as discrete data points to be filed.',grade:'Grade 6',words:932},
-{id:'SOMA-C-T01A-P04',letter:'D',title:'Beverage Quality Check',format:'Informal',emoji:'🧪',desc:'An analytical assessment of a beverage — systematically evaluating temperature, colour, consistency, and visual properties using objective, category-based language. Both conditions drink throughout (motor equivalence preserved).',grade:'Grade 5',words:925},
-{id:'SOMA-C-T02A-P05',letter:'E',title:'Oral Hygiene Analysis',format:'Informal',emoji:'📋',desc:'Reframes toothbrushing as a procedural hygiene assessment — analytically evaluating technique effectiveness, coverage, and sequencing against an objective standard.',grade:'Grade 6',words:949},
-{id:'SOMA-C-T02B-P06',letter:'F',title:'Weekly Schedule Optimization',format:'Formal',emoji:'📅',desc:'A formal analytical exercise on schedule planning. Where the breath would be the mindfulness anchor, the control redirects entirely to a cognitive task — reviewing and restructuring the upcoming week — to maintain mechanistic orthogonality without reintroducing somatic processing.',grade:'Grade 6',words:900},
-{id:'SOMA-C-T03A-P07',letter:'G',title:'Room Geometry Analysis',format:'Formal',emoji:'📐',desc:'A formal precision exercise in spatial measurement. Participants measure environmental distances using gentle deliberate movements as instruments — the body as a calibrated measuring tool, attention directed to external geometry rather than internal sensation. (Note: audio narration uses the practice name "Spatial Measurement Exercise"; "Room Geometry Analysis" is the researcher-facing identifier disambiguating from Practice O.)',grade:'Grade 6',words:908},
-{id:'SOMA-C-T03B-P08',letter:'H',title:'Spatial Navigation Exercise',format:'Informal',emoji:'🗺️',desc:'Reframes walking as a precision navigation task — counting steps, estimating distances, mapping routes through space. Motor equivalence with mindful walking is preserved; attentional object shifts to external spatial measurement.',grade:'Grade 6',words:929},
-{id:'SOMA-C-T04A-P09',letter:'I',title:'Sorting and Grouping',format:'Formal',emoji:'🗂️',desc:'A formal analytical exercise of mental categorisation — sorting and grouping items, concepts, or environmental features into logical taxonomies. Pure cognitive task, decoupled from interoception.',grade:'Grade 6',words:913},
-{id:'SOMA-C-T04A-P10',letter:'J',title:'Task Structure Analysis',format:'Informal',emoji:'🔍',desc:'An informal analytical audit of task structure — breaking activities into component steps, evaluating sequence logic, and identifying inefficiencies. Externally-directed analytical engagement.',grade:'Grade 6',words:911},
-{id:'SOMA-C-T04B-P11',letter:'K',title:'Sound Mapping Exercise',format:'Formal',emoji:'🗺️',desc:'Systematically identifying, categorising, locating, and mapping sounds in the environment — building a factual archive of the soundscape with objective precision.',grade:'Grade 6',words:925},
-{id:'SOMA-C-T04B-P12',letter:'L',title:'Sound Tracking Exercise',format:'Informal',emoji:'📡',desc:'Tracking, classifying, and recording characteristics of environmental sounds — noting start times, durations, and changes. Phase-5 redesign removed an earlier proprioceptive subsection ("Monitor Your Own Movement Noise") to preserve mechanistic orthogonality.',grade:'Grade 6',words:914},
-{id:'SOMA-C-T05A-P13',letter:'M',title:'Meal Organization',format:'Informal',emoji:'🍽️',desc:'An analytical organisation of a meal — categorising food properties (categories, colours, temperatures, cooking methods) while eating. Critical Phase-5 redesign: both conditions now eat throughout practice (motor equivalence). Mindfulness attends to eating sensations; control attends to food properties.',grade:'Grade 6',words:925},
-{id:'SOMA-C-T05B-P14',letter:'N',title:'Seating Area Analysis',format:'Formal',emoji:'🪑',desc:'A formal external-environment analysis — evaluating seating area features (surfaces, lighting, item organisation, spatial layout). Phase-5 redesign: complete redirect from interoceptive body alignment to external environmental features.',grade:'Grade 5',words:931},
-{id:'SOMA-C-T06A-P15',letter:'O',title:'Spatial Measurement Exercise',format:'Formal',emoji:'📏',desc:'A formal calibration practice using gentle deliberate movements as measurement instruments. Phase-5 redesign: original body-scan-with-palpation rewritten as environmental distance measurement — the attentional object shifted from interoception to external geometry while preserving the formal seated/lying format.',grade:'Grade 6',words:918},
-{id:'SOMA-C-T06B-P16',letter:'P',title:'Handwashing Protocol Audit',format:'Informal',emoji:'🧴',desc:'Reframes handwashing as a quality-control protocol audit — analytically evaluating technique coverage, duration, and sequencing against hygiene standards. Phase-5 redesign: tactile attention eliminated and replaced with pure visual observation.',grade:'Grade 6',words:929},
+{id:'SOMA-C-T01A-P01',pdfId:'SOMA-C-P01',letter:'A',title:'Environmental Survey',format:'Formal',emoji:'📐',desc:'A systematic formal survey of the immediate physical environment. Participants identify and categorise structural features — surfaces, dimensions, materials — using an engineering framework.',grade:'Grade 6',words:911},
+{id:'SOMA-C-T01B-P02',pdfId:'SOMA-C-P02',letter:'B',title:'Life Logistics Planning',format:'Informal',emoji:'📅',desc:'An informal analytical exercise directing attention to practical logistics of daily life — systematically reviewing and categorising tasks, obligations, and scheduling requirements.',grade:'Grade 6',words:933},
+{id:'SOMA-C-T01B-P03',pdfId:'SOMA-C-P03',letter:'C',title:'Mental Filing',format:'Formal',emoji:'🗃️',desc:'Directing participants to systematically identify, label, and mentally categorise experience contents — thoughts, sensations, perceptions — as discrete data points to be filed.',grade:'Grade 6',words:932},
+{id:'SOMA-C-T01A-P04',pdfId:'SOMA-C-P04',letter:'D',title:'Beverage Quality Check',format:'Informal',emoji:'🧪',desc:'An analytical assessment of a beverage — systematically evaluating temperature, colour, consistency, and visual properties using objective, category-based language. Both conditions drink throughout (motor equivalence preserved).',grade:'Grade 5',words:925},
+{id:'SOMA-C-T02A-P05',pdfId:'SOMA-C-P05',letter:'E',title:'Oral Hygiene Analysis',format:'Informal',emoji:'📋',desc:'Reframes toothbrushing as a procedural hygiene assessment — analytically evaluating technique effectiveness, coverage, and sequencing against an objective standard.',grade:'Grade 6',words:949},
+{id:'SOMA-C-T02B-P06',pdfId:'SOMA-C-P06',letter:'F',title:'Weekly Schedule Optimization',format:'Formal',emoji:'📅',desc:'A formal analytical exercise on schedule planning. Where the breath would be the mindfulness anchor, the control redirects entirely to a cognitive task — reviewing and restructuring the upcoming week — to maintain mechanistic orthogonality without reintroducing somatic processing.',grade:'Grade 6',words:900},
+{id:'SOMA-C-T03A-P07',pdfId:'SOMA-C-P07',letter:'G',title:'Room Geometry Analysis',format:'Formal',emoji:'📐',desc:'A formal precision exercise in spatial measurement. Participants measure environmental distances using gentle deliberate movements as instruments — the body as a calibrated measuring tool, attention directed to external geometry rather than internal sensation. (Note: audio narration uses the practice name "Spatial Measurement Exercise"; "Room Geometry Analysis" is the researcher-facing identifier disambiguating from Practice O.)',grade:'Grade 6',words:908},
+{id:'SOMA-C-T03B-P08',pdfId:'SOMA-C-P08',letter:'H',title:'Spatial Navigation Exercise',format:'Informal',emoji:'🗺️',desc:'Reframes walking as a precision navigation task — counting steps, estimating distances, mapping routes through space. Motor equivalence with mindful walking is preserved; attentional object shifts to external spatial measurement.',grade:'Grade 6',words:929},
+{id:'SOMA-C-T04A-P09',pdfId:'SOMA-C-P09',letter:'I',title:'Sorting and Grouping',format:'Formal',emoji:'🗂️',desc:'A formal analytical exercise of mental categorisation — sorting and grouping items, concepts, or environmental features into logical taxonomies. Pure cognitive task, decoupled from interoception.',grade:'Grade 6',words:913},
+{id:'SOMA-C-T04A-P10',pdfId:'SOMA-C-P10',letter:'J',title:'Task Structure Analysis',format:'Informal',emoji:'🔍',desc:'An informal analytical audit of task structure — breaking activities into component steps, evaluating sequence logic, and identifying inefficiencies. Externally-directed analytical engagement.',grade:'Grade 6',words:911},
+{id:'SOMA-C-T04B-P11',pdfId:'SOMA-C-P11',letter:'K',title:'Sound Mapping Exercise',format:'Formal',emoji:'🗺️',desc:'Systematically identifying, categorising, locating, and mapping sounds in the environment — building a factual archive of the soundscape with objective precision.',grade:'Grade 6',words:925},
+{id:'SOMA-C-T04B-P12',pdfId:'SOMA-C-P12',letter:'L',title:'Sound Tracking Exercise',format:'Informal',emoji:'📡',desc:'Tracking, classifying, and recording characteristics of environmental sounds — noting start times, durations, and changes. Phase-5 redesign removed an earlier proprioceptive subsection ("Monitor Your Own Movement Noise") to preserve mechanistic orthogonality.',grade:'Grade 6',words:914},
+{id:'SOMA-C-T05A-P13',pdfId:'SOMA-C-P13',letter:'M',title:'Meal Organization',format:'Informal',emoji:'🍽️',desc:'An analytical organisation of a meal — categorising food properties (categories, colours, temperatures, cooking methods) while eating. Critical Phase-5 redesign: both conditions now eat throughout practice (motor equivalence). Mindfulness attends to eating sensations; control attends to food properties.',grade:'Grade 6',words:925},
+{id:'SOMA-C-T05B-P14',pdfId:'SOMA-C-P14',letter:'N',title:'Seating Area Analysis',format:'Formal',emoji:'🪑',desc:'A formal external-environment analysis — evaluating seating area features (surfaces, lighting, item organisation, spatial layout). Phase-5 redesign: complete redirect from interoceptive body alignment to external environmental features.',grade:'Grade 5',words:931},
+{id:'SOMA-C-T06A-P15',pdfId:'SOMA-C-P15',letter:'O',title:'Spatial Measurement Exercise',format:'Formal',emoji:'📏',desc:'A formal calibration practice using gentle deliberate movements as measurement instruments. Phase-5 redesign: original body-scan-with-palpation rewritten as environmental distance measurement — the attentional object shifted from interoception to external geometry while preserving the formal seated/lying format.',grade:'Grade 6',words:918},
+{id:'SOMA-C-T06B-P16',pdfId:'SOMA-C-P16',letter:'P',title:'Handwashing Protocol Audit',format:'Informal',emoji:'🧴',desc:'Reframes handwashing as a quality-control protocol audit — analytically evaluating technique coverage, duration, and sequencing against hygiene standards. Phase-5 redesign: tactile attention eliminated and replaced with pure visual observation.',grade:'Grade 6',words:929},
 ];
 
 const MATRIX=[
@@ -1202,7 +1162,8 @@ function themeCard(t,isCtrl){
 }
 
 function practiceCard(p,isCtrl){
-  const dl=`<a class="btn-icon btn-icon-pdf" href="${BASE}pdfs/${p.id}.pdf" download title="Download PDF">📄</a><a class="btn-icon ${isCtrl?'btn-icon-play-c':'btn-icon-play'}" href="${BASE}audios/${p.id}.mp3" download title="Download audio">▶</a>`;
+  const pdfCode=p.pdfId||p.id;
+  const dl=`<a class="btn-icon btn-icon-pdf" href="${BASE}pdfs/${pdfCode}.pdf" download title="Download PDF">📄</a><a class="btn-icon ${isCtrl?'btn-icon-play-c':'btn-icon-play'}" href="${BASE}audios/${p.id}.mp3" download title="Download audio">▶</a>`;
   const tier=p.tier?`<span>📚 ${p.tier}</span>`:'';
   return `<div class="practice-card ${isCtrl?'ctrl-card':''}" data-format="${p.format}" data-search="${p.title} ${p.format} ${p.desc}"><div class="practice-thumb ${isCtrl?'c-thumb':'m-thumb'}">${p.emoji}</div><div class="practice-card-body"><div class="practice-code">${p.id}</div><div class="practice-title">${p.title}</div><div class="practice-format-tag ${isCtrl?'c-tag':'m-tag'}">${p.format}</div><p class="practice-desc">${p.desc}</p><div class="practice-meta"><span>📖 ${p.grade}</span><span>📝 ${p.words} words</span><span>⏱ ~10 min</span>${tier}</div><div class="practice-actions">${dl}</div></div></div>`;
 }
