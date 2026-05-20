@@ -17,7 +17,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<!-- GA4 Placeholder -->
+<!-- GA4 — Replace G-XXXXXXXXXX with your actual GA4 Measurement ID from analytics.google.com -->
+<!-- If SOMA is hosted on the same domain as your main site, use the SAME Measurement ID -->
+<!-- SOMA visitors will then appear in GA4 under path /SOMA -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-8HC7Q7PBPD"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8HC7Q7PBPD');</script>
 <style>
@@ -451,6 +453,7 @@ footer a:hover{color:var(--sage-300)}
         <button class="btn-primary" onclick="showPage('how-to-use')">How to Use SOMA →</button>
         <button class="btn-ghost" onclick="showPage('library')">Explore Library</button>
         <button class="btn-ghost" onclick="showPage('results')">Validation Results</button>
+        <a class="btn-ghost" href="https://osf.io/preprints/psyarxiv/cp67b_v1" target="_blank" rel="noopener" style="text-decoration:none">📄 Preprint ↗</a>
       </div>
     </div>
   </div>
@@ -993,7 +996,7 @@ footer a:hover{color:var(--sage-300)}
     <div class="citation-box" id="citation-text">
       <button class="copy-btn" onclick="copyCitation(this)">Copy</button>
       Sparacio, A., Ropovik, I., Davies, J., Lee, E., Meissner, T., Spiessens, C., Rodriguez, A., &amp; Eriksson, J. G. (2026). The Standardized Open-source Mindfulness Architecture (SOMA): A Modular, Equity-Engineered Stimulus Library for Mechanistic Mindfulness Research. OSF. https://osf.io/m76cg
-      <div class="citation-note">⚠ Tentative citation. Validation RCT pre-registered on OSF (osf.io/m76cg) and ClinicalTrials.gov (NCT07556744). Check <a href="https://osf.io/m76cg" target="_blank" rel="noopener" style="color:var(--sage-300)">OSF</a> for the latest citation.</div>
+      <div class="citation-note">⚠ Tentative citation — manuscript under review. <a href="https://osf.io/preprints/psyarxiv/cp67b_v1" target="_blank" rel="noopener" style="color:var(--sage-300)">Read the preprint ↗</a> · Validation RCT pre-registered on <a href="https://osf.io/m76cg" target="_blank" rel="noopener" style="color:var(--sage-300)">OSF</a> and ClinicalTrials.gov (NCT07556744).</div>
     </div>
   </div>
 
@@ -1076,7 +1079,7 @@ footer a:hover{color:var(--sage-300)}
 <footer>
   <div class="footer-inner">
     <div class="footer-brand"><h3>SOMA Framework</h3><p>An international open-science initiative bridging the equity gap in mindfulness research through rigorously standardised, freely available materials.</p></div>
-    <div><h4>Repository</h4><a href="https://osf.io/m76cg" target="_blank" rel="noopener">OSF Repository ↗</a><a href="https://github.com/SparacioAlessandro/SOMA" target="_blank" rel="noopener">GitHub ↗</a><a href="https://clinicaltrials.gov/study/NCT07556744" target="_blank" rel="noopener">ClinicalTrials.gov ↗</a></div>
+    <div><h4>Repository</h4><a href="https://osf.io/preprints/psyarxiv/cp67b_v1" target="_blank" rel="noopener">Preprint ↗</a><a href="https://osf.io/m76cg" target="_blank" rel="noopener">OSF Repository ↗</a><a href="https://github.com/SparacioAlessandro/SOMA" target="_blank" rel="noopener">GitHub ↗</a><a href="https://clinicaltrials.gov/study/NCT07556744" target="_blank" rel="noopener">ClinicalTrials.gov ↗</a></div>
     <div><h4>Resources</h4><a href="#" onclick="showPage('how-to-use');return false">How to Use SOMA</a><a href="#" onclick="showPage('results');return false">Validation Results</a><a href="#" onclick="showPage('team');return false">Team</a><a href="#" onclick="showPage('build');return false">How It Was Built</a><a href="#" onclick="showPage('methodology');return false">Methodology</a><a href="#" onclick="showPage('build');setTimeout(()=>document.getElementById('license-section').scrollIntoView({behavior:'smooth'}),100);return false">License &amp; Terms</a></div>
   </div>
   <div class="footer-bottom"><span>© 2026 SOMA Research Consortium</span><span style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,.25)">CC BY-NC-SA 4.0</span></div>
