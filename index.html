@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<!-- GA4 Placeholder -->
+<!-- GA4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-8HC7Q7PBPD"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8HC7Q7PBPD');</script>
 <style>
@@ -705,6 +705,28 @@ footer a:hover{color:var(--sage-300)}
     </div>
   </div>
 
+
+  <!-- BEFORE YOU DEPLOY -->
+  <div style="background:#fff;border:1px solid var(--slate-200);border-left:4px solid var(--sage-500);border-radius:var(--r-lg);padding:1.625rem 1.75rem;margin-bottom:3rem" class="fade-up">
+    <div style="display:flex;align-items:flex-start;gap:1rem">
+      <div style="font-size:22px;flex-shrink:0;margin-top:2px">🔬</div>
+      <div>
+        <h3 style="font-family:var(--font-display);font-size:1.15rem;color:var(--slate-900);font-weight:400;margin-bottom:.625rem">A note on study design</h3>
+        <p style="font-size:13px;color:var(--slate-600);line-height:1.75;margin-bottom:.875rem">SOMA has been validated on <strong>mechanistic outcomes</strong> — specifically the SMS × AES double dissociation and the Semantic Differential composite. Whether the mindfulness arm produces effects on downstream outcomes of interest (stress, anxiety, mood, sleep, and others) is an open empirical question that future studies using SOMA are designed to address. When planning a SOMA-based study, select your primary outcomes based on your theoretical question and conduct power analyses using effect sizes from the broader mindfulness literature rather than the SOMA validation data alone.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.75rem;margin-top:.875rem">
+          <div style="background:var(--sage-50);border-radius:var(--r-md);padding:.875rem 1rem">
+            <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--sage-700);font-weight:600;margin-bottom:.5rem">Pre-register</div>
+            <div style="font-size:12.5px;color:var(--slate-600);line-height:1.65">Register your hypotheses, primary outcomes, and analysis plan before data collection. The SOMA pre-registration at <a href="https://osf.io/m76cg" target="_blank" rel="noopener" style="color:var(--sage-700);font-weight:600">osf.io/m76cg</a> can serve as a template.</div>
+          </div>
+          <div style="background:var(--sage-50);border-radius:var(--r-md);padding:.875rem 1rem">
+            <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--sage-700);font-weight:600;margin-bottom:.5rem">Power Analysis</div>
+            <div style="font-size:12.5px;color:var(--slate-600);line-height:1.65">Conduct an a priori power analysis for your chosen outcome. The SOMA validation effect sizes (SMS <em>d</em> = 0.59; AES <em>d</em> = 0.81) apply to mechanistic outcomes only — not to downstream clinical or psychological outcomes.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- CITATION REMINDER -->
   <div class="htu-cite-block fade-up">
     <div class="htu-cite-icon">
@@ -718,7 +740,7 @@ footer a:hover{color:var(--sage-300)}
     </div>
     <div>
       <h3>Always cite the specific pairing codes</h3>
-      <p>All deployments — single-session, longitudinal, or dismantling — should cite specific pairing codes in their method sections and pre-registrations, e.g., <code>SOMA-M-T03A-P07</code> for the Mindfulness arm and <code>SOMA-C-T03A-P07</code> for its matched Active Control. This is what makes pairing-level meta-analytic synthesis possible across studies that deploy SOMA, and it lets future replications target the exact same materials.</p>
+      <p>All deployments — single-session, longitudinal, or dismantling — should cite specific pairing codes in their method sections <strong>and pre-registrations</strong>, e.g., <code>SOMA-M-T03A-P07</code> for the Mindfulness arm and <code>SOMA-C-T03A-P07</code> for its matched Active Control. This is what makes pairing-level meta-analytic synthesis possible across studies that deploy SOMA, and it lets future replications target the exact same materials.</p>
     </div>
   </div>
 
@@ -1087,33 +1109,33 @@ footer a:hover{color:var(--sage-300)}
 const BASE='https://SparacioAlessandro.github.io/SOMA/';
 
 const M_THEMES=[
-{id:'SOMA-M-T01A',words:195,title:'Being (A)',attitude:'Being',emoji:'🌅',desc:'Introduces Being by contrasting it with "automatic pilot" — moving through daily life physically present but mentally elsewhere. Uses the metaphor of a traveler pausing to notice the texture of a familiar street for the first time.'},
-{id:'SOMA-M-T01B',words:207,title:'Being (B)',attitude:'Being',emoji:'🌊',desc:'Explores the Doing–Being distinction through the image of a fast-moving treadmill. Invites participants to shift from constantly planning and reviewing to resting gently on whatever is here.'},
-{id:'SOMA-M-T02A',words:197,title:'Curiosity (A)',attitude:'Curiosity',emoji:'🏙️',desc:'Cultivates Beginner\'s Mind via the metaphor of a first-time traveler in an unfamiliar city — noticing shapes, colours, and sounds with open, non-judging interest.'},
-{id:'SOMA-M-T02B',words:186,title:'Curiosity (B)',attitude:'Curiosity',emoji:'🔭',desc:'Frames curiosity as the stance of a scientist observing something delicate in nature. Applied to the breath as a vehicle for Beginner\'s Mind.'},
-{id:'SOMA-M-T03A',words:204,title:'Patience (A)',attitude:'Patience',emoji:'🌱',desc:'Uses the image of a gardener who waters a seed but does not pull on the sprout. Patience means allowing experience to unfold at its own pace.'},
-{id:'SOMA-M-T03B',words:208,title:'Patience (B)',attitude:'Patience',emoji:'🚶',desc:'Reframes patience not as passive waiting but as presence. Invites inhabiting each step of a walk as complete in itself, rather than a means to an end.'},
-{id:'SOMA-M-T04A',words:191,title:'Acceptance (A)',attitude:'Acceptance',emoji:'🕊️',desc:'Frames acceptance as dropping the struggle — not agreeing with experience, but ceasing to fight it. The choice to let tension go.'},
-{id:'SOMA-M-T04B',words:190,title:'Acceptance (B)',attitude:'Acceptance',emoji:'🪨',desc:'Uses the tactile metaphor of holding a stone in a clenched fist: the tighter the grip, the more fatigue spreads. Releasing is not defeat — it is allowing what is here to simply be.'},
-{id:'SOMA-M-T05A',words:181,title:'Letting Go (A)',attitude:'Letting Go',emoji:'🎒',desc:'Employs the image of hiking with a heavy backpack filled with rocks — each a worry, a regret. Letting go means noticing the weight and choosing to set the pack down.'},
-{id:'SOMA-M-T05B',words:183,title:'Letting Go (B)',attitude:'Letting Go',emoji:'🏞️',desc:'Uses a river metaphor: clinging to a heavy rock while the current rushes past exhausts us. Letting go means releasing and flowing with what is naturally here.'},
-{id:'SOMA-M-T06A',words:199,title:'Gentleness (A)',attitude:'Gentleness',emoji:'🌸',desc:'Opens with the image of touching raw skin with great care. Gentleness as a quality of attention: the same tender handling we would offer a wound, applied to inner experience.'},
-{id:'SOMA-M-T06B',words:194,title:'Gentleness (B)',attitude:'Gentleness',emoji:'🐦',desc:'Presents the image of cradling a small fragile bird: too loose and it falls; too tight and it is crushed. The right hold is steady yet soft.'},
+{id:'SOMA-M-T01A',title:'Being (A)',attitude:'Being',emoji:'🌅',desc:'Introduces Being by contrasting it with "automatic pilot" — moving through daily life physically present but mentally elsewhere. Uses the metaphor of a traveler pausing to notice the texture of a familiar street for the first time.'},
+{id:'SOMA-M-T01B',title:'Being (B)',attitude:'Being',emoji:'🌊',desc:'Explores the Doing–Being distinction through the image of a fast-moving treadmill. Invites participants to shift from constantly planning and reviewing to resting gently on whatever is here.'},
+{id:'SOMA-M-T02A',title:'Curiosity (A)',attitude:'Curiosity',emoji:'🏙️',desc:'Cultivates Beginner\'s Mind via the metaphor of a first-time traveler in an unfamiliar city — noticing shapes, colours, and sounds with open, non-judging interest.'},
+{id:'SOMA-M-T02B',title:'Curiosity (B)',attitude:'Curiosity',emoji:'🔭',desc:'Frames curiosity as the stance of a scientist observing something delicate in nature. Applied to the breath as a vehicle for Beginner\'s Mind.'},
+{id:'SOMA-M-T03A',title:'Patience (A)',attitude:'Patience',emoji:'🌱',desc:'Uses the image of a gardener who waters a seed but does not pull on the sprout. Patience means allowing experience to unfold at its own pace.'},
+{id:'SOMA-M-T03B',title:'Patience (B)',attitude:'Patience',emoji:'🚶',desc:'Reframes patience not as passive waiting but as presence. Invites inhabiting each step of a walk as complete in itself, rather than a means to an end.'},
+{id:'SOMA-M-T04A',title:'Acceptance (A)',attitude:'Acceptance',emoji:'🕊️',desc:'Frames acceptance as dropping the struggle — not agreeing with experience, but ceasing to fight it. The choice to let tension go.'},
+{id:'SOMA-M-T04B',title:'Acceptance (B)',attitude:'Acceptance',emoji:'🪨',desc:'Uses the tactile metaphor of holding a stone in a clenched fist: the tighter the grip, the more fatigue spreads. Releasing is not defeat — it is allowing what is here to simply be.'},
+{id:'SOMA-M-T05A',title:'Letting Go (A)',attitude:'Letting Go',emoji:'🎒',desc:'Employs the image of hiking with a heavy backpack filled with rocks — each a worry, a regret. Letting go means noticing the weight and choosing to set the pack down.'},
+{id:'SOMA-M-T05B',title:'Letting Go (B)',attitude:'Letting Go',emoji:'🏞️',desc:'Uses a river metaphor: clinging to a heavy rock while the current rushes past exhausts us. Letting go means releasing and flowing with what is naturally here.'},
+{id:'SOMA-M-T06A',title:'Gentleness (A)',attitude:'Gentleness',emoji:'🌸',desc:'Opens with the image of touching raw skin with great care. Gentleness as a quality of attention: the same tender handling we would offer a wound, applied to inner experience.'},
+{id:'SOMA-M-T06B',title:'Gentleness (B)',attitude:'Gentleness',emoji:'🐦',desc:'Presents the image of cradling a small fragile bird: too loose and it falls; too tight and it is crushed. The right hold is steady yet soft.'},
 ];
 
 const C_THEMES=[
-{id:'SOMA-C-T01A',words:194,title:'Stability (A)',attitude:'Stability',emoji:'🏗️',desc:'Reframes sitting still as active engineering work. Uses the image of a steel bridge: every beam actively holds its position against gravity. Stability is treated as a continuous biomechanical state requiring monitoring and correction — not passive rest.'},
-{id:'SOMA-C-T01B',words:194,title:'Stability (B)',attitude:'Stability',emoji:'🏙️',desc:'Builds on the engineering metaphor with a skyscraper resisting wind load. Stillness reframed as the active management of stress, gravity, and balance. Establishes the analyst\'s mindset: structures must be inspected and maintained, not assumed.'},
-{id:'SOMA-C-T02A',words:203,title:'Organization (A)',attitude:'Organization',emoji:'🗂️',desc:'Frames organization as the structured antidote to a "scattered" reactive state. Participants engage the planning mind — deliberately ordering attention, prioritising tasks, and applying logical structure to daily complexity.'},
-{id:'SOMA-C-T02B',words:193,title:'Organization (B)',attitude:'Organization',emoji:'📋',desc:'Distinguishes reactive mode from organizational mode. The frame: the day is full of small facts — dates, times, locations, items — waiting to be sorted into a clear logical structure rather than absorbed sensorially.'},
-{id:'SOMA-C-T03A',words:192,title:'Synchronization (A)',attitude:'Synchronization',emoji:'🐦',desc:'Uses the metaphor of a flock of birds turning in unison — coordinated timing produced not by force but by careful calibration. Synchronization is small, precise adjustments until separate elements click into alignment.'},
-{id:'SOMA-C-T03B',words:202,title:'Synchronization (B)',attitude:'Synchronization',emoji:'🎼',desc:'Uses the metaphor of an orchestra tuning before performance. Every musician matches the same reference note; if anyone is even slightly off, the sound breaks. Frames synchronization as resetting timing through deliberate, careful adjustments.'},
-{id:'SOMA-C-T04A',words:191,title:'Analysis (A)',attitude:'Analysis',emoji:'🔧',desc:'Introduces the auditor or engineer mindset: sharp, data-driven, fact-seeking evaluation of a complex system. Ordinary environments become a series of tasks to be solved and components to be inspected for errors or inefficiency.'},
-{id:'SOMA-C-T04B',words:196,title:'Analysis (B)',attitude:'Analysis',emoji:'📊',desc:'Applies the analytical frame as the careful Archivist — recording the technical facts of a site for a permanent ledger. Sensory inputs become data points to be identified, classified, and entered into the record with objective precision.'},
-{id:'SOMA-C-T05A',words:198,title:'Orientation (A)',attitude:'Orientation',emoji:'🧭',desc:'Uses the pilot as central metaphor: constantly scanning instruments, checking altitude, verifying coordinates, correcting drift. Orientation is the practice of actively navigating rather than drifting on auto-pilot.'},
-{id:'SOMA-C-T05B',words:207,title:'Orientation (B)',attitude:'Orientation',emoji:'✈️',desc:'Frames orientation through the mechanical drift principle: any complex system slowly drifts off target over time. Reaching a destination requires repeatedly verifying current position and steering back into alignment with measurable accuracy.'},
-{id:'SOMA-C-T06A',words:210,title:'Calibration (A)',attitude:'Calibration',emoji:'🎻',desc:'Uses the musician tuning a string instrument: testing each string, measuring vibration against the exact reference frequency, adjusting tension until pitch is precisely correct. Calibration is resetting a system to a measurable standard.'},
-{id:'SOMA-C-T06B',words:198,title:'Calibration (B)',attitude:'Calibration',emoji:'⚖️',desc:'Frames the mind as a high-precision laboratory scale that accumulates error over time. Calibration is the act of identifying and eliminating drift — pressing the "Tare" button to zero the instrument before measurement.'},
+{id:'SOMA-C-T01A',title:'Stability (A)',attitude:'Stability',emoji:'🏗️',desc:'Reframes sitting still as active engineering work. Uses the image of a steel bridge: every beam actively holds its position against gravity. Stability is treated as a continuous biomechanical state requiring monitoring and correction — not passive rest.'},
+{id:'SOMA-C-T01B',title:'Stability (B)',attitude:'Stability',emoji:'🏙️',desc:'Builds on the engineering metaphor with a skyscraper resisting wind load. Stillness reframed as the active management of stress, gravity, and balance. Establishes the analyst\'s mindset: structures must be inspected and maintained, not assumed.'},
+{id:'SOMA-C-T02A',title:'Organization (A)',attitude:'Organization',emoji:'🗂️',desc:'Frames organization as the structured antidote to a "scattered" reactive state. Participants engage the planning mind — deliberately ordering attention, prioritising tasks, and applying logical structure to daily complexity.'},
+{id:'SOMA-C-T02B',title:'Organization (B)',attitude:'Organization',emoji:'📋',desc:'Distinguishes reactive mode from organizational mode. The frame: the day is full of small facts — dates, times, locations, items — waiting to be sorted into a clear logical structure rather than absorbed sensorially.'},
+{id:'SOMA-C-T03A',title:'Synchronization (A)',attitude:'Synchronization',emoji:'🐦',desc:'Uses the metaphor of a flock of birds turning in unison — coordinated timing produced not by force but by careful calibration. Synchronization is small, precise adjustments until separate elements click into alignment.'},
+{id:'SOMA-C-T03B',title:'Synchronization (B)',attitude:'Synchronization',emoji:'🎼',desc:'Uses the metaphor of an orchestra tuning before performance. Every musician matches the same reference note; if anyone is even slightly off, the sound breaks. Frames synchronization as resetting timing through deliberate, careful adjustments.'},
+{id:'SOMA-C-T04A',title:'Analysis (A)',attitude:'Analysis',emoji:'🔧',desc:'Introduces the auditor or engineer mindset: sharp, data-driven, fact-seeking evaluation of a complex system. Ordinary environments become a series of tasks to be solved and components to be inspected for errors or inefficiency.'},
+{id:'SOMA-C-T04B',title:'Analysis (B)',attitude:'Analysis',emoji:'📊',desc:'Applies the analytical frame as the careful Archivist — recording the technical facts of a site for a permanent ledger. Sensory inputs become data points to be identified, classified, and entered into the record with objective precision.'},
+{id:'SOMA-C-T05A',title:'Orientation (A)',attitude:'Orientation',emoji:'🧭',desc:'Uses the pilot as central metaphor: constantly scanning instruments, checking altitude, verifying coordinates, correcting drift. Orientation is the practice of actively navigating rather than drifting on auto-pilot.'},
+{id:'SOMA-C-T05B',title:'Orientation (B)',attitude:'Orientation',emoji:'✈️',desc:'Frames orientation through the mechanical drift principle: any complex system slowly drifts off target over time. Reaching a destination requires repeatedly verifying current position and steering back into alignment with measurable accuracy.'},
+{id:'SOMA-C-T06A',title:'Calibration (A)',attitude:'Calibration',emoji:'🎻',desc:'Uses the musician tuning a string instrument: testing each string, measuring vibration against the exact reference frequency, adjusting tension until pitch is precisely correct. Calibration is resetting a system to a measurable standard.'},
+{id:'SOMA-C-T06B',title:'Calibration (B)',attitude:'Calibration',emoji:'⚖️',desc:'Frames the mind as a high-precision laboratory scale that accumulates error over time. Calibration is the act of identifying and eliminating drift — pressing the "Tare" button to zero the instrument before measurement.'},
 ];
 
 const M_PRACTICES=[
