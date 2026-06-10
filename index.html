@@ -382,6 +382,10 @@ footer a:hover{color:var(--sage-300)}
 .discussion-section p{font-size:13.5px;color:var(--slate-600);line-height:1.75;margin-bottom:.625rem}
 .discussion-section p:last-child{margin-bottom:0}
 
+details summary::-webkit-details-marker{display:none}
+details[open] summary span{transform:rotate(45deg)}
+details summary span{transition:transform .2s;display:inline-block}
+details summary:hover{color:var(--sage-700)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .fade-up{animation:fadeUp .45s ease-out both}
 
@@ -712,7 +716,7 @@ footer a:hover{color:var(--sage-300)}
       <p>The English baseline is finalized. Translation protocols and back-translation guidelines for non-Anglophone deployments will be released on OSF, with controlled-vocabulary glossaries to preserve the Attentional Object Shift principle across languages.</p>
       <div class="deploy-card-example">
         <strong>Status</strong>
-        English (v1.0) released. Translation protocol documentation forthcoming on osf.io/m76cg. Researchers interested in leading a translation effort are encouraged to contact the corresponding author.
+        English (v1.0) released. Cross-language adaptation is planned as a next step, following a structured forward/back-translation protocol with mechanistic auditing to preserve the Attentional Object Shift principle. Researchers interested in leading a translation effort are encouraged to contact the corresponding author.
       </div>
     </div>
   </div>
@@ -754,6 +758,33 @@ footer a:hover{color:var(--sage-300)}
       <h3>Always cite the specific pairing codes</h3>
       <p>All deployments — single-session, longitudinal, or dismantling — should cite specific pairing codes in their method sections <strong>and pre-registrations</strong>, e.g., <code>SOMA-M-T03A-P07</code> for the Mindfulness arm and <code>SOMA-C-T03A-P07</code> for its matched Active Control. This is what makes pairing-level meta-analytic synthesis possible across studies that deploy SOMA, and it lets future replications target the exact same materials.</p>
     </div>
+  </div>
+
+
+  <!-- FAQ -->
+  <div class="section-header"><div class="section-label">Common Questions</div><h2>Frequently asked questions</h2></div>
+  <div style="display:flex;flex-direction:column;gap:.625rem;margin-bottom:3rem">
+    <details style="background:#fff;border:1px solid var(--slate-200);border-radius:var(--r-md);padding:0;overflow:hidden">
+      <summary style="padding:1rem 1.25rem;font-size:14px;font-weight:600;color:var(--slate-800);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center">Do I need permission to use SOMA?<span style="color:var(--sage-600);font-size:18px">+</span></summary>
+      <p style="padding:0 1.25rem 1.125rem;font-size:13px;color:var(--slate-600);line-height:1.7">No. SOMA is released under CC BY-NC-SA 4.0 — you may use it freely for academic, clinical, and public research without contacting us. You must cite the library, use it non-commercially, and share adaptations under the same license. For commercial use, contact the A*STAR IHDP technology transfer office.</p>
+    </details>
+    <details style="background:#fff;border:1px solid var(--slate-200);border-radius:var(--r-md);padding:0;overflow:hidden">
+      <summary style="padding:1rem 1.25rem;font-size:14px;font-weight:600;color:var(--slate-800);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center">Can I modify the scripts for my study?<span style="color:var(--sage-600);font-size:18px">+</span></summary>
+      <p style="padding:0 1.25rem 1.125rem;font-size:13px;color:var(--slate-600);line-height:1.7">Yes, under the ShareAlike terms — but be aware that any modification invalidates the validation evidence for that asset. If you modify a script, report it transparently in your methods section (e.g., "adapted from SOMA-M-T03A-P07") and avoid claiming the validated mechanistic properties for the modified version. For most designs, deploying assets unmodified is scientifically preferable.</p>
+    </details>
+    <details style="background:#fff;border:1px solid var(--slate-200);border-radius:var(--r-md);padding:0;overflow:hidden">
+      <summary style="padding:1rem 1.25rem;font-size:14px;font-weight:600;color:var(--slate-800);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center">Which outcomes can I study with SOMA?<span style="color:var(--sage-600);font-size:18px">+</span></summary>
+      <p style="padding:0 1.25rem 1.125rem;font-size:13px;color:var(--slate-600);line-height:1.7">Any outcome your theoretical question requires — SOMA constrains the comparison, not the outcome. The library has been validated on mechanistic outcomes (SMS × AES dissociation); whether the mindfulness arm affects stress, mood, sleep, or other downstream outcomes is an open question your study can address. Select outcomes based on your hypothesis and power your study using effect sizes from the broader mindfulness literature.</p>
+    </details>
+    <details style="background:#fff;border:1px solid var(--slate-200);border-radius:var(--r-md);padding:0;overflow:hidden">
+      <summary style="padding:1rem 1.25rem;font-size:14px;font-weight:600;color:var(--slate-800);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center">How long is one session?<span style="color:var(--sage-600);font-size:18px">+</span></summary>
+      <p style="padding:0 1.25rem 1.125rem;font-size:13px;color:var(--slate-600);line-height:1.7">A full session (Intro + Universal Bridge + Practice) is approximately 12 minutes per arm. Intros alone are ~2 minutes; practices alone are ~10 minutes. The three-file format lets you deploy components separately for dismantling designs.</p>
+    </details>
+    <details style="background:#fff;border:1px solid var(--slate-200);border-radius:var(--r-md);padding:0;overflow:hidden">
+      <summary style="padding:1rem 1.25rem;font-size:14px;font-weight:600;color:var(--slate-800);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center">Is SOMA available in languages other than English?<span style="color:var(--sage-600);font-size:18px">+</span></summary>
+      <p style="padding:0 1.25rem 1.125rem;font-size:13px;color:var(--slate-600);line-height:1.7">Currently only in English. Cross-language adaptation is planned as a next step, following a structured forward/back-translation protocol with mechanistic auditing to preserve the Attentional Object Shift principle across languages. If you are interested in leading a translation effort in your language, please contact the corresponding author.</p>
+    </details>
+
   </div>
 
   <div style="display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;margin-top:2rem">
@@ -1209,14 +1240,14 @@ const MATRIX=[
 
 // ═══ RENDER ═══
 function themeCard(t,isCtrl){
-  const dl=`<a class="btn-icon btn-icon-pdf" href="${BASE}pdfs/${t.id}.pdf" download title="Download PDF">📄</a><a class="btn-icon ${isCtrl?'btn-icon-play-c':'btn-icon-play'}" href="${BASE}audios/${t.id}.mp3" download title="Download audio">▶</a>`;
+  const dl=`<a class="btn-icon btn-icon-pdf" href="${BASE}pdfs/${t.id}.pdf" download onclick="trackDl('pdf','${t.id}')" title="Download PDF script">📄</a><button class="btn-icon ${isCtrl?'btn-icon-play-c':'btn-icon-play'}" onclick="togglePlay('${t.id}',this)" title="Listen in browser">▶</button><a class="btn-icon ${isCtrl?'btn-icon-play-c':'btn-icon-play'}" href="${BASE}audios/${t.id}.mp3" download onclick="trackDl('audio','${t.id}')" title="Download audio file">⬇</a>`;
   const meta=t.words?`<div style="display:flex;gap:.75rem;font-size:11px;color:var(--slate-500);margin-bottom:.75rem;flex-wrap:wrap"><span>📝 ${t.words} words</span><span>⏱ ~2 min</span></div>`:'';
   return `<div class="theme-card ${isCtrl?'ctrl-card':''}" data-search="${t.title} ${t.attitude} ${t.desc}"><div class="theme-card-header"><div class="theme-emoji ${isCtrl?'ctrl-emoji':''}">${t.emoji}</div><div class="theme-meta"><div class="theme-code">${t.id}</div><div class="theme-title">${t.title}</div><div class="theme-variant ${isCtrl?'ctrl-tag':''}">${isCtrl?'Analytical Framing':'Attitudinal Framing'}</div></div></div><div class="theme-card-body"><p class="theme-desc">${t.desc}</p>${meta}<div class="theme-actions">${dl}</div></div></div>`;
 }
 
 function practiceCard(p,isCtrl){
   const pdfCode=p.pdfId||p.id;
-  const dl=`<a class="btn-icon btn-icon-pdf" href="${BASE}pdfs/${pdfCode}.pdf" download title="Download PDF">📄</a><a class="btn-icon ${isCtrl?'btn-icon-play-c':'btn-icon-play'}" href="${BASE}audios/${p.id}.mp3" download title="Download audio">▶</a>`;
+  const dl=`<a class="btn-icon btn-icon-pdf" href="${BASE}pdfs/${pdfCode}.pdf" download onclick="trackDl('pdf','${pdfCode}')" title="Download PDF script">📄</a><button class="btn-icon ${isCtrl?'btn-icon-play-c':'btn-icon-play'}" onclick="togglePlay('${p.id}',this)" title="Listen in browser">▶</button><a class="btn-icon ${isCtrl?'btn-icon-play-c':'btn-icon-play'}" href="${BASE}audios/${p.id}.mp3" download onclick="trackDl('audio','${p.id}')" title="Download audio file">⬇</a>`;
   const tier=p.tier?`<span>📚 ${p.tier}</span>`:'';
   return `<div class="practice-card ${isCtrl?'ctrl-card':''}" data-format="${p.format}" data-search="${p.title} ${p.format} ${p.desc}"><div class="practice-thumb ${isCtrl?'c-thumb':'m-thumb'}">${p.emoji}</div><div class="practice-card-body"><div class="practice-code">${p.id}</div><div class="practice-title">${p.title}</div><div class="practice-format-tag ${isCtrl?'c-tag':'m-tag'}">${p.format}</div><p class="practice-desc">${p.desc}</p><div class="practice-meta"><span>📖 ${p.grade}</span><span>📝 ${p.words} words</span><span>⏱ ~10 min</span>${tier}</div><div class="practice-actions">${dl}</div></div></div>`;
 }
@@ -1260,10 +1291,10 @@ function renderMatrix(){
     <td>${r.letter}</td><td>${r.theme}</td><td>${r.mPractice}</td><td>${r.cTheme}</td><td>${r.cPractice}</td>
     <td>${r.format}</td><td><span class="m-code">${r.m}</span></td><td><span class="c-code">${r.c}</span></td>
     <td style="text-align:center;white-space:nowrap">
-      <a style="display:inline-flex;width:26px;height:26px;align-items:center;justify-content:center;margin:1px;font-size:11px;border-radius:4px;background:var(--sage-50);color:var(--sage-700);text-decoration:none" href="${BASE}pdfs/${r.m}.pdf" download title="M PDF">📄</a>
-      <a style="display:inline-flex;width:26px;height:26px;align-items:center;justify-content:center;margin:1px;font-size:11px;border-radius:4px;background:var(--sage-50);color:var(--sage-700);text-decoration:none" href="${BASE}audios/${r.m}.mp3" download title="M Audio">▶</a>
-      <a style="display:inline-flex;width:26px;height:26px;align-items:center;justify-content:center;margin:1px;font-size:11px;border-radius:4px;background:var(--amber-50);color:var(--amber-700);text-decoration:none" href="${BASE}pdfs/${r.c}.pdf" download title="C PDF">📄</a>
-      <a style="display:inline-flex;width:26px;height:26px;align-items:center;justify-content:center;margin:1px;font-size:11px;border-radius:4px;background:var(--amber-50);color:var(--amber-700);text-decoration:none" href="${BASE}audios/${r.c}.mp3" download title="C Audio">▶</a>
+      <a style="display:inline-flex;width:26px;height:26px;align-items:center;justify-content:center;margin:1px;font-size:11px;border-radius:4px;background:var(--sage-50);color:var(--sage-700);text-decoration:none" href="${BASE}pdfs/${r.m}.pdf" download onclick="trackDl('pdf','${r.m}')" title="M PDF">📄</a>
+      <a style="display:inline-flex;width:26px;height:26px;align-items:center;justify-content:center;margin:1px;font-size:11px;border-radius:4px;background:var(--sage-50);color:var(--sage-700);text-decoration:none" href="${BASE}audios/${r.m}.mp3" download onclick="trackDl('audio','${r.m}')" title="M Audio">▶</a>
+      <a style="display:inline-flex;width:26px;height:26px;align-items:center;justify-content:center;margin:1px;font-size:11px;border-radius:4px;background:var(--amber-50);color:var(--amber-700);text-decoration:none" href="${BASE}pdfs/${r.c}.pdf" download onclick="trackDl('pdf','${r.c}')" title="C PDF">📄</a>
+      <a style="display:inline-flex;width:26px;height:26px;align-items:center;justify-content:center;margin:1px;font-size:11px;border-radius:4px;background:var(--amber-50);color:var(--amber-700);text-decoration:none" href="${BASE}audios/${r.c}.mp3" download onclick="trackDl('audio','${r.c}')" title="C Audio">▶</a>
     </td>
   </tr>`).join('')}</tbody>`;
 }
@@ -1285,6 +1316,26 @@ function scrollToSection(id,e){
 function copyCitation(btn){
   const text='Sparacio, A., Ropovik, I., Davies, J., Lee, E., Meissner, T., Spiessens, C., Rodriguez, A., & Eriksson, J. G. (2026). The Standardized Open-source Mindfulness Architecture (SOMA): A Modular, Equity-Engineered Stimulus Library for Mechanistic Mindfulness Research. OSF. https://osf.io/m76cg';
   navigator.clipboard.writeText(text).then(()=>{btn.textContent='Copied ✓';btn.classList.add('copied');setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied');},2000);});
+}
+
+// ═══ AUDIO PLAYER + GA4 TRACKING ═══
+let currentAudio=null,currentBtn=null;
+function trackDl(type,id){if(typeof gtag==='function')gtag('event','download',{file_type:type,file_name:id});}
+function togglePlay(id,btn){
+  if(currentAudio&&currentBtn===btn){
+    if(currentAudio.paused){currentAudio.play();btn.textContent='⏸';}
+    else{currentAudio.pause();btn.textContent='▶';}
+    return;
+  }
+  if(currentAudio){currentAudio.pause();if(currentBtn)currentBtn.textContent='▶';}
+  currentAudio=new Audio(`${BASE}audios/${id}.mp3`);
+  currentBtn=btn;
+  btn.textContent='…';
+  currentAudio.play().then(()=>{
+    btn.textContent='⏸';
+    if(typeof gtag==='function')gtag('event','audio_play',{file_name:id});
+  }).catch(()=>{btn.textContent='▶';});
+  currentAudio.onended=()=>{btn.textContent='▶';currentAudio=null;currentBtn=null;};
 }
 
 renderLibrary();renderMatrix();
