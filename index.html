@@ -404,6 +404,83 @@ details summary:hover{color:var(--sage-700)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .fade-up{animation:fadeUp .45s ease-out both}
 
+
+/* ─── SOMA USE REGISTRY ─── */
+/* All registry components share the .reg-* prefix. Every CTA carries
+   data-registry-cta="<location>"; the URL is set once in SOMA_REGISTRY (script). */
+.reg-eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber-700);margin-bottom:.75rem;display:flex;align-items:center;gap:8px}
+.reg-eyebrow::before{content:'';display:inline-block;width:16px;height:1px;background:var(--amber-600)}
+.reg-cta{text-decoration:none;background:var(--sage-700);box-shadow:inset 0 -2px 0 var(--amber-500);padding:13px 24px;font-size:13.5px}
+.reg-cta:hover{background:var(--sage-800);box-shadow:inset 0 -2px 0 var(--amber-500),0 4px 12px rgba(54,90,65,.28)}
+.reg-cta .reg-arrow{color:var(--amber-200);transition:transform .2s}
+.reg-cta:hover .reg-arrow{transform:translateX(3px)}
+.reg-cta:focus-visible,.reg-link:focus-visible,footer a.reg-footer-link:focus-visible{outline:2px solid var(--amber-500);outline-offset:3px}
+.reg-cta-sm{padding:10px 18px;font-size:12.5px}
+
+/* Workflow: Select → Register → Contribute (How to Use) */
+.reg-flow-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--warm-200);border-top:1px solid var(--warm-200)}
+.reg-flow-step{background:#fff;padding:1.1rem 1.25rem 1.2rem}
+.reg-flow-step-head{display:flex;align-items:center;gap:.5rem;margin-bottom:.35rem;flex-wrap:wrap}
+.reg-flow-num{width:22px;height:22px;border-radius:50%;background:var(--sage-700);color:#fff;font-family:var(--font-display);font-size:.85rem;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.reg-flow-step h3{font-family:var(--font-display);font-size:1.15rem;font-weight:400;color:var(--slate-900);line-height:1.2}
+.reg-flow-tag{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--amber-700);background:var(--amber-50);padding:2px 8px;border-radius:20px}
+.reg-flow-step p{font-size:12.5px;color:var(--slate-600);line-height:1.6}
+
+/* Full registry feature (How to Use) */
+.reg-feature{scroll-margin-top:84px;background:linear-gradient(135deg,var(--warm-100) 0%,#fff 62%);border:1px solid var(--warm-200);border-radius:var(--r-xl);padding:2.25rem 2.25rem 2rem;margin-bottom:3rem;box-shadow:var(--shadow-md)}
+.reg-feature-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:2.25rem;align-items:center}
+.reg-feature h2{font-family:var(--font-display);font-size:1.95rem;font-weight:400;color:var(--slate-900);line-height:1.18;margin-bottom:.9rem}
+.reg-lead{font-size:15px;color:var(--slate-700);line-height:1.7;margin-bottom:.7rem}
+.reg-body{font-size:13.5px;color:var(--slate-600);line-height:1.75;margin-bottom:.7rem}
+.reg-open{font-size:13.5px;color:var(--sage-800);line-height:1.6;font-weight:600;margin-bottom:1rem}
+.reg-chips{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1.35rem;list-style:none}
+.reg-chip{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.03em;color:var(--sage-700);background:#fff;border:1px solid var(--sage-200);padding:4px 11px;border-radius:20px;white-space:nowrap}
+.reg-chip svg{flex-shrink:0}
+.reg-note{font-size:12px;color:var(--slate-500);line-height:1.6;margin-top:.85rem}
+.reg-privacy{display:flex;gap:.55rem;align-items:flex-start;font-size:11.5px;color:var(--slate-500);line-height:1.6;margin-top:.9rem;padding-top:.85rem;border-top:1px dashed var(--warm-300)}
+.reg-privacy svg{flex-shrink:0;margin-top:2px}
+.reg-visual{margin:0}
+.reg-visual img{width:100%;height:auto;display:block;border-radius:var(--r-lg);border:1px solid var(--warm-200);box-shadow:var(--shadow-lg)}
+.reg-why{margin-top:2rem;padding-top:1.6rem;border-top:1px solid var(--warm-200)}
+.reg-why-label{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-700);margin-bottom:1rem}
+.reg-why-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.reg-why-item{display:flex;gap:.8rem;align-items:flex-start}
+.reg-why-icon{width:36px;height:36px;border-radius:var(--r-md);background:var(--sage-50);border:1px solid var(--sage-100);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.reg-why-item h4{font-size:13.5px;font-weight:600;color:var(--slate-900);margin-bottom:2px}
+.reg-why-item p{font-size:12.5px;color:var(--slate-600);line-height:1.6}
+
+/* Future "Studies using SOMA" list: hidden until real, opt-in entries exist */
+.reg-deployments{margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid var(--warm-200)}
+.reg-deployments[hidden]{display:none}
+.reg-deploy-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.75rem;list-style:none}
+.reg-deploy-item{background:#fff;border:1px solid var(--slate-200);border-radius:var(--r-md);padding:.9rem 1rem;font-size:12.5px;color:var(--slate-600)}
+.reg-deploy-item strong{display:block;color:var(--slate-900);font-size:13.5px;margin-bottom:3px}
+
+/* Compact homepage CTA */
+.reg-home{background:#fff;border:1px solid var(--warm-200);border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-md);margin-bottom:1rem}
+.reg-home-banner{display:block;width:100%;height:auto;border-bottom:1px solid var(--warm-200)}
+.reg-home-body{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2rem;align-items:center;padding:1.75rem 2rem 1.9rem}
+.reg-home-body h2{font-family:var(--font-display);font-size:1.6rem;font-weight:400;color:var(--slate-900);line-height:1.2;margin-bottom:.45rem}
+.reg-home-body p{font-size:13.5px;color:var(--slate-600);line-height:1.7;max-width:640px}
+.reg-home-action{display:flex;flex-direction:column;align-items:flex-start;gap:.55rem}
+.reg-micro{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.04em;color:var(--slate-500)}
+
+/* Slim Matrix callout */
+.reg-callout{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;background:var(--sage-50);border:1px solid var(--sage-100);border-radius:var(--r-lg);padding:1.15rem 1.5rem;margin:-1.5rem 0 3.5rem}
+.reg-callout h3{font-family:var(--font-display);font-size:1.15rem;font-weight:400;color:var(--slate-900);margin-bottom:2px}
+.reg-callout p{font-size:13px;color:var(--slate-600);line-height:1.6;max-width:640px}
+.reg-link{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;font-size:13px;font-weight:600;color:var(--sage-700);text-decoration:none;padding:9px 16px;border:1px solid var(--sage-300);border-radius:var(--r-md);background:#fff;transition:all .15s;flex-shrink:0}
+.reg-link:hover{background:var(--sage-700);border-color:var(--sage-700);color:#fff}
+
+@media(max-width:900px){
+  .reg-feature{padding:1.6rem 1.25rem 1.5rem}
+  .reg-feature-grid{grid-template-columns:1fr;gap:1.75rem}
+  .reg-feature h2{font-size:1.6rem}
+  .reg-why-grid{grid-template-columns:1fr;gap:.9rem}
+  .reg-flow-steps{grid-template-columns:1fr}
+  .reg-home-body{grid-template-columns:1fr;gap:1.1rem;padding:1.4rem 1.25rem 1.5rem}
+  .reg-callout{flex-direction:column;align-items:flex-start;gap:.85rem;padding:1.1rem 1.15rem}
+}
 @media(max-width:900px){
   .pillars,.counter-grid,.build-grid{grid-template-columns:1fr}
   .hero{padding:2.5rem 1.75rem}
@@ -613,6 +690,22 @@ details summary:hover{color:var(--sage-700)}
   <div style="display:flex;justify-content:center;margin-bottom:3.5rem">
     <button class="btn-primary" onclick="showPage('results')" style="background:var(--sage-700)">See Full Validation Results →</button>
   </div>
+
+  <!-- ═══ SOMA USE REGISTRY: compact homepage discovery CTA ═══ -->
+  <section class="reg-home fade-up" aria-labelledby="reg-home-title">
+    <img class="reg-home-banner" src="images/soma-registry-banner-2000.jpg" srcset="images/soma-registry-banner-1000.jpg 1000w, images/soma-registry-banner-2000.jpg 2000w" sizes="(max-width: 1200px) 100vw, 1136px" width="2000" height="667" alt="SOMA Use Registry banner representing optional registration of planned and ongoing studies." loading="lazy" decoding="async">
+    <div class="reg-home-body">
+      <div>
+        <div class="reg-eyebrow">SOMA Use Registry</div>
+        <h2 id="reg-home-title">Using SOMA in your research?</h2>
+        <p>Planning, running, or completing a study with SOMA? Register your deployment and help us understand how the resource is being used across laboratories, populations, languages, and research questions.</p>
+      </div>
+      <div class="reg-home-action">
+        <a class="btn-primary reg-cta" href="https://docs.google.com/forms/d/e/1FAIpQLSeyZkRdwa8DGj1fvbUCmC82gZVargCril6irBmLbGKD0cgEXg/viewform" target="_blank" rel="noopener noreferrer" data-registry-cta="homepage" aria-label="Register a SOMA study (opens the SOMA Use Registry form in a new tab)">Register a SOMA study <span class="reg-arrow" aria-hidden="true">→</span></a>
+        <span class="reg-micro">Optional · 2–3 minutes · No permission required</span>
+      </div>
+    </div>
+  </section>
 </div>
 
 <!-- ═══════════════ HOW TO USE ═══════════════ -->
@@ -799,12 +892,88 @@ details summary:hover{color:var(--sage-700)}
   </div>
 
 
+
+  <!-- ═══ SOMA USE REGISTRY: optional final step after choosing a deployment ═══ -->
+  <div class="section-header" id="registry-workflow"><div class="section-label">After You Choose Your Materials</div><h2>Select, register, contribute</h2><p>Using SOMA never requires registration. The middle step is optional: it links a study to the shared resource so that deployments can be seen before publications and citations appear.</p></div>
+
+  <figure class="figure-soma fade-up" aria-labelledby="reg-flow-caption">
+    <img src="images/soma-registry-workflow-1400.jpg" srcset="images/soma-registry-workflow-900.jpg 900w, images/soma-registry-workflow-1400.jpg 1400w" sizes="(max-width: 960px) 100vw, 900px" width="1400" height="807" alt="SOMA research workflow showing selection of materials, study registration, and contribution to cumulative research." loading="lazy" decoding="async">
+    <div class="reg-flow-steps">
+      <div class="reg-flow-step">
+        <div class="reg-flow-step-head"><span class="reg-flow-num">1</span><h3>Select</h3></div>
+        <p>Choose the SOMA condition, pairing, practice structure, and assets appropriate for the study.</p>
+      </div>
+      <div class="reg-flow-step">
+        <div class="reg-flow-step-head"><span class="reg-flow-num">2</span><h3>Register</h3><span class="reg-flow-tag">Optional</span></div>
+        <p>Optionally tell the SOMA team how and where the resource will be deployed.</p>
+      </div>
+      <div class="reg-flow-step">
+        <div class="reg-flow-step-head"><span class="reg-flow-num">3</span><h3>Contribute</h3></div>
+        <p>Help build a cumulative picture of SOMA use across laboratories, populations, languages, and study designs.</p>
+      </div>
+    </div>
+    <figcaption id="reg-flow-caption"><strong>From selecting SOMA materials to contributing to cumulative research.</strong></figcaption>
+  </figure>
+
+  <section class="reg-feature fade-up" id="soma-use-registry" aria-labelledby="reg-feature-title">
+    <div class="reg-feature-grid">
+      <div class="reg-feature-text">
+        <div class="reg-eyebrow">SOMA Use Registry</div>
+        <h2 id="reg-feature-title">Planning or conducting a study with SOMA?</h2>
+        <p class="reg-lead">Help us understand how SOMA is being used across laboratories, populations, languages, and research questions.</p>
+        <p class="reg-body">Researchers planning, conducting, or completing a study using SOMA are invited to register their deployment. The registry helps us track adoption, coordinate translations and adaptations, communicate relevant resource updates, and build a cumulative picture of how the library is being used across research settings.</p>
+        <p class="reg-open">Registration is entirely optional and no permission is required to use SOMA.</p>
+        <ul class="reg-chips" aria-label="About registration">
+          <li class="reg-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>2–3 minutes</li>
+          <li class="reg-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"></path></svg>Optional</li>
+          <li class="reg-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"></path></svg>No participant data</li>
+          <li class="reg-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"></path></svg>No permission required</li>
+        </ul>
+        <a class="btn-primary reg-cta" href="https://docs.google.com/forms/d/e/1FAIpQLSeyZkRdwa8DGj1fvbUCmC82gZVargCril6irBmLbGKD0cgEXg/viewform" target="_blank" rel="noopener noreferrer" data-registry-cta="how_to_use" aria-label="Register a SOMA study (opens the SOMA Use Registry form in a new tab)">Register a SOMA study <span class="reg-arrow" aria-hidden="true">→</span></a>
+        <p class="reg-note">The SOMA Use Registry is not a substitute for ethics approval, trial registration, or scientific preregistration.</p>
+        <p class="reg-privacy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg><span>The registry collects researcher- and project-level information only. Please do not submit participant-level, health, or other sensitive research data through the registry. Project information will not be displayed publicly unless the submitting researcher explicitly opts in.</span></p>
+      </div>
+      <figure class="reg-visual">
+        <img src="images/soma-registry-1600.jpg" srcset="images/soma-registry-900.jpg 900w, images/soma-registry-1600.jpg 1600w" sizes="(max-width: 900px) 100vw, 600px" width="1600" height="900" alt="Illustration of the SOMA Use Registry connecting planned studies, mindfulness and matched active-control materials, and research teams across locations." loading="lazy" decoding="async">
+      </figure>
+    </div>
+
+    <div class="reg-why">
+      <div class="reg-why-label">Why register?</div>
+      <div class="reg-why-grid">
+        <div class="reg-why-item">
+          <div class="reg-why-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sage-700)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19h16"></path><path d="M7 16v-4"></path><path d="M12 16V8"></path><path d="M17 16v-7"></path></svg></div>
+          <div><h4>Track adoption</h4><p>Understand where and how SOMA is being deployed before publications appear.</p></div>
+        </div>
+        <div class="reg-why-item">
+          <div class="reg-why-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sage-700)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="12" r="2.5"></circle><circle cx="18" cy="6" r="2.5"></circle><circle cx="18" cy="18" r="2.5"></circle><path d="M8.3 10.9l7.4-3.8"></path><path d="M8.3 13.1l7.4 3.8"></path></svg></div>
+          <div><h4>Coordinate</h4><p>Connect relevant translations, adaptations, resource updates, and related research efforts.</p></div>
+        </div>
+        <div class="reg-why-item">
+          <div class="reg-why-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sage-700)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4-8 4-8-4 8-4z"></path><path d="M4 12l8 4 8-4"></path><path d="M4 17l8 4 8-4"></path></svg></div>
+          <div><h4>Build cumulative evidence</h4><p>Create a prospective picture of studies using shared SOMA materials across sites and research questions.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reserved for a future "Studies using SOMA" list of real, opt-in registrations.
+         Stays hidden while SOMA_DEPLOYMENTS (in the script) is empty. -->
+    <div class="reg-deployments" id="soma-deployments" hidden>
+      <div class="reg-why-label">Studies using SOMA</div>
+      <ul class="reg-deploy-list" id="soma-deployments-list"></ul>
+    </div>
+  </section>
+
   <!-- FAQ -->
   <div class="section-header"><div class="section-label">Common Questions</div><h2>Frequently asked questions</h2></div>
   <div style="display:flex;flex-direction:column;gap:.625rem;margin-bottom:3rem">
     <details style="background:#fff;border:1px solid var(--slate-200);border-radius:var(--r-md);padding:0;overflow:hidden">
       <summary style="padding:1rem 1.25rem;font-size:14px;font-weight:600;color:var(--slate-800);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center">Do I need permission to use SOMA?<span style="color:var(--sage-600);font-size:18px">+</span></summary>
       <p style="padding:0 1.25rem 1.125rem;font-size:13px;color:var(--slate-600);line-height:1.7">No. SOMA is released under CC BY-NC-SA 4.0 — you may use it freely for academic, clinical, and public research without contacting us. You must cite the library, use it non-commercially, and share adaptations under the same license. For commercial use, contact the A*STAR IHDP technology transfer office.</p>
+    </details>
+    <details style="background:#fff;border:1px solid var(--slate-200);border-radius:var(--r-md);padding:0;overflow:hidden">
+      <summary style="padding:1rem 1.25rem;font-size:14px;font-weight:600;color:var(--slate-800);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center">Do I need to register my study before using SOMA?<span style="color:var(--sage-600);font-size:18px">+</span></summary>
+      <p style="padding:0 1.25rem 1.125rem;font-size:13px;color:var(--slate-600);line-height:1.7">No. Registration is optional and is not an approval step. If you are planning, running, or have completed a study with SOMA, you are invited to add it to the <a href="#soma-use-registry" onclick="document.getElementById('soma-use-registry').scrollIntoView({behavior:'smooth'});return false" style="color:var(--sage-700);font-weight:600">SOMA Use Registry</a> so that we can understand how the library is being used. It does not replace ethics approval, trial registration, or scientific preregistration.</p>
     </details>
     <details style="background:#fff;border:1px solid var(--slate-200);border-radius:var(--r-md);padding:0;overflow:hidden">
       <summary style="padding:1rem 1.25rem;font-size:14px;font-weight:600;color:var(--slate-800);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center">Can I modify the scripts for my study?<span style="color:var(--sage-600);font-size:18px">+</span></summary>
@@ -853,6 +1022,14 @@ details summary:hover{color:var(--sage-700)}
 <div class="page" id="page-matrix">
   <div class="section-header"><div class="section-label">SOMA Validation Matrix</div><h2>Theme and Practice Pairings (A–P)</h2><p>The 16 theme–practice pairings used in the pre-registered Validation RCT (N = 360). Each pairing has a Mindfulness (M) and Active Control (C) version. Click column headers to sort.</p></div>
   <div style="margin-bottom:3.5rem"><div class="matrix-wrapper"><table class="matrix-table" id="matrix-table"></table></div></div>
+  <!-- ═══ SOMA USE REGISTRY: slim secondary CTA ═══ -->
+  <aside class="reg-callout" aria-labelledby="reg-matrix-title">
+    <div>
+      <h3 id="reg-matrix-title">Found the pairing you plan to use?</h3>
+      <p>If you are planning a study with SOMA, consider registering your deployment so that we can understand how the library is being used across research settings.</p>
+    </div>
+    <a class="reg-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeyZkRdwa8DGj1fvbUCmC82gZVargCril6irBmLbGKD0cgEXg/viewform" target="_blank" rel="noopener noreferrer" data-registry-cta="matrix" aria-label="Register your study (opens the SOMA Use Registry form in a new tab)">Register your study <span aria-hidden="true">→</span></a>
+  </aside>
 </div>
 
 <!-- ═══════════════ RESULTS ═══════════════ -->
@@ -1190,7 +1367,7 @@ details summary:hover{color:var(--sage-700)}
   <div class="footer-inner">
     <div class="footer-brand"><div class="footer-brand-row"><img src="images/soma-mark.png" width="40" height="40" alt="" loading="lazy"><h3>SOMA Framework</h3></div><p>An international open-science initiative bridging the equity gap in mindfulness research through rigorously standardised, freely available materials.</p></div>
     <div><h4>Repository</h4><a href="https://osf.io/preprints/psyarxiv/cp67b_v1" target="_blank" rel="noopener">Preprint ↗</a><a href="https://osf.io/m76cg" target="_blank" rel="noopener">OSF Repository ↗</a><a href="https://github.com/SparacioAlessandro/SOMA" target="_blank" rel="noopener">GitHub ↗</a><a href="https://clinicaltrials.gov/study/NCT07556744" target="_blank" rel="noopener">ClinicalTrials.gov ↗</a></div>
-    <div><h4>Resources</h4><a href="#" onclick="showPage('how-to-use');return false">How to Use SOMA</a><a href="#" onclick="showPage('results');return false">Validation Results</a><a href="#" onclick="showPage('team');return false">Team</a><a href="#" onclick="showPage('build');return false">How It Was Built</a><a href="#" onclick="showPage('methodology');return false">Methodology</a><a href="#" onclick="showPage('build');setTimeout(()=>document.getElementById('license-section').scrollIntoView({behavior:'smooth'}),100);return false">License &amp; Terms</a></div>
+    <div><h4>Resources</h4><a href="#" onclick="showPage('how-to-use');return false">How to Use SOMA</a><a href="#" onclick="showPage('results');return false">Validation Results</a><a href="#" onclick="showPage('team');return false">Team</a><a href="#" onclick="showPage('build');return false">How It Was Built</a><a href="#" onclick="showPage('methodology');return false">Methodology</a><a href="#" onclick="showPage('build');setTimeout(()=>document.getElementById('license-section').scrollIntoView({behavior:'smooth'}),100);return false">License &amp; Terms</a><a class="reg-footer-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeyZkRdwa8DGj1fvbUCmC82gZVargCril6irBmLbGKD0cgEXg/viewform" target="_blank" rel="noopener noreferrer" data-registry-cta="footer" aria-label="Register a SOMA study (opens in a new tab)">Register a SOMA study ↗</a></div>
   </div>
   <div class="footer-bottom"><span>© 2026 SOMA Research Consortium</span><span style="font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,.25)">CC BY-NC-SA 4.0</span></div>
 </footer>
@@ -1385,7 +1562,34 @@ function togglePlay(id,btn){
   currentAudio.onended=()=>{btn.textContent='▶';currentAudio=null;currentBtn=null;};
 }
 
-renderLibrary();renderMatrix();
+
+// ═══ SOMA USE REGISTRY ═══
+// One place to change the form URL. Every element with data-registry-cta is kept in sync
+// and reports a GA4 event: soma_registry_click { cta_location: homepage | how_to_use | matrix | footer }.
+const SOMA_REGISTRY={url:'https://docs.google.com/forms/d/e/1FAIpQLSeyZkRdwa8DGj1fvbUCmC82gZVargCril6irBmLbGKD0cgEXg/viewform'};
+function initRegistryLinks(){
+  document.querySelectorAll('[data-registry-cta]').forEach(a=>{
+    a.href=SOMA_REGISTRY.url;a.target='_blank';a.rel='noopener noreferrer';
+    a.addEventListener('click',()=>{
+      if(typeof gtag==='function')gtag('event','soma_registry_click',{cta_location:a.dataset.registryCta,link_url:SOMA_REGISTRY.url});
+    });
+  });
+}
+
+// Future "Studies using SOMA" component. Add only real registrations whose authors opted in
+// to public display. Expected fields per entry:
+// {title, institution, country, status, configuration, language, preregistration, publication}
+// (preregistration / publication: URLs, optional). While empty, the block stays hidden.
+const SOMA_DEPLOYMENTS=[];
+function renderDeployments(){
+  const box=document.getElementById('soma-deployments'),list=document.getElementById('soma-deployments-list');
+  if(!box||!list||!SOMA_DEPLOYMENTS.length)return;
+  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const link=(u,l)=>u?` · <a href="${esc(u)}" target="_blank" rel="noopener noreferrer" style="color:var(--sage-700)">${l}</a>`:'';
+  list.innerHTML=SOMA_DEPLOYMENTS.map(d=>`<li class="reg-deploy-item"><strong>${esc(d.title)}</strong>${esc(d.institution)}${d.country?', '+esc(d.country):''}<br><span style="font-family:var(--font-mono);font-size:10.5px">${esc(d.status)}${d.language?' · '+esc(d.language):''}${d.configuration?' · '+esc(d.configuration):''}</span>${link(d.preregistration,'Preregistration')}${link(d.publication,'Publication')}</li>`).join('');
+  box.hidden=false;
+}
+renderLibrary();renderMatrix();initRegistryLinks();renderDeployments();
 </script>
 </body>
 </html>
